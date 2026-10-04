@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the survey below."
+title: "Exploring Graph Mamba: Companion Repository"
+type: dataset
+authors:
+  - family-names: "Ben Atitallah"
+    given-names: "Safa"
+    orcid: "https://orcid.org/0000-0003-0796-3507"
+    affiliation: "Prince Sultan University; University of Manouba"
+  - family-names: "Ben Rabah"
+    given-names: "Chaima"
+    affiliation: "Weill Cornell Medicine, Qatar; University of Manouba"
+  - family-names: "Driss"
+    given-names: "Maha"
+    orcid: "https://orcid.org/0000-0001-8236-8746"
+    affiliation: "Alfaisal University; University of Manouba"
+  - family-names: "Boulila"
+    given-names: "Wadii"
+    orcid: "https://orcid.org/0000-0003-2133-0757"
+    affiliation: "Prince Sultan University; University of Manouba"
+  - family-names: "Koubaa"
+    given-names: "Anis"
+    orcid: "https://orcid.org/0000-0003-3787-7423"
+    affiliation: "Alfaisal University"
+license: MIT
+keywords: ["Graph Mamba", "State Space Models", "Selective State Space Models", "Mamba", "Graph Learning", "Graph Serialization", "Survey"]
+preferred-citation:
+  type: article
+  title: "Exploring Graph Mamba: A Comprehensive Survey on State-Space Models for Graph Learning"
+  authors:
+    - family-names: "Ben Atitallah"
+      given-names: "Safa"
+    - family-names: "Ben Rabah"
+      given-names: "Chaima"
+    - family-names: "Driss"
+      given-names: "Maha"
+    - family-names: "Boulila"
+      given-names: "Wadii"
+    - family-names: "Koubaa"
+      given-names: "Anis"
+  journal: "ACM Computing Surveys"
+  year: 2026
+  notes: "Under revision. Update volume, issue, pages, and DOI upon publication."
