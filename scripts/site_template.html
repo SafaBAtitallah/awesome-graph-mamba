@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exploring Graph Mamba — literature explorer</title>
+<meta name="description" content="Interactive companion to the survey 'Exploring Graph Mamba: A Comprehensive Survey on State-Space Models for Graph Learning'.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213d; --ink-2:#3d4a63; --muted:#5b6577; --paper:#f6f7f9; --card:#ffffff; --line:#d7dce5; --line-2:#e8ebf0;
+  --accent:#0f6f73; --accent-soft:#e3f1f1;
+  --DV:#b04a7b; --RT:#2c3e6b; --GS:#a8740c; --LG:#4f7554;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e8ecf3; --ink-2:#c3cad6; --muted:#98a2b3; --paper:#0f1420; --card:#161d2b; --line:#2b3446; --line-2:#212a3a;
+  --accent:#4fb3b6; --accent-soft:#16333a; --DV:#d97aa6; --RT:#8ea6e0; --GS:#e0b04f; --LG:#8fbf94;}}
+:root[data-theme="dark"]{
+  --ink:#e8ecf3; --ink-2:#c3cad6; --muted:#98a2b3; --paper:#0f1420; --card:#161d2b; --line:#2b3446; --line-2:#212a3a;
+  --accent:#4fb3b6; --accent-soft:#16333a; --DV:#d97aa6; --RT:#8ea6e0; --GS:#e0b04f; --LG:#8fbf94;}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+header.top{padding:40px 0 28px;border-bottom:1px solid var(--line)}
+.top h1{font:600 clamp(28px,4vw,44px)/1.08 var(--serif);letter-spacing:-.01em;margin:0 0 10px;max-width:22ch}
+.top p.sub{margin:0;color:var(--ink-2);max-width:68ch}
+.top .meta{margin-top:14px;color:var(--muted);font-size:13.5px}
+.top .meta a{margin-right:14px}
+.searchbar{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.searchbar input{flex:1 1 320px;font:inherit;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.btn{font:500 13.5px var(--sans);padding:9px 13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+h2{font:600 22px/1.2 var(--serif);margin:0 0 4px}
+.lede{color:var(--muted);margin:0 0 16px;max-width:72ch;font-size:14px}
+section.block{padding:32px 0 8px}
+
+/* --- design-space matrix (signature element) --- */
+.matrices{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px}
+@media (max-width:980px){.matrices{grid-template-columns:1fr}}
+.mx{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed}
+.mx-scroll{overflow-x:auto}
+.mx th{font:500 12.5px var(--sans);color:var(--muted);text-align:left;padding:6px 8px;vertical-align:bottom}
+.mx thead th{border-bottom:1px solid var(--line)}
+.mx tbody th{width:118px;border-right:1px solid var(--line);color:var(--ink-2)}
+.mx tbody th small{display:block;color:var(--muted);font-weight:400;font-size:11.5px;line-height:1.3}
+.mx td{padding:6px;vertical-align:top;border-bottom:1px solid var(--line-2);border-right:1px solid var(--line-2);min-height:64px}
+.mx td.cellbtn{cursor:pointer}
+.mx td.cellbtn:hover{background:var(--accent-soft)}
+.mx td.sel{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
+.mx td .n{display:inline-block;font-size:11.5px;color:var(--accent);margin-bottom:4px;text-decoration:underline;text-underline-offset:2px}
+.mx td.sel .n{font-weight:600;text-decoration:none}
+.chip{display:inline-block;font:500 12px/1.2 var(--sans);padding:3px 7px;margin:0 3px 4px 0;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:opacity .15s}
+.chip.dim{opacity:.22}
+.chip.setting-static_general{border-left:3px solid var(--accent)}
+.chip.setting-dynamic_spatiotemporal{border-left:3px solid #7a5aa6}
+.chip.setting-heterogeneous_higher_order{border-left:3px solid #b8612e}
+.chip.p-DV{border-left:3px solid var(--DV)} .chip.p-RT{border-left:3px solid var(--RT)}
+.chip.p-GS{border-left:3px solid var(--GS)} .chip.p-LG{border-left:3px solid var(--LG)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* --- filters + results --- */
+.filters{display:flex;flex-wrap:wrap;gap:18px 26px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+.fgroup{display:flex;flex-direction:column;gap:6px}
+.fgroup > span{font-size:12.5px;color:var(--muted)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px}
+.tg{font:500 12.5px var(--sans);padding:5px 10px;border-radius:20px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.tg[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+select{font:inherit;font-size:13.5px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.results{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:28px;align-items:start}
+@media (max-width:980px){.results{grid-template-columns:1fr}}
+.count{font-size:13.5px;color:var(--muted);margin-bottom:8px}
+.list{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:150px 1fr 54px;gap:14px;padding:12px 6px;border-bottom:1px solid var(--line-2);cursor:pointer;align-items:baseline}
+.row:hover{background:var(--card)}
+.row.active{background:var(--card);box-shadow:inset 3px 0 0 var(--accent)}
+.row .m{font-weight:600}
+.row .t{color:var(--ink-2);font-size:14px}
+.row .t small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.row .y{color:var(--muted);font-size:13px;text-align:right}
+@media (max-width:620px){.row{grid-template-columns:1fr 46px}.row .t{grid-column:1/-1;order:3}}
+.tag{display:inline-block;font-size:11.5px;padding:1px 6px;border-radius:3px;margin-right:4px;background:var(--line-2);color:var(--ink-2)}
+.tag.warn{background:#fbecd0;color:#7a4b00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.warn{background:#3b2c10;color:#f0c97a}}
+:root[data-theme="dark"] .tag.warn{background:#3b2c10;color:#f0c97a}
+.empty{padding:28px 6px;color:var(--muted)}
+
+.detail{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;max-height:calc(100vh - 32px);overflow:auto}
+.detail h3{font:600 24px/1.15 var(--serif);margin:0 0 6px}
+.detail .ptitle{font-weight:500;margin:0 0 6px}
+.detail .who{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.detail dl{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;margin:14px 0;font-size:14px}
+.detail dt{color:var(--muted)}
+.detail dd{margin:0}
+.detail h4{font:600 13.5px var(--sans);margin:16px 0 6px}
+.detail ul{margin:0;padding-left:18px;font-size:14px}
+.detail .links a{margin-right:12px;font-size:14px}
+.flag{background:#fbecd0;color:#5c3a00;border-radius:6px;padding:8px 10px;font-size:13px;margin-top:12px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .flag{background:#3b2c10;color:#f0d9a6}}
+:root[data-theme="dark"] .flag{background:#3b2c10;color:#f0d9a6}
+.detail .placeholder{color:var(--muted);margin:0}
+@media (max-width:980px){.detail{position:static;max-height:none}}
+
+/* --- year strip --- */
+.years{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:8px}
+.ybar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.ybar .stack{width:100%;max-width:70px;display:flex;flex-direction:column-reverse;border-radius:4px 4px 0 0;overflow:hidden}
+.ybar .stack span{display:block}
+footer{padding:36px 0 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Exploring Graph Mamba</h1>
+  <p class="sub">An interactive map of the literature reviewed in <em>A Comprehensive Survey on State-Space Models for Graph Learning</em>. Every architecture is placed by how deeply graph structure enters the state dynamics and how the SSM is combined with graph propagation.</p>
+  <div class="meta" id="meta"></div>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="Search models, titles, authors, tasks, datasets" aria-label="Search the literature">
+    <button class="btn" id="reset" type="button">Clear filters</button>
+    <button class="btn" id="dl" type="button">Download filtered CSV</button>
+    <button class="btn" id="theme" type="button" aria-label="Toggle colour theme">Theme</button>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="block">
+    <div class="matrices">
+      <div>
+        <h2>Architectures by coupling and integration</h2>
+        <p class="lede">Rows are D3 coupling levels, columns are D4 integration types (tab:unified-taxonomy). Select a cell’s count to filter, or a model to open it. A model with several labels appears in several cells.</p>
+        <div class="mx-scroll"><table class="mx" id="mxArch"></table></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>Static and general-purpose</span><span><i style="background:#7a5aa6"></i>Dynamic and spatio-temporal</span><span><i style="background:#b8612e"></i>Heterogeneous and higher-order</span></div>
+      </div>
+      <div>
+        <h2>Applications by data setting and pattern</h2>
+        <p class="lede">Dominant graph–SSM design pattern per application (fig:design-patterns). Select a cell’s count to filter, or a work to open it.</p>
+        <div class="mx-scroll"><table class="mx" id="mxApp"></table></div>
+        <div class="legend" id="patLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="filters" id="filters"></div>
+    <div class="results">
+      <div>
+        <div class="count" id="count" aria-live="polite"></div>
+        <div class="list" id="list" role="list"></div>
+      </div>
+      <aside class="detail" id="detail" aria-live="polite"><p class="placeholder">Select a work to see its classification, methodology, reported evidence, and the survey sections that discuss it.</p></aside>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Publications per year</h2>
+    <p class="lede">Year field of references.bib, stacked by role in the survey. Responds to the active filters.</p>
+    <div class="years" id="years"></div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Architecture (D1–D4)</span><span><i style="background:var(--GS)"></i>Application</span><span><i style="background:var(--muted)"></i>Discussed in Sec. 7</span></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  Generated by <code>scripts/generate_site.py</code> from <code>data/papers.yaml</code> and <code>source/references.bib</code> on every build. NR = not reported in the survey; all results are as reported by the original authors.
+  <span id="foot"></span>
+</div></footer>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+"use strict";
+const D = JSON.parse(document.getElementById("data").textContent);
+const P = D.papers, L = D.labels;
+const LEVELS = ["input","dynamics","operator"], TYPES = ["standalone","sequential","parallel","embedded"], PATS = ["DV","RT","GS","LG"];
+const st = {q:"", roles:new Set(), setting:"", domain:"", pattern:"", year:"", d3:"", d4:"", sub:"", key:null};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const txt = s => esc(String(s ?? "").replace(/---/g,"—").replace(/--/g,"–").replace(/\$([^$]+)\$/g,(m,x)=>x.replace(/\\lvert\s?|\\rvert\s?/g,"|").replace(/\\cdot/g,"·")));
+
+function hay(p){
+  return [p.model, (p.aliases||[]).join(" "), p.title, p.authors, p.venue, p.year, p.key, p.methodology,
+    (p.application||{}).task, (p.application||{}).graph_construction, (p.taxonomy||{}).d1, (p.taxonomy||{}).d2,
+    (p.datasets||[]).join(" ")].join(" ").toLowerCase();
+}
+P.forEach(p => p._h = hay(p));
+
+function match(p, ignore){
+  ignore = ignore || {};
+  if (st.q && !st.q.split(/\s+/).every(w => p._h.includes(w))) return false;
+  if (st.roles.size && !p.roles.some(r => st.roles.has(r))) return false;
+  if (st.setting && (!p.taxonomy || p.taxonomy.setting !== st.setting)) return false;
+  if (st.domain && (!p.application || p.application.domain !== st.domain)) return false;
+  if (st.pattern && (!p.application || !p.application.patterns.includes(st.pattern))) return false;
+  if (st.year && String(p.year) !== st.year) return false;
+  if (!ignore.arch && st.d3 && (!p.taxonomy || !p.taxonomy.d3.includes(st.d3))) return false;
+  if (!ignore.arch && st.d4 && (!p.taxonomy || !p.taxonomy.d4.includes(st.d4))) return false;
+  if (!ignore.app && st.sub && (!p.application || p.application.subdomain !== st.sub)) return false;
+  if (!ignore.app && st.cellPat && (!p.application || p.application.dominant_pattern !== st.cellPat)) return false;
+  return true;
+}
+
+/* ---------- matrices ---------- */
+function drawArch(){
+  const t = $("mxArch");
+  let h = "<thead><tr><th></th>" + TYPES.map(ty => `<th scope="col">${esc(L.type[ty])}</th>`).join("") + "</tr></thead><tbody>";
+  const desc = {input:"graph shapes tokens and order", dynamics:"graph conditions B, C, Δ or transition", operator:"operator defined on the graph"};
+  LEVELS.forEach(lv => {
+    h += `<tr><th scope="row">${esc(L.level[lv])}<small>${desc[lv]}</small></th>`;
+    TYPES.forEach(ty => {
+      const ps = P.filter(p => p.taxonomy && p.taxonomy.d3.includes(lv) && p.taxonomy.d4.includes(ty));
+      const sel = st.d3 === lv && st.d4 === ty;
+      h += `<td class="cellbtn${sel?" sel":""}" data-lv="${lv}" data-ty="${ty}" tabindex="0" role="button" aria-pressed="${sel}" aria-label="${esc(L.level[lv])}, ${esc(L.type[ty])}: ${ps.length} models">${ps.length ? `<span class="n">${sel?"Showing":"Filter"} ${ps.length}</span>` : ""}` +
+        ps.map(p => `<span class="chip setting-${p.taxonomy.setting}${match(p,{arch:true})?"":" dim"}" data-key="${esc(p.key)}">${txt(p.model)}${p.precursor?"†":""}</span>`).join("") + "</td>";
+    });
+    h += "</tr>";
+  });
+  t.innerHTML = h + "</tbody>";
+}
+function drawApp(){
+  const t = $("mxApp");
+  let h = "<thead><tr><th></th>" + PATS.map(pt => `<th scope="col" title="${esc(L.pattern[pt])}">${pt}</th>`).join("") + "</tr></thead><tbody>";
+  D.subdomains.forEach(sd => {
+    const rows = P.filter(p => p.application && p.application.subdomain === sd.id);
+    if (!rows.length) return;
+    h += `<tr><th scope="row">${esc(sd.label)}</th>`;
+    PATS.forEach(pt => {
+      const ps = rows.filter(p => p.application.dominant_pattern === pt);
+      const sel = st.sub === sd.id && st.cellPat === pt;
+      h += `<td class="cellbtn${sel?" sel":""}" data-sub="${sd.id}" data-pt="${pt}" tabindex="0" role="button" aria-pressed="${sel}" aria-label="${esc(sd.label)}, ${pt}: ${ps.length} works">${ps.length ? `<span class="n">${sel?"Showing":"Filter"} ${ps.length}</span>` : ""}` +
+        ps.map(p => `<span class="chip p-${pt}${match(p,{app:true})?"":" dim"}" data-key="${esc(p.key)}">${txt(p.model)}${p.precursor?"†":""}${p.multimodal?"◆":""}</span>`).join("") + "</td>";
+    });
+    h += "</tr>";
+  });
+  t.innerHTML = h + "</tbody>";
+  $("patLegend").innerHTML = PATS.map(pt => `<span><i style="background:var(--${pt})"></i>${pt} ${esc(L.pattern[pt])}</span>`).join("") + "<span>† precursor · ◆ multimodal</span>";
+}
+function cellHandler(e){
+  const chip = e.target.closest(".chip");
+  if (chip){ openKey(chip.dataset.key); return; }
+  const td = e.target.closest("td.cellbtn"); if (!td) return;
+  if (td.dataset.lv){
+    const same = st.d3 === td.dataset.lv && st.d4 === td.dataset.ty;
+    st.d3 = same ? "" : td.dataset.lv; st.d4 = same ? "" : td.dataset.ty;
+  } else {
+    const same = st.sub === td.dataset.sub && st.cellPat === td.dataset.pt;
+    st.sub = same ? "" : td.dataset.sub; st.cellPat = same ? "" : td.dataset.pt;
+  }
+  render();
+}
+["mxArch","mxApp"].forEach(id => {
+  $(id).addEventListener("click", cellHandler);
+  $(id).addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); cellHandler(e); }});
+});
+
+/* ---------- filters ---------- */
+function opts(map, all){ return `<option value="">${all}</option>` + Object.entries(map).map(([k,v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join(""); }
+function drawFilters(){
+  const years = [...new Set(P.map(p => String(p.year)))].sort();
+  $("filters").innerHTML =
+    `<div class="fgroup"><span>Role in the survey</span><div class="toggles">` +
+      Object.entries(D.roleShort).map(([k,v]) => `<button type="button" class="tg" data-role="${k}" aria-pressed="false">${esc(v)}</button>`).join("") + `</div></div>` +
+    `<div class="fgroup"><label for="fs">Graph setting</label><select id="fs">${opts(L.setting,"All settings")}</select></div>` +
+    `<div class="fgroup"><label for="fd">Application area</label><select id="fd">${opts(L.domain,"All areas")}</select></div>` +
+    `<div class="fgroup"><label for="fp">Design pattern</label><select id="fp">${opts(L.pattern,"All patterns")}</select></div>` +
+    `<div class="fgroup"><label for="fy">Year</label><select id="fy"><option value="">All years</option>${years.map(y=>`<option>${y}</option>`).join("")}</select></div>`;
+  document.querySelectorAll(".fgroup label").forEach(l => l.style.cssText = "font-size:12.5px;color:var(--muted)");
+  $("filters").addEventListener("click", e => {
+    const b = e.target.closest(".tg"); if (!b) return;
+    const r = b.dataset.role; st.roles.has(r) ? st.roles.delete(r) : st.roles.add(r); render();
+  });
+  [["fs","setting"],["fd","domain"],["fp","pattern"],["fy","year"]].forEach(([id,k]) => $(id).addEventListener("change", e => { st[k] = e.target.value; render(); }));
+}
+function syncFilters(){
+  document.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed", st.roles.has(b.dataset.role)));
+  $("fs").value = st.setting; $("fd").value = st.domain; $("fp").value = st.pattern; $("fy").value = st.year;
+}
+
+/* ---------- list + detail ---------- */
+function category(p){
+  if (p.taxonomy) return L.setting[p.taxonomy.setting];
+  if (p.application) return L.subdomain[p.application.subdomain];
+  return "Discussed in Sec. 7";
+}
+function drawList(rows){
+  const active = [];
+  if (st.d3) active.push(`${L.level[st.d3]} × ${L.type[st.d4]}`);
+  if (st.sub) active.push(`${L.subdomain[st.sub]} × ${st.cellPat}`);
+  $("count").textContent = `${rows.length} of ${P.length} works` + (active.length ? ` · cell: ${active.join(", ")}` : "");
+  if (!rows.length){ $("list").innerHTML = `<div class="empty">No works match these filters. Clear a filter or the selected matrix cell to widen the search.</div>`; return; }
+  $("list").innerHTML = rows.map(p => {
+    const tags = [];
+    if (p.taxonomy) tags.push(`<span class="tag">${esc(p.taxonomy.d3.map(x=>L.level[x]).join(", "))}</span><span class="tag">${esc(p.taxonomy.d4.map(x=>L.type[x]).join(", "))}</span>`);
+    if (p.application) tags.push(`<span class="tag">${p.application.dominant_pattern}${p.application.secondary_pattern?"+"+p.application.secondary_pattern:""}</span>`);
+    if (p.verification.status === "needs_verification") tags.push(`<span class="tag warn">needs verification</span>`);
+    return `<div class="row${st.key===p.key?" active":""}" role="listitem" tabindex="0" data-key="${esc(p.key)}"><div class="m">${txt(p.model)}</div>` +
+      `<div class="t">${txt(p.title)}<small>${esc(category(p))} ${tags.join("")}</small></div><div class="y">${esc(p.year)}</div></div>`;
+  }).join("");
+}
+$("list").addEventListener("click", e => { const r = e.target.closest(".row"); if (r) openKey(r.dataset.key); });
+$("list").addEventListener("keydown", e => { if (e.key === "Enter"){ const r = e.target.closest(".row"); if (r) openKey(r.dataset.key); }});
+
+function li(arr){ return arr && arr.length ? "<ul>" + arr.map(x => `<li>${txt(x)}</li>`).join("") + "</ul>" : `<p class="placeholder">NR</p>`; }
+function drawDetail(){
+  const p = P.find(x => x.key === st.key);
+  if (!p){ $("detail").innerHTML = `<p class="placeholder">Select a work to see its classification, methodology, reported evidence, and the survey sections that discuss it.</p>`; return; }
+  const links = [];
+  if (p.doi !== "NR") links.push(`<a href="${esc(p.doi)}" target="_blank" rel="noopener">DOI</a>`);
+  if (p.arxiv !== "NR") links.push(`<a href="${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv</a>`);
+  if (p.url !== "NR") links.push(`<a href="${esc(p.url)}" target="_blank" rel="noopener">Publisher</a>`);
+  if (!links.length) links.push(`<a href="${esc(p.search_link)}" target="_blank" rel="noopener">Search Google Scholar</a>`);
+  if (p.code !== "NR") links.push(`<a href="${esc(p.code)}" target="_blank" rel="noopener">Code</a>`);
+  links.push(`<a href="${esc(D.repoPages[p.key])}">Full card</a>`);
+  let dl = `<dt>BibTeX key</dt><dd><code>${esc(p.key)}</code></dd>`;
+  if (p.taxonomy){ const t = p.taxonomy;
+    dl += `<dt>Setting</dt><dd>${esc(L.setting[t.setting])}</dd><dt>D1 Tokenization</dt><dd>${txt(t.d1)}</dd><dt>D2 Ordering</dt><dd>${txt(t.d2)}</dd>` +
+          `<dt>D3 Coupling</dt><dd>${esc(t.d3.map(x=>L.level[x]).join(", "))}</dd><dt>D4 Integration</dt><dd>${esc(t.d4.map(x=>L.type[x]).join(", "))}</dd>`; }
+  if (p.application){ const a = p.application;
+    dl += `<dt>Data setting</dt><dd>${esc(L.subdomain[a.subdomain])}</dd><dt>Task</dt><dd>${txt(a.task)}</dd><dt>Graph</dt><dd>${txt(a.graph_construction)}</dd>` +
+          `<dt>Pattern</dt><dd>${esc(L.pattern[a.dominant_pattern])} (${a.dominant_pattern})${a.secondary_pattern?`; secondary ${a.secondary_pattern}`:""}</dd><dt>Division of labor</dt><dd>${txt(a.division_of_labor)}</dd>`; }
+  if (p.datasets.length) dl += `<dt>Benchmarks</dt><dd>${esc(p.datasets.join(", "))}</dd>`;
+  if (p.complexity !== "NR") dl += `<dt>Complexity</dt><dd>${txt(p.complexity)}</dd>`;
+  let extra = "";
+  if (p.efficiency) extra += `<h4>Efficiency evidence</h4><p style="font-size:14px;margin:0">${txt(p.efficiency.evidence)}</p>`;
+  if (p.expressivity) extra += `<h4>Expressive power</h4><p style="font-size:14px;margin:0">${txt(p.expressivity.result)}</p>`;
+  if (p.result_tables.length) extra += `<h4>Published results</h4><p style="font-size:14px;margin:0">${p.result_tables.map(t=>`<a href="${D.repoBase}tables/markdown/${t}.md">${t}</a>`).join(", ")}</p>`;
+  const flags = (p.verification.flags||[]).map(f => `<div class="flag">${txt(f)}</div>`).join("");
+  $("detail").innerHTML = `<h3>${txt(p.model)}${p.precursor?" †":""}${p.multimodal?" ◆":""}</h3><p class="ptitle">${txt(p.title)}</p>` +
+    `<p class="who">${esc(p.authors)}<br>${txt(p.venue)}, ${esc(p.year)}</p><div class="links">${links.join("")}</div><dl>${dl}</dl>` +
+    `<h4>Methodology</h4><p style="font-size:14px;margin:0">${txt(p.methodology)}</p>` +
+    (p.contributions.length ? `<h4>Key contributions</h4>${li(p.contributions)}` : "") + extra +
+    `<h4>Advantages stated in the survey</h4>${li(p.advantages)}<h4>Limitations stated in the survey</h4>${li(p.limitations)}` +
+    `<h4>Discussed in</h4><p style="font-size:14px;margin:0">${esc(p.manuscript_sections.join("; ") || "NR")}</p>` + flags;
+}
+function openKey(k){ st.key = k; history.replaceState(null, "", "#" + encodeURIComponent(k)); render();
+  if (window.matchMedia("(max-width:980px)").matches) $("detail").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth"}); }
+
+/* ---------- years ---------- */
+function drawYears(rows){
+  const years = [...new Set(P.map(p => String(p.year)))].sort();
+  const max = Math.max(1, ...years.map(y => P.filter(p => String(p.year) === y).length));
+  $("years").innerHTML = years.map(y => {
+    const r = rows.filter(p => String(p.year) === y);
+    const parts = [["taxonomy","var(--accent)"],["application","var(--GS)"],["discussed","var(--muted)"]].map(([role,c]) => {
+      const n = r.filter(p => p.roles[0] === role).length; return n ? `<span style="height:${n/max*90}px;background:${c}" title="${n} ${role}"></span>` : "";
+    }).join("");
+    return `<div class="ybar"><span>${r.length}</span><div class="stack">${parts}</div><span>${y}</span></div>`;
+  }).join("");
+}
+
+/* ---------- csv ---------- */
+$("dl").addEventListener("click", () => {
+  const rows = P.filter(p => match(p));
+  const cols = ["key","model","title","authors","year","venue","roles","setting","d3","d4","subdomain","dominant_pattern","doi","arxiv"];
+  const val = p => ({key:p.key,model:p.model,title:p.title,authors:p.authors,year:p.year,venue:p.venue,roles:p.roles.join(";"),
+    setting:p.taxonomy?p.taxonomy.setting:"NR",d3:p.taxonomy?p.taxonomy.d3.join(";"):"NR",d4:p.taxonomy?p.taxonomy.d4.join(";"):"NR",
+    subdomain:p.application?p.application.subdomain:"NR",dominant_pattern:p.application?p.application.dominant_pattern:"NR",doi:p.doi,arxiv:p.arxiv});
+  const q = s => `"${String(s).replace(/"/g,'""')}"`;
+  const csv = [cols.join(",")].concat(rows.map(p => cols.map(c => q(val(p)[c])).join(","))).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download = "graph-mamba-filtered.csv"; a.click();
+});
+
+/* ---------- misc ---------- */
+$("q").addEventListener("input", e => { st.q = e.target.value.trim().toLowerCase(); render(); });
+$("reset").addEventListener("click", () => { Object.assign(st,{q:"",setting:"",domain:"",pattern:"",year:"",d3:"",d4:"",sub:"",cellPat:""}); st.roles.clear(); $("q").value=""; render(); });
+$("theme").addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+  document.documentElement.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("gm-theme", document.documentElement.dataset.theme); } catch(e){}
+});
+try { const t = localStorage.getItem("gm-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
+
+$("meta").innerHTML = `${P.length} works · ${D.counts.taxonomy} architectures · ${D.counts.application} applications · ${D.counts.discussed} discussed only &nbsp; ` +
+  `<a href="${D.repoBase}">Repository</a><a href="${D.repoBase}tables/README.md">Comparison tables</a><a href="${D.repoBase}docs/FLAGS.md">Open flags</a>`;
+$("foot").textContent = ` Data snapshot: ${D.generated}.`;
+
+function render(){
+  const rows = P.filter(p => match(p));
+  drawArch(); drawApp(); syncFilters(); drawList(rows); drawDetail(); drawYears(rows);
+}
+drawFilters();
+const h = decodeURIComponent(location.hash.slice(1)); if (h && P.some(p => p.key === h)) st.key = h;
+render();
+})();
+</script>
+</body>
+</html>
