@@ -1,0 +1,2348 @@
+<!DOCTYPE html><html lang='en'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Graph Mamba | Comparison Tables</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:1400px;margin:40px auto;
+padding:20px;background:#f8fafc;color:#172b4d}
+h1{font-family:Georgia,serif;font-size:36px}
+h2{margin-top:45px}
+a{color:#087e91}
+table{border-collapse:collapse;width:100%;background:white;font-size:14px}
+th,td{padding:12px;border:1px solid #dce3ea;text-align:left}
+th{background:#e9f3f5}
+tr:nth-child(even){background:#f7f9fb}
+.wrapper{overflow-x:auto}
+nav{margin-bottom:35px}
+nav a{margin-right:20px}
+</style></head><body>
+<nav><a href='./'>← Interactive Taxonomy</a></nav>
+<h1>Graph Mamba — Comparison Tables</h1>
+<p>Comparative tables generated from the survey dataset.</p>
+<h2>Benchmark Summary</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Benchmark(s)</th>
+<th>Domain / task</th>
+<th>Graph setting</th>
+<th>Main metrics</th>
+<th>Representative models</th>
+<th>Numeric results</th>
+</tr>
+<tr>
+<td>Peptides-func, Peptides-struct</td>
+<td>General graph learning</td>
+<td>Static molecular graphs</td>
+<td>AP, MAE</td>
+<td>Graph-Mamba; GMN; GSSC</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>BVFC-MEG, HCP-Mental, HCP-Age</td>
+<td>Brain classification</td>
+<td>Brain-network / physiological graphs</td>
+<td>Accuracy</td>
+<td>GraphS4mer; BrainMamba</td>
+<td>perf_brain</td>
+</tr>
+<tr>
+<td>Indian Pines, Salinas, UH2013</td>
+<td>Hyperspectral image classification</td>
+<td>Spectral–spatial graphs</td>
+<td>OA, AA, Kappa</td>
+<td>GraphMamba (HSI)</td>
+<td>perf_hsi</td>
+</tr>
+<tr>
+<td>PeMS04, HZMetro, KnowAir</td>
+<td>Spatio-temporal forecasting</td>
+<td>Traffic / environmental graphs</td>
+<td>RMSE, MAE, MAPE</td>
+<td>STG-Mamba</td>
+<td>perf_spatiotemporal</td>
+</tr>
+<tr>
+<td>NASDAQ, NYSE, DJIA</td>
+<td>Financial forecasting</td>
+<td>Inter-asset graphs</td>
+<td>RMSE, training time</td>
+<td>SAMBA</td>
+<td>perf_financial</td>
+</tr>
+<tr>
+<td>Restaurant14, Laptop14, Twitter14</td>
+<td>Aspect-based sentiment analysis</td>
+<td>Syntactic dependency graphs</td>
+<td>Accuracy, F1-score</td>
+<td>MambaForGCN</td>
+<td>perf_absa</td>
+</tr>
+</table></div>
+<h2>Coupling Integration</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Group</th>
+<th>Graph setting</th>
+<th>Models</th>
+<th>Input</th>
+<th>Dynamics</th>
+<th>Operator</th>
+<th>Standalone</th>
+<th>Sequential</th>
+<th>Parallel</th>
+<th>Embedded</th>
+</tr>
+<tr>
+<td>NR</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>7</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>10</td>
+<td>4</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>All settings</td>
+<td>21</td>
+<td>10</td>
+<td>8</td>
+<td>3</td>
+<td>10</td>
+<td>2</td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Cross-tabulation D3 level × D4 type (all settings)</td>
+<td>Input-level</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td>5</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Cross-tabulation D3 level × D4 type (all settings)</td>
+<td>Dynamics-level</td>
+<td>8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Cross-tabulation D3 level × D4 type (all settings)</td>
+<td>Operator-level</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table></div>
+<h2>Cross Domain Applications</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Domain</th>
+<th>Work</th>
+<th>Year</th>
+<th>Task</th>
+<th>Graph construction</th>
+<th>Graph–SSM division of labor</th>
+<th>DV</th>
+<th>RT</th>
+<th>GS</th>
+<th>LG</th>
+<th>Dominant (secondary)</th>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Neural and physiological signals</td>
+<td>GraphS4mer</td>
+<td>2023</td>
+<td>Seizure, sleep, ECG classification</td>
+<td>Physiological channels; dynamically learned edges</td>
+<td>GIN captures graph relations; S4 models long-range temporal dependencies.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Neural and physiological signals</td>
+<td>BrainMamba</td>
+<td>2024</td>
+<td>Brain encoding; attention-deficit/hyperactivity disorder and seizure detection</td>
+<td>Brain-unit tokens and multivariate time series</td>
+<td>Message passing models local relations; selective SSM captures node and temporal dependencies.</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>RT (+GS)</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Neural and physiological signals</td>
+<td>Brain-GM</td>
+<td>2024</td>
+<td>Brain decoding and disease classification</td>
+<td>Dynamic brain networks</td>
+<td>Graph learning models time-varying connectivity; SSM captures temporal evolution.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Neural and physiological signals</td>
+<td>Brain Network Mamba</td>
+<td>2026</td>
+<td>Resting-state fMRI analysis</td>
+<td>Functional brain networks</td>
+<td>Graph structure captures regional interactions; bidirectional SSM models broader dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Neural and physiological signals</td>
+<td>MSGM</td>
+<td>2026</td>
+<td>EEG emotion recognition</td>
+<td>Local–global brain graphs</td>
+<td>Graph modules model brain relations; SSM captures spatio-temporal dependencies.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Clinical, biological, and molecular data</td>
+<td>MGSSM-SAKI</td>
+<td>2024</td>
+<td>Sepsis-AKI subphenotyping</td>
+<td>Adaptive graph from multimodal clinical variables</td>
+<td>Graph aggregation models patient-state relations; SSM captures temporal evolution.</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT (+DV)</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Clinical, biological, and molecular data</td>
+<td>Aghaee et al.</td>
+<td>2024</td>
+<td>Metabolic-pathway modeling</td>
+<td>Metabolic-pathway graphs</td>
+<td>Graph models pathway interactions; structured SSM captures temporal evolution.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Clinical, biological, and molecular data</td>
+<td>ExPath</td>
+<td>2026</td>
+<td>Pathway inference and explanation</td>
+<td>Molecular network and sampled pathway sequences</td>
+<td>GIN captures local pathway structure; Mamba processes graph-derived pathways.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Clinical, biological, and molecular data</td>
+<td>MGDTA</td>
+<td>2024</td>
+<td>Drug–target affinity prediction</td>
+<td>Drug graph and protein sequence</td>
+<td>Graph encoder models molecular structure; Mamba models protein sequence before fusion.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Clinical, biological, and molecular data</td>
+<td>MKHCNet</td>
+<td>2025</td>
+<td>Automatic ICD coding</td>
+<td>Disease knowledge graph linked to ICD labels</td>
+<td>Graph enriches label semantics; Mamba captures long-range EHR-text dependencies.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Histopathology</td>
+<td>GAT–Mamba</td>
+<td>2025</td>
+<td>Lung-cancer survival prediction</td>
+<td>WSI tissue-region graph</td>
+<td>GAT models local tissue relations; Mamba captures global contextual dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Histopathology</td>
+<td>GraphMamba (WSI)</td>
+<td>2025</td>
+<td>WSI classification</td>
+<td>Multi-level instance/group graphs</td>
+<td>Graph hierarchy defines groups; Mamba models intra- and cross-group dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Histopathology</td>
+<td>MGCM</td>
+<td>2026</td>
+<td>Multimodal cancer survival prediction</td>
+<td>Transcriptomic and pathology graphs</td>
+<td>Graph convolution models within-modality structure; Mamba captures cross-modal dependencies.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Histopathology</td>
+<td>TopoMamSurv</td>
+<td>2026</td>
+<td>WSI survival analysis</td>
+<td>Topology-aware WSI graph</td>
+<td>Graph convolution models local structure; bidirectional Mamba processes topology-ordered nodes.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Histopathology</td>
+<td>CGAM</td>
+<td>2025</td>
+<td>Esophageal pathology grading</td>
+<td>Tumor and microenvironment graph</td>
+<td>Graph attention models local topology; Mamba captures broader dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Medical imaging</td>
+<td>GM-UNet</td>
+<td>2024</td>
+<td>Image segmentation</td>
+<td>Dynamic feature graph within U-Net</td>
+<td>Graph modules model feature relations; Mamba provides broader contextual modeling.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Medical imaging</td>
+<td>GGVMamba</td>
+<td>2024</td>
+<td>Bone-age assessment</td>
+<td>Gender-adaptive inter-region graph</td>
+<td>Graph models inter-region relations; graph-guided bidirectional Mamba captures context.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Medical imaging</td>
+<td>HGM</td>
+<td>2025</td>
+<td>Polyp segmentation</td>
+<td>Graph over image regions</td>
+<td>GCN captures local topology; multi-directional Mamba models global context.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Healthcare and Biomedical Applications — Medical imaging</td>
+<td>GMMN</td>
+<td>2026</td>
+<td>Macular edema diagnosis</td>
+<td>Graph over fundus representations</td>
+<td>GCN captures local spatial correlations; Mamba models long-range dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Remote sensing</td>
+<td>GraphMamba (HSI)</td>
+<td>2024</td>
+<td>Hyperspectral classification</td>
+<td>Spatial neighborhoods and spectral representations</td>
+<td>SpatialGCN captures local spatial relations; HyperMamba models global spectral dependencies.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Remote sensing</td>
+<td>MGF-GCN</td>
+<td>2025</td>
+<td>Multimodal remote-sensing segmentation</td>
+<td>Height-aware multimodal graph</td>
+<td>Graph convolution captures spatial/elevation relations; Mamba models cross-modal interactions.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Remote sensing</td>
+<td>GraphMamba (tok.)</td>
+<td>2025</td>
+<td>Hyperspectral classification</td>
+<td>Graph-guided spectral–spatial tokens</td>
+<td>Graph constructs and prioritizes tokens; Mamba models their global dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Remote sensing</td>
+<td>TGMN</td>
+<td>2025</td>
+<td>Hyperspectral classification</td>
+<td>Superpixel subgraphs</td>
+<td>GCN models local superpixel relations; Mamba captures broader dependencies.</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>LG</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Remote sensing</td>
+<td>GM-HAD</td>
+<td>2026</td>
+<td>Hyperspectral anomaly detection</td>
+<td>Superpixel region-adjacency graph</td>
+<td>Graph guides local aggregation and ordering; SSM processes the resulting sequence.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Articulated and human motion</td>
+<td>Hamba</td>
+<td>2024</td>
+<td>3D hand reconstruction</td>
+<td>Hand-joint graph</td>
+<td>Graph structure determines the bidirectional scan; SSM models the joint sequence.</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>GS</td>
+</tr>
+<tr>
+<td>Remote Sensing and Structured Visual Applications — Articulated and human motion</td>
+<td>Tang et al.</td>
+<td>2025</td>
+<td>Music-guided dance synthesis</td>
+<td>Dynamic human-skeleton graph</td>
+<td>Graph models joint relations; Graph Mamba captures spatial and temporal dependencies.</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>RT (+GS)</td>
+</tr>
+<tr>
+<td>Other Application Areas — Financial forecasting</td>
+<td>SAMBA</td>
+<td>2025</td>
+<td>Stock-return forecasting</td>
+<td>Adaptive inter-asset graph</td>
+<td>Graph convolution models asset relations; bidirectional Mamba captures price dynamics.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Other Application Areas — Industrial prognostics</td>
+<td>Ren et al.</td>
+<td>2026</td>
+<td>Aero-engine remaining useful life (RUL) prediction</td>
+<td>Spatio-temporal sensor hypergraph</td>
+<td>Hypergraph models higher-order sensor relations; Graph Mamba captures temporal degradation.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Other Application Areas — Cybersecurity and intrusion detection</td>
+<td>IDS–GraphMamba</td>
+<td>2025</td>
+<td>IoMT intrusion detection</td>
+<td>Flow transition graph</td>
+<td>Graph modules capture directional flow relations; SSM models sequential dependencies.</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>RT</td>
+</tr>
+<tr>
+<td>Other Application Areas — Language and semantic modeling</td>
+<td>MambaForGCN</td>
+<td>2025</td>
+<td>Aspect-based sentiment analysis</td>
+<td>Syntactic dependency graph</td>
+<td>SynGCN models syntax; Mamba models broader semantic context before fusion.</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>DV</td>
+</tr>
+</table></div>
+<h2>Efficiency Summary</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>Reported complexity</th>
+<th>Reported scaling</th>
+<th>Additional cost sources</th>
+<th>Reported evidence</th>
+</tr>
+<tr>
+<td>GSSC</td>
+<td>$O(nmd)$ for the graph state-space convolution ($n$ nodes; $m$ hidden and $d$ positional-encoding dimensions)</td>
+<td>Linear-time structured state-space propagation</td>
+<td>Graph-kernel and positional/spectral preprocessing</td>
+<td>Reports graph-size-dependent linear propagation complexity; preprocessing evaluated separately (Laplacian PE eigendecomposition can be non-negligible; only required eigenpairs computed iteratively for larger graphs)</td>
+</tr>
+<tr>
+<td>GMN</td>
+<td>$O(Ms(m+1)\lvert V\rvert + \lvert E\rvert)$ in the subgraph-token setting ($M$, $s$, $m$ control sampling and token construction); linear in $\lvert V\rvert$ with node tokens; $O(\lvert V\rvert + \lvert E\rvert)$ with the optional message-passing component</td>
+<td>Linear in processed graph-token sequence length</td>
+<td>Neighborhood sampling and optional message passing</td>
+<td>Complexity depends on sampling parameters and graph size</td>
+</tr>
+<tr>
+<td>Graph-Mamba</td>
+<td>$O(L)$ for the Graph-Mamba Block with respect to input sequence length $L$ (hardware-aware Mamba implementation)</td>
+<td>Linear Mamba global block</td>
+<td>Node prioritization, permutation, sequence construction</td>
+<td>Reports reduced GPU memory usage on large-graph experiments (up to 74%); binning strategy splits long node sequences for larger graphs</td>
+</tr>
+<tr>
+<td>DyGMamba</td>
+<td>NR</td>
+<td>Scales to long temporal interaction histories</td>
+<td>Historical-neighbor retrieval and temporal sequence construction</td>
+<td>Processes more than 8192 temporal neighbors on a 48 GB NVIDIA A40 GPU vs. up to 2048 for the compared DyGFormer configuration (specific to that paper&#x27;s setup)</td>
+</tr>
+</table></div>
+<h2>Evidence Coverage</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>Setting</th>
+<th>Complexity</th>
+<th>Efficiency evidence</th>
+<th>Expressivity result</th>
+<th>Benchmarks named</th>
+<th>Numeric results</th>
+<th>Limitations stated</th>
+<th>Challenge link</th>
+</tr>
+<tr>
+<td>GSSC</td>
+<td>Static and General-Purpose</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GMN</td>
+<td>Static and General-Purpose</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Graph-Mamba</td>
+<td>Static and General-Purpose</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GrassNet</td>
+<td>Static and General-Purpose</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>MbaGCN</td>
+<td>Static and General-Purpose</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DMbaGCN</td>
+<td>Static and General-Purpose</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>GLADMamba</td>
+<td>Static and General-Purpose</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GraphSSM</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GSSM</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DG-Mamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DyGMamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DyG-Mamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>STG-Mamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>SpoT-Mamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>PS-Mamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>FuzzMamba</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>STMAGRN</td>
+<td>Dynamic and Spatio-Temporal</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>HeteGraph-Mamba</td>
+<td>Heterogeneous and Higher-Order</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Mamba-GTC</td>
+<td>Heterogeneous and Higher-Order</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>TopoMamba</td>
+<td>Heterogeneous and Higher-Order</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CCMamba</td>
+<td>Heterogeneous and Higher-Order</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GSM++</td>
+<td>Discussed (Sec. 7)</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>MapsTSF</td>
+<td>Discussed (Sec. 7)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Transfer-Mamba</td>
+<td>Discussed (Sec. 7)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>M3-HGMA</td>
+<td>Discussed (Sec. 7)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</table></div>
+<h2>Expressivity</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Group</th>
+<th>Model</th>
+<th>Permutation property</th>
+<th>Reported result</th>
+<th>Caveat</th>
+</tr>
+<tr>
+<td>Reference model families</td>
+<td>MPNNs (reference)</td>
+<td>Equivariant</td>
+<td>Upper-bounded by 1-WL</td>
+<td>Cannot count cycles; limited long-range propagation</td>
+</tr>
+<tr>
+<td>Reference model families</td>
+<td>Graph Transformers (reference)</td>
+<td>Equivariant given equivariant PE/SE</td>
+<td>Universal approximation with sufficiently expressive PE/SE</td>
+<td>Power resides in the PE/SE; quadratic cost of global attention</td>
+</tr>
+<tr>
+<td>SSM-based graph models</td>
+<td>GSSC</td>
+<td>Equivariant by construction</td>
+<td>Strictly more powerful than 1-WL and not more powerful than 3-WL; counts 3-paths and 3-cycles, and 4-paths and 4-cycles when the selection mechanism is added</td>
+<td>Not a serialization-based model; relies on a factorizable distance kernel built from PE</td>
+</tr>
+<tr>
+<td>SSM-based graph models</td>
+<td>GMN</td>
+<td>Not guaranteed (ordered tokens, bidirectional scan)</td>
+<td>Universal approximator of permutation-equivariant functions given PE; with suitable PE/SE more expressive than any WL test, matching graph Transformers; unbounded power without PE/SE when a random-walk neighborhood encoder is used</td>
+<td>Part of the power is attributed by the authors to neighborhood sampling and encoding rather than to the selective SSM</td>
+</tr>
+<tr>
+<td>SSM-based graph models</td>
+<td>CCMamba</td>
+<td>Rank-aware sequences over incidence neighborhoods</td>
+<td>Upper-bounded by the 1-dimensional combinatorial-complex WL (1-CCWL) test</td>
+<td>An upper bound only: the selective SSM does not exceed higher-order message passing</td>
+</tr>
+<tr>
+<td>SSM-based graph models</td>
+<td>GSM++</td>
+<td>Depends on tokenizer and backbone</td>
+<td>Task-based analysis beyond WL: recurrent backbones can count node colors when the state width is at least the number of colors, which non-causal Transformers without PE cannot; worst-case connectivity favors Transformers (logarithmic depth), whereas recurrent models need polynomial depth or width unless the ordering is locality-preserving</td>
+<td>Sensitivity of SSM outputs decays with token distance and deep stacks exhibit representational collapse; no single backbone dominates</td>
+</tr>
+</table></div>
+<h2>Future Directions</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Challenge</th>
+<th>Design question</th>
+<th>Promising directions</th>
+<th>Early work / examples</th>
+</tr>
+<tr>
+<td>End-to-end scalability and tooling</td>
+<td>Ordering, Integration</td>
+<td>Sparse graph-aware scanning, efficient serialization, graph partitioning; packed variable-length scans with state resets at graph boundaries, fused bidirectional and multi-order scans, portable reference implementations</td>
+<td>GSSC; GraphSSM; PackMamba (sequence domain); SSD kernels (sequence domain)</td>
+</tr>
+<tr>
+<td>Serialization and permutation</td>
+<td>Ordering, Coupling</td>
+<td>Learnable ordering, permutation-equivariant SSM operators, multi-order scans, topology-conditioned state transitions</td>
+<td>Graph-Mamba; GMN; GSSC; GrassNet</td>
+</tr>
+<tr>
+<td>Robustness and distribution shift</td>
+<td>Ordering</td>
+<td>Serializer-aware attacks and certified defenses, order-sensitivity metrics (eq:order-sensitivity), order-consistency regularization, evaluation on graph OOD benchmarks</td>
+<td>DG-Mamba; DyG-Mamba (spectral-norm constraints)</td>
+</tr>
+<tr>
+<td>Expressive power</td>
+<td>Tokenization, Coupling</td>
+<td>Expressivity under canonical or expected orderings, state-dimension and depth bounds for graph tasks, isolating the roles of selectivity and of PE/SE</td>
+<td>GSSC; GMN; CCMamba; Graph sequence models</td>
+</tr>
+<tr>
+<td>Dynamic and complex graphs</td>
+<td>Tokenization, Ordering</td>
+<td>Adaptive state transitions, type-aware state updates, temporal structural conditioning, rank-aware representations</td>
+<td>GraphSSM; DyGMamba; HeteGraph-Mamba; TopoMamba; CCMamba</td>
+</tr>
+<tr>
+<td>Interpretability</td>
+<td>Coupling, Integration</td>
+<td>Retention-based node relevance maps validated by perturbation tests, stability of explanations across orderings, component-level explanations covering the local and gating branches</td>
+<td>Hidden-attention view of Mamba; FuzzMamba; ExPath</td>
+</tr>
+<tr>
+<td>Self-supervision, pre-training, and foundation models</td>
+<td>Tokenization, Ordering</td>
+<td>Graph-specific pretext tasks suited to causal and bidirectional scans, transferable serializers and substructure tokenizers, cross-graph comparable encodings, size and length generalization, scaling studies</td>
+<td>DG-Mamba; Mamba-GTC; GLADMamba; Transfer-Mamba</td>
+</tr>
+<tr>
+<td>Hybrid attention–SSM and SSD backbones</td>
+<td>Coupling, Integration</td>
+<td>Sparse or coarsened attention interleaved with SSM layers, graph-aware structured masks in the SSD form (eq:ssd-graph), non-causal SSD for unordered nodes, controlled Mamba vs. Mamba-2 comparisons</td>
+<td>GSM++; MapsTSF; Jamba (outside graphs); VSSD (outside graphs)</td>
+</tr>
+<tr>
+<td>Cross-modal graph modeling</td>
+<td>Integration</td>
+<td>Cross-modal state conditioning, graph-token alignment, multimodal selective fusion</td>
+<td>M3-HGMA; BrainMamba</td>
+</tr>
+</table></div>
+<h2>Paper Index</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>BibTeX key</th>
+<th>Year</th>
+<th>Venue</th>
+<th>Role</th>
+<th>Category</th>
+<th>Link</th>
+</tr>
+<tr>
+<td>GraphS4mer</td>
+<td>tang2023modeling</td>
+<td>2023</td>
+<td>Conference on Health, Inference, and Learning</td>
+<td>application</td>
+<td>Neural and physiological signals</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Aghaee et al.</td>
+<td>aghaee2024graph</td>
+<td>2024</td>
+<td>IFAC-PapersOnLine</td>
+<td>application</td>
+<td>Clinical, biological, and molecular data</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Brain-GM</td>
+<td>wang2024learning</td>
+<td>2024</td>
+<td>2024 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)</td>
+<td>application</td>
+<td>Neural and physiological signals</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>BrainMamba</td>
+<td>behrouz2024brain</td>
+<td>2024</td>
+<td>CHIL</td>
+<td>application</td>
+<td>Neural and physiological signals</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>DyGMamba</td>
+<td>ding2024dygmamba</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2408.04713</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>https://arxiv.org/abs/2408.04713</td>
+</tr>
+<tr>
+<td>GGVMamba</td>
+<td>zhou2024efficient</td>
+<td>2024</td>
+<td>International Conference on Medical Image Computing and Computer-Assisted Intervention</td>
+<td>application</td>
+<td>Medical imaging</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GM-UNet</td>
+<td>zhang2024gm</td>
+<td>2024</td>
+<td>2024 5th International Seminar on Artificial Intelligence, Networking and Information Technology (AINIT)</td>
+<td>application</td>
+<td>Medical imaging</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GMN</td>
+<td>behrouz2024graph</td>
+<td>2024</td>
+<td>Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Graph-Mamba</td>
+<td>wang2024graph</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2402.00789</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>https://arxiv.org/abs/2402.00789</td>
+</tr>
+<tr>
+<td>GraphMamba (HSI)</td>
+<td>yang2024graphmamba</td>
+<td>2024</td>
+<td>IEEE Transactions on Geoscience and Remote Sensing</td>
+<td>application</td>
+<td>Remote sensing</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GraphSSM</td>
+<td>li2024state</td>
+<td>2024</td>
+<td>Advances in Neural Information Processing Systems</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GSM++</td>
+<td>behrouz2024best</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2411.15671</td>
+<td>discussed</td>
+<td>Discussed in Sec. 7</td>
+<td>https://arxiv.org/abs/2411.15671</td>
+</tr>
+<tr>
+<td>GSSC</td>
+<td>huang2024can</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2406.05815</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>https://arxiv.org/abs/2406.05815</td>
+</tr>
+<tr>
+<td>GSSM</td>
+<td>zhou2024graph</td>
+<td>2024</td>
+<td>2024 IEEE Wireless Communications and Networking Conference (WCNC)</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Hamba</td>
+<td>dong2024hamba</td>
+<td>2024</td>
+<td>Advances in Neural Information Processing Systems</td>
+<td>application</td>
+<td>Articulated and human motion</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>HeteGraph-Mamba</td>
+<td>pan2024hetegraph</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2405.13915</td>
+<td>taxonomy</td>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>https://arxiv.org/abs/2405.13915</td>
+</tr>
+<tr>
+<td>MGDTA</td>
+<td>han2024innovative</td>
+<td>2024</td>
+<td>Microchemical Journal</td>
+<td>application</td>
+<td>Clinical, biological, and molecular data</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MGSSM-SAKI</td>
+<td>xu2024identifying</td>
+<td>2024</td>
+<td>Artificial Intelligence and Data Science for Healthcare: Bridging Data-Centric AI and People-Centric Healthcare</td>
+<td>application</td>
+<td>Clinical, biological, and molecular data</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>SpoT-Mamba</td>
+<td>choi2024spot</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2406.11244</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>https://arxiv.org/abs/2406.11244</td>
+</tr>
+<tr>
+<td>STG-Mamba</td>
+<td>li2024stg</td>
+<td>2024</td>
+<td>arXiv preprint arXiv:2403.12418</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>https://arxiv.org/abs/2403.12418</td>
+</tr>
+<tr>
+<td>CGAM</td>
+<td>qu2025cgam</td>
+<td>2025</td>
+<td>Biomedical Signal Processing and Control</td>
+<td>application</td>
+<td>Histopathology</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>DG-Mamba</td>
+<td>yuan2025dg</td>
+<td>2025</td>
+<td>Proceedings of the AAAI Conference on Artificial Intelligence</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GAT–Mamba</td>
+<td>ding2024combining</td>
+<td>2025</td>
+<td>Scientific Reports</td>
+<td>application</td>
+<td>Histopathology</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GLADMamba</td>
+<td>fu2025gladmamba</td>
+<td>2025</td>
+<td>Joint European Conference on Machine Learning and Knowledge Discovery in Databases</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GraphMamba (tok.)</td>
+<td>ahmad2025graphmamba</td>
+<td>2025</td>
+<td>IEEE Transactions on Emerging Topics in Computing</td>
+<td>application</td>
+<td>Remote sensing</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GraphMamba (WSI)</td>
+<td>zheng2025graphmamba</td>
+<td>2025</td>
+<td>Pattern Recognition</td>
+<td>application</td>
+<td>Histopathology</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>HGM</td>
+<td>zhu2025hybrid</td>
+<td>2025</td>
+<td>International Conference on Medical Image Computing and Computer-Assisted Intervention</td>
+<td>application</td>
+<td>Medical imaging</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>IDS–GraphMamba</td>
+<td>atitallah2025ids</td>
+<td>2025</td>
+<td>Computer Networks</td>
+<td>application</td>
+<td>Cybersecurity and intrusion detection</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Mamba-GTC</td>
+<td>Meng2026Mamba-GTC</td>
+<td>2025</td>
+<td>Knowledge-Based Systems</td>
+<td>taxonomy</td>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MambaForGCN</td>
+<td>lawan2024mambaforgcn</td>
+<td>2025</td>
+<td>Proceedings of the 31st international conference on computational linguistics</td>
+<td>application</td>
+<td>Language and semantic modeling</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MapsTSF</td>
+<td>wang2025mapstsf</td>
+<td>2025</td>
+<td>The Journal of Supercomputing</td>
+<td>discussed</td>
+<td>Discussed in Sec. 7</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MbaGCN</td>
+<td>he2025mamba</td>
+<td>2025</td>
+<td>Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence (IJCAI)</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>https://doi.org/10.24963/ijcai.2025/595</td>
+</tr>
+<tr>
+<td>MGF-GCN</td>
+<td>zhao2025mgf</td>
+<td>2025</td>
+<td>Information Fusion</td>
+<td>application</td>
+<td>Remote sensing</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MKHCNet</td>
+<td>lu2025mamba</td>
+<td>2025</td>
+<td>Journal of biomedical informatics</td>
+<td>application</td>
+<td>Clinical, biological, and molecular data</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>PS-Mamba</td>
+<td>dong2025ps</td>
+<td>2025</td>
+<td>2025 IEEE/CVF International Conference on Computer Vision (ICCV)</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>SAMBA</td>
+<td>mehrabian2024mamba</td>
+<td>2025</td>
+<td>ICASSP 2025-2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</td>
+<td>application</td>
+<td>Financial forecasting</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>STMAGRN</td>
+<td>zhang2025spatio</td>
+<td>2025</td>
+<td>IEEE Transactions on Artificial Intelligence</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Tang et al.</td>
+<td>tang2025spatial</td>
+<td>2025</td>
+<td>IEEE transactions on pattern analysis and machine intelligence</td>
+<td>application</td>
+<td>Articulated and human motion</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>TGMN</td>
+<td>chu2025tgmn</td>
+<td>2025</td>
+<td>IEEE Transactions on Neural Networks and Learning Systems</td>
+<td>application</td>
+<td>Remote sensing</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>TopoMamba</td>
+<td>montagna2024topological</td>
+<td>2025</td>
+<td>2025 International Joint Conference on Neural Networks (IJCNN)</td>
+<td>taxonomy</td>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Transfer-Mamba</td>
+<td>cheng2025transfer</td>
+<td>2025</td>
+<td>Simulation Modelling Practice and Theory</td>
+<td>discussed</td>
+<td>Discussed in Sec. 7</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Brain Network Mamba</td>
+<td>zhang2026brainnetworkmamba</td>
+<td>2026</td>
+<td>Machine Learning in Medical Imaging: 16th International Workshop, MLMI 2025, Held in Conjunction with MICCAI 2025, Daejeon, South Korea, September 23, 2025, Proceedings</td>
+<td>application</td>
+<td>Neural and physiological signals</td>
+<td>https://doi.org/10.1007/978-3-032-09513-8_22</td>
+</tr>
+<tr>
+<td>CCMamba</td>
+<td>chen2026ccmamba</td>
+<td>2026</td>
+<td>arXiv preprint arXiv:2601.20518</td>
+<td>taxonomy</td>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>https://arxiv.org/abs/2601.20518</td>
+</tr>
+<tr>
+<td>DMbaGCN</td>
+<td>he2026dual</td>
+<td>2026</td>
+<td>Proceedings of the AAAI Conference on Artificial Intelligence</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>DyG-Mamba</td>
+<td>li2024dyg</td>
+<td>2026</td>
+<td>Advances in Neural Information Processing Systems</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>ExPath</td>
+<td>kotoge2026expath</td>
+<td>2026</td>
+<td>Proceedings of the AAAI Conference on Artificial Intelligence</td>
+<td>application</td>
+<td>Clinical, biological, and molecular data</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>FuzzMamba</td>
+<td>chen2026modeling</td>
+<td>2026</td>
+<td>2026 IEEE International Conference on Fuzzy Systems (FUZZ-IEEE)</td>
+<td>taxonomy</td>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GM-HAD</td>
+<td>tang2026graph</td>
+<td>2026</td>
+<td>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</td>
+<td>application</td>
+<td>Remote sensing</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GMMN</td>
+<td>zhang2026graph</td>
+<td>2026</td>
+<td>Information Fusion</td>
+<td>application</td>
+<td>Medical imaging</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>GrassNet</td>
+<td>zhao2024grassnet</td>
+<td>2026</td>
+<td>Pattern Recognition</td>
+<td>taxonomy</td>
+<td>Static and General-Purpose Graph Models</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>M3-HGMA</td>
+<td>gubbala2026m3</td>
+<td>2026</td>
+<td>International Conference on Frontiers in Advanced Computing and Emerging Intelligent Technologies</td>
+<td>discussed</td>
+<td>Discussed in Sec. 7</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MGCM</td>
+<td>cui2026mgcm</td>
+<td>2026</td>
+<td>Pattern Recognition</td>
+<td>application</td>
+<td>Histopathology</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>MSGM</td>
+<td>liu2026msgm</td>
+<td>2026</td>
+<td>Frontiers in Neuroscience</td>
+<td>application</td>
+<td>Neural and physiological signals</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>Ren et al.</td>
+<td>ren2026spatio</td>
+<td>2026</td>
+<td>Advanced Engineering Informatics</td>
+<td>application</td>
+<td>Industrial prognostics</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>TopoMamSurv</td>
+<td>chen2026graph</td>
+<td>2026</td>
+<td>arXiv preprint arXiv:2606.02602</td>
+<td>application</td>
+<td>Histopathology</td>
+<td>https://arxiv.org/abs/2606.02602</td>
+</tr>
+</table></div>
+<h2>Pattern Distribution</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Data setting</th>
+<th>DV</th>
+<th>RT</th>
+<th>GS</th>
+<th>LG</th>
+<th>Total</th>
+<th>Precursors (†)</th>
+<th>Multimodal (◆)</th>
+</tr>
+<tr>
+<td>Neural and physiological signals</td>
+<td>0</td>
+<td>4</td>
+<td>0 (+1)</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Clinical, biological, and molecular data</td>
+<td>2 (+1)</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>5</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Histopathology</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Medical imaging</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Remote sensing</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Articulated and human motion</td>
+<td>0</td>
+<td>1</td>
+<td>1 (+1)</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Financial forecasting</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Industrial prognostics</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Cybersecurity and intrusion detection</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Language and semantic modeling</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>6 (+1)</td>
+<td>10</td>
+<td>7 (+2)</td>
+<td>7</td>
+<td>30</td>
+<td>2</td>
+<td>4</td>
+</tr>
+</table></div>
+<h2>Perf Absa</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>Restaurant14 · Accuracy</th>
+<th>Restaurant14 · F1</th>
+<th>Laptop14 · Accuracy</th>
+<th>Laptop14 · F1</th>
+<th>Twitter14 · Accuracy</th>
+<th>Twitter14 · F1</th>
+</tr>
+<tr>
+<td>CNN over BERT-GCN</td>
+<td>85.25</td>
+<td>78.76</td>
+<td>78.59</td>
+<td>74.76</td>
+<td>74.03</td>
+<td>72.39</td>
+</tr>
+<tr>
+<td>Dual-gated GCN</td>
+<td>83.66</td>
+<td>76.73</td>
+<td>75.70</td>
+<td>72.57</td>
+<td>74.87</td>
+<td>72.27</td>
+</tr>
+<tr>
+<td>DGEDT</td>
+<td>83.90</td>
+<td>75.10</td>
+<td>76.80</td>
+<td>72.30</td>
+<td>74.80</td>
+<td>73.40</td>
+</tr>
+<tr>
+<td>MambaForGCN</td>
+<td>86.68</td>
+<td>80.86</td>
+<td>81.80</td>
+<td>78.59</td>
+<td>77.67</td>
+<td>76.88</td>
+</tr>
+</table></div>
+<h2>Perf Brain</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>BVFC-MEG · Acc. (%)</th>
+<th>HCP-Mental · Acc. (%)</th>
+<th>HCP-Age · Acc. (%)</th>
+</tr>
+<tr>
+<td>USAD</td>
+<td>50.02 ± 1.13</td>
+<td>73.49 ± 1.56</td>
+<td>39.17 ± 1.68</td>
+</tr>
+<tr>
+<td>GMM</td>
+<td>53.04 ± 1.73</td>
+<td>90.92 ± 1.83</td>
+<td>47.75 ± 1.26</td>
+</tr>
+<tr>
+<td>GraphMixer</td>
+<td>53.12 ± 1.18</td>
+<td>91.13 ± 1.44</td>
+<td>48.32 ± 1.11</td>
+</tr>
+<tr>
+<td>BrainNetCNN</td>
+<td>50.12 ± 1.57</td>
+<td>83.58 ± 1.68</td>
+<td>42.26 ± 2.03</td>
+</tr>
+<tr>
+<td>BrainGNN</td>
+<td>51.08 ± 0.96</td>
+<td>85.25 ± 2.17</td>
+<td>43.08 ± 1.54</td>
+</tr>
+<tr>
+<td>FBNetGen</td>
+<td>50.94 ± 1.39</td>
+<td>84.47 ± 1.88</td>
+<td>42.83 ± 1.78</td>
+</tr>
+<tr>
+<td>ADMIRE</td>
+<td>54.87 ± 1.92</td>
+<td>89.74 ± 1.93</td>
+<td>47.82 ± 1.72</td>
+</tr>
+<tr>
+<td>PTGB</td>
+<td>55.11 ± 1.62</td>
+<td>92.58 ± 1.31</td>
+<td>48.41 ± 1.47</td>
+</tr>
+<tr>
+<td>BNTransformer</td>
+<td>55.17 ± 1.74</td>
+<td>91.71 ± 1.48</td>
+<td>47.94 ± 1.15</td>
+</tr>
+<tr>
+<td>BrainMixer</td>
+<td>62.58 ± 1.12</td>
+<td>96.32 ± 0.29</td>
+<td>57.83 ± 1.03</td>
+</tr>
+<tr>
+<td>GraphS4mer</td>
+<td>74.39 ± 0.92</td>
+<td>82.30 ± 1.83</td>
+<td>46.32 ± 1.09</td>
+</tr>
+<tr>
+<td>BrainMamba</td>
+<td>78.03 ± 1.69</td>
+<td>96.57 ± 1.05</td>
+<td>59.62 ± 1.71</td>
+</tr>
+</table></div>
+<h2>Perf Financial</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>NASDAQ · RMSE</th>
+<th>NYSE · RMSE</th>
+<th>DJIA · RMSE</th>
+<th>Training time (s/epoch)</th>
+</tr>
+<tr>
+<td>LSTM</td>
+<td>0.0187</td>
+<td>0.0144</td>
+<td>0.0121</td>
+<td>0.081</td>
+</tr>
+<tr>
+<td>Transformer</td>
+<td>0.0147</td>
+<td>0.0141</td>
+<td>0.0166</td>
+<td>1.91</td>
+</tr>
+<tr>
+<td>FourierGNN</td>
+<td>0.0152</td>
+<td>0.0146</td>
+<td>0.0190</td>
+<td>1.10</td>
+</tr>
+<tr>
+<td>SAMBA</td>
+<td>0.0128</td>
+<td>0.0125</td>
+<td>0.0108</td>
+<td>0.891</td>
+</tr>
+</table></div>
+<h2>Perf Hsi</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>Indian Pines · OA</th>
+<th>Indian Pines · AA</th>
+<th>Indian Pines · Kappa</th>
+<th>Salinas · OA</th>
+<th>Salinas · AA</th>
+<th>Salinas · Kappa</th>
+<th>UH2013 · OA</th>
+<th>UH2013 · AA</th>
+<th>UH2013 · Kappa</th>
+<th>Complexity (G)</th>
+</tr>
+<tr>
+<td>AB-LSTM</td>
+<td>56.68</td>
+<td>60.41</td>
+<td>51.02</td>
+<td>74.83</td>
+<td>83.89</td>
+<td>72.21</td>
+<td>79.61</td>
+<td>82.38</td>
+<td>77.97</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>3D CNN</td>
+<td>65.83</td>
+<td>79.12</td>
+<td>61.38</td>
+<td>87.59</td>
+<td>92.96</td>
+<td>86.21</td>
+<td>71.84</td>
+<td>73.84</td>
+<td>69.54</td>
+<td>0.69</td>
+</tr>
+<tr>
+<td>GAHT</td>
+<td>85.96</td>
+<td>92.96</td>
+<td>84.05</td>
+<td>94.21</td>
+<td>97.37</td>
+<td>93.56</td>
+<td>90.84</td>
+<td>92.13</td>
+<td>90.10</td>
+<td>4.27</td>
+</tr>
+<tr>
+<td>GraphMamba (HSI)</td>
+<td>96.43</td>
+<td>97.83</td>
+<td>95.91</td>
+<td>97.33</td>
+<td>98.66</td>
+<td>97.02</td>
+<td>95.62</td>
+<td>96.23</td>
+<td>95.27</td>
+<td>0.69</td>
+</tr>
+</table></div>
+<h2>Perf Spatiotemporal</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Model</th>
+<th>PeMS04 · RMSE</th>
+<th>PeMS04 · MAE</th>
+<th>PeMS04 · MAPE (%)</th>
+<th>HZMetro · RMSE</th>
+<th>HZMetro · MAE</th>
+<th>HZMetro · MAPE (%)</th>
+<th>KnowAir · RMSE</th>
+<th>KnowAir · MAE</th>
+<th>KnowAir · MAPE (%)</th>
+</tr>
+<tr>
+<td>LSTM-based methods</td>
+<td>40.49</td>
+<td>26.24</td>
+<td>19.30</td>
+<td>57.10</td>
+<td>35.27</td>
+<td>9.90</td>
+<td>30.88</td>
+<td>20.21</td>
+<td>NR</td>
+</tr>
+<tr>
+<td>STGCN</td>
+<td>35.55</td>
+<td>22.70</td>
+<td>14.59</td>
+<td>34.85</td>
+<td>21.33</td>
+<td>13.47</td>
+<td>11.46</td>
+<td>8.37</td>
+<td>11.26</td>
+</tr>
+<tr>
+<td>STAEformer</td>
+<td>30.18</td>
+<td>18.22</td>
+<td>11.98</td>
+<td>29.94</td>
+<td>18.85</td>
+<td>12.03</td>
+<td>8.69</td>
+<td>6.93</td>
+<td>9.89</td>
+</tr>
+<tr>
+<td>STG-Mamba</td>
+<td>29.53</td>
+<td>18.09</td>
+<td>12.11</td>
+<td>29.23</td>
+<td>18.26</td>
+<td>11.59</td>
+<td>8.05</td>
+<td>6.37</td>
+<td>9.64</td>
+</tr>
+</table></div>
+<h2>Structural Tradeoffs</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Dim.</th>
+<th>Design choice</th>
+<th>Structural implication</th>
+<th>Main trade-off</th>
+<th>Cost term</th>
+</tr>
+<tr>
+<td>D1</td>
+<td>Tokenization: Graph representation and token construction</td>
+<td>Controls which local, semantic, temporal, or higher-order information reaches the SSM</td>
+<td>Richer tokens may improve structural context but introduce sampling, encoding, or representation-construction cost</td>
+<td>T_token</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Ordering: Serialization, scanning, and directionality</td>
+<td>Determines adjacency in the processed sequence and therefore the context seen by the recurrent state</td>
+<td>Structurally meaningful order can improve context organization, but serialization-based models may remain sensitive to the selected ordering</td>
+<td>T_serialize</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Coupling: Structural conditioning of state-space computation</td>
+<td>Allows graph, temporal, or structural information to influence state evolution more directly</td>
+<td>Tighter graph–SSM coupling introduces additional architecture-specific computation and reduces the ability to analyze the SSM independently</td>
+<td>T_SSM</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Integration: Integration with graph propagation or attention</td>
+<td>Combines complementary local graph processing with state-space context modeling</td>
+<td>Additional branches or fusion mechanisms increase end-to-end computation and make performance gains harder to attribute to a single component</td>
+<td>T_fusion</td>
+</tr>
+</table></div>
+<h2>Taxonomy Dimensions</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Dim.</th>
+<th>Design question</th>
+<th>Architectural aspect</th>
+<th>Main question</th>
+<th>Representative design choices</th>
+<th>Categories</th>
+</tr>
+<tr>
+<td>D1</td>
+<td>Tokenization</td>
+<td>Graph representation and token construction</td>
+<td>What information is presented to the state-space model?</td>
+<td>Nodes, neighborhoods, walks, metapaths, spectral components, snapshots, higher-order cells</td>
+<td>Free text (per model)</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Ordering</td>
+<td>Serialization, scanning, and directionality</td>
+<td>How are graph-derived representations ordered and traversed?</td>
+<td>Structural ranking, traversal, temporal ordering, type-aware or rank-aware ordering, uni-/bi-/multi-directional scanning</td>
+<td>Free text (per model)</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Coupling</td>
+<td>Structural conditioning of state-space computation</td>
+<td>Does graph information directly affect the selective state dynamics?</td>
+<td>Graph-conditioned B_t, C_t, or Delta_t; modified transition; graph-aware state-space operator</td>
+<td>Input-level, Dynamics-level, Operator-level</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Integration</td>
+<td>Integration with graph propagation or attention</td>
+<td>How is the SSM combined with other graph-learning mechanisms?</td>
+<td>Parallel local–global branches, graph encoder followed by Mamba, embedded state evolution, attention–SSM hybrids (classified by how the SSM branch is integrated)</td>
+<td>Standalone, Sequential, Parallel, Embedded</td>
+</tr>
+</table></div>
+<h2>Unified Taxonomy</h2>
+<div class='wrapper'><table>
+<tr>
+<th>Graph setting</th>
+<th>Model</th>
+<th>Year</th>
+<th>Tokenization (D1)</th>
+<th>Ordering (D2)</th>
+<th>D3: Input</th>
+<th>D3: Dynamics</th>
+<th>D3: Operator</th>
+<th>D4: Standalone</th>
+<th>D4: Sequential</th>
+<th>D4: Parallel</th>
+<th>D4: Embedded</th>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>GSSC</td>
+<td>2024</td>
+<td>Node features and graph positional information</td>
+<td>Order-free</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>GMN</td>
+<td>2024</td>
+<td>Neighborhood/subgraph tokens</td>
+<td>Ordered, bidirectional</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>Graph-Mamba</td>
+<td>2024</td>
+<td>Node representations</td>
+<td>Degree-based prioritization and permutation</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>GrassNet</td>
+<td>2026</td>
+<td>Graph spectrum embeddings</td>
+<td>Frequency-ordered, bidirectional</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>MbaGCN</td>
+<td>2025</td>
+<td>Neighborhood representations across layers</td>
+<td>No explicit node serialization</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>DMbaGCN</td>
+<td>2026</td>
+<td>Layer-wise node states and node sequence</td>
+<td>Bidirectional global scan</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Static and General-Purpose Graph Models</td>
+<td>GLADMamba</td>
+<td>2025</td>
+<td>Multi-view graph representations</td>
+<td>No central graph serialization</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>GraphSSM</td>
+<td>2024</td>
+<td>Sequence of graph snapshots</td>
+<td>Temporal snapshot order</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>GSSM</td>
+<td>2024</td>
+<td>Base-station node time series</td>
+<td>Temporal order</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>DG-Mamba</td>
+<td>2025</td>
+<td>Successive dynamic graph states</td>
+<td>Selective scan across graph snapshots</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>DyGMamba</td>
+<td>2024</td>
+<td>Historical node interactions and temporal patterns</td>
+<td>Chronological interaction order</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>DyG-Mamba</td>
+<td>2026</td>
+<td>Timestamped interaction sequences</td>
+<td>Irregular chronological event order</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>STG-Mamba</td>
+<td>2024</td>
+<td>Graph-aware node time-series representations</td>
+<td>Temporal processing across multiple granularities</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>SpoT-Mamba</td>
+<td>2024</td>
+<td>Graph-derived neighborhood sequences</td>
+<td>BFS, DFS, random-walk, and temporal scanning</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>PS-Mamba</td>
+<td>2025</td>
+<td>Human joints across pose sequences</td>
+<td>Four graph-guided bidirectional spatial–temporal scans</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>FuzzMamba</td>
+<td>2026</td>
+<td>Node-centric spatial neighborhoods with contextual features</td>
+<td>Adaptive spatial ordering varying over time</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dynamic and Spatio-Temporal Graph Models</td>
+<td>STMAGRN</td>
+<td>2025</td>
+<td>Traffic sequences and dynamic graph representations</td>
+<td>Temporal sequence processing</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>HeteGraph-Mamba</td>
+<td>2024</td>
+<td>Metapath-based heterogeneous graph tokens</td>
+<td>Hierarchical within-type and across-type processing</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>Mamba-GTC</td>
+<td>2025</td>
+<td>Multi-hop neighborhood tokens</td>
+<td>Hop-evolution ordering</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>TopoMamba</td>
+<td>2025</td>
+<td>Incident simplices aggregated by rank</td>
+<td>Rank-ordered sequence</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Heterogeneous and Higher-Order Graph Models</td>
+<td>CCMamba</td>
+<td>2026</td>
+<td>Multi-rank incidence representations</td>
+<td>Rank- and incidence-aware linearization</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table></div>
+</body></html>

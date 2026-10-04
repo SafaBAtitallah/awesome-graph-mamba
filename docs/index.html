@@ -378,7 +378,7 @@ $("theme").addEventListener("click", () => {
 try { const t = localStorage.getItem("gm-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
 
 $("meta").innerHTML = `${P.length} works · ${D.counts.taxonomy} architectures · ${D.counts.application} applications · ${D.counts.discussed} discussed only &nbsp; ` +
-  `<a href="${D.repoBase}">Repository</a><a href="${D.repoBase}tables/README.md">Comparison tables</a><a href="${D.repoBase}docs/FLAGS.md">Open flags</a>`;
+  `<a href="${D.repoBase}">Repository</a><a href="./comparison.html">Comparison tables</a><a href="${D.repoBase}docs/FLAGS.md">Open flags</a>`;
 $("foot").textContent = ` Data snapshot: ${D.generated}.`;
 
 function render(){
