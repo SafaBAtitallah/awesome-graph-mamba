@@ -8,7 +8,7 @@
 
 *ACM Computing Surveys (under revision)*
 
-[![Validate](https://github.com/OWNER/awesome-graph-mamba/actions/workflows/update.yml/badge.svg)](https://github.com/OWNER/awesome-graph-mamba/actions/workflows/update.yml)
+[![Validate](https://github.com/SafaBAtitallah/awesome-graph-mamba/actions/workflows/update.yml/badge.svg)](https://github.com/SafaBAtitallah/awesome-graph-mamba/actions/workflows/update.yml)
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
