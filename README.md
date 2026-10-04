@@ -13,7 +13,7 @@
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[Open the interactive explorer](https://OWNER.github.io/awesome-graph-mamba/)**
+**[Open the interactive explorer](https://safabatitallah.github.io/awesome-graph-mamba/)**
 
 [Overview](#overview) · [Taxonomy](#taxonomy) · [Catalogue](#paper-catalogue) · [Tables](#comparison-tables) · [Reproduce](#reproduce-the-repository) · [Contribute](#contributing) · [Cite](#citation)
 
