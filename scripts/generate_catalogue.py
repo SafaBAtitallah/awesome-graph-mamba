@@ -189,7 +189,7 @@ def category_pages(data: dict, resolved: list[dict]) -> dict[Path, str]:
 # README blocks
 # ---------------------------------------------------------------------------
 def _mm(s: str) -> str:
-    return '"' + s.replace('"', "'").replace("--", "–") + '"'
+    return '["' + s.replace('"', "'").replace("--", "–") + '"]'
 
 
 def mermaid_taxonomy(data: dict, resolved: list[dict]) -> str:

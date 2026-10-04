@@ -72,18 +72,18 @@ The four design questions form a multi-label taxonomy: each architecture receive
 <!-- BEGIN:MERMAID_TAXONOMY -->
 ```mermaid
 flowchart LR
-  GM"Graph Mamba architectures"
-  GM --> D1"D1 · Tokenization<br/><i>What information is presented to the state-space model?</i>"
-  GM --> D2"D2 · Ordering<br/><i>How are graph-derived representations ordered and traversed?</i>"
-  GM --> D3"D3 · Coupling<br/><i>Does graph information directly affect the selective state dynamics?</i>"
-  D3 --> D3_input"Input-level"
-  D3 --> D3_dynamics"Dynamics-level"
-  D3 --> D3_operator"Operator-level"
-  GM --> D4"D4 · Integration<br/><i>How is the SSM combined with other graph-learning mechanisms?</i>"
-  D4 --> D4_standalone"Standalone"
-  D4 --> D4_sequential"Sequential"
-  D4 --> D4_parallel"Parallel"
-  D4 --> D4_embedded"Embedded"
+  GM["Graph Mamba architectures"]
+  GM --> D1["D1 · Tokenization<br/><i>What information is presented to the state-space model?</i>"]
+  GM --> D2["D2 · Ordering<br/><i>How are graph-derived representations ordered and traversed?</i>"]
+  GM --> D3["D3 · Coupling<br/><i>Does graph information directly affect the selective state dynamics?</i>"]
+  D3 --> D3_input["Input-level"]
+  D3 --> D3_dynamics["Dynamics-level"]
+  D3 --> D3_operator["Operator-level"]
+  GM --> D4["D4 · Integration<br/><i>How is the SSM combined with other graph-learning mechanisms?</i>"]
+  D4 --> D4_standalone["Standalone"]
+  D4 --> D4_sequential["Sequential"]
+  D4 --> D4_parallel["Parallel"]
+  D4 --> D4_embedded["Embedded"]
   classDef dim fill:#1f3b73,color:#fff,stroke:#1f3b73;
   class D1,D2,D3,D4 dim;
 ```
@@ -94,26 +94,26 @@ The reviewed literature is presented in three **graph settings** (architectures,
 <!-- BEGIN:MERMAID_SETTINGS -->
 ```mermaid
 flowchart TB
-  R"Reviewed Graph Mamba literature"
-  R --> S0"Static and General-Purpose Graph Models (7)"
-  S0 --- S0m"GSSC · GMN · Graph-Mamba · GrassNet · MbaGCN · DMbaGCN · GLADMamba"
-  R --> S1"Dynamic and Spatio-Temporal Graph Models (10)"
-  S1 --- S1m"GraphSSM · GSSM · DG-Mamba · DyGMamba · DyG-Mamba · STG-Mamba · SpoT-Mamba · PS-Mamba · FuzzMamba · STMAGRN"
-  R --> S2"Heterogeneous and Higher-Order Graph Models (4)"
-  S2 --- S2m"HeteGraph-Mamba · Mamba-GTC · TopoMamba · CCMamba"
-  R --> A0"Healthcare and Biomedical Applications (19)"
-  A0 --- A0s0"Neural and physiological signals: GraphS4mer, BrainMamba, Brain-GM, Brain Network Mamba, MSGM"
-  A0 --- A0s1"Clinical, biological, and molecular data: MGSSM-SAKI, Aghaee et al., ExPath, MGDTA, MKHCNet"
-  A0 --- A0s2"Histopathology: GAT–Mamba, GraphMamba (WSI), MGCM, TopoMamSurv, CGAM"
-  A0 --- A0s3"Medical imaging: GM-UNet, GGVMamba, HGM, GMMN"
-  R --> A1"Remote Sensing and Structured Visual Applications (7)"
-  A1 --- A1s0"Remote sensing: GraphMamba (HSI), MGF-GCN, GraphMamba (tok.), TGMN, GM-HAD"
-  A1 --- A1s1"Articulated and human motion: Hamba, Tang et al."
-  R --> A2"Other Application Areas (4)"
-  A2 --- A2s0"Financial forecasting: SAMBA"
-  A2 --- A2s1"Industrial prognostics: Ren et al."
-  A2 --- A2s2"Cybersecurity and intrusion detection: IDS–GraphMamba"
-  A2 --- A2s3"Language and semantic modeling: MambaForGCN"
+  R["Reviewed Graph Mamba literature"]
+  R --> S0["Static and General-Purpose Graph Models (7)"]
+  S0 --- S0m["GSSC · GMN · Graph-Mamba · GrassNet · MbaGCN · DMbaGCN · GLADMamba"]
+  R --> S1["Dynamic and Spatio-Temporal Graph Models (10)"]
+  S1 --- S1m["GraphSSM · GSSM · DG-Mamba · DyGMamba · DyG-Mamba · STG-Mamba · SpoT-Mamba · PS-Mamba · FuzzMamba · STMAGRN"]
+  R --> S2["Heterogeneous and Higher-Order Graph Models (4)"]
+  S2 --- S2m["HeteGraph-Mamba · Mamba-GTC · TopoMamba · CCMamba"]
+  R --> A0["Healthcare and Biomedical Applications (19)"]
+  A0 --- A0s0["Neural and physiological signals: GraphS4mer, BrainMamba, Brain-GM, Brain Network Mamba, MSGM"]
+  A0 --- A0s1["Clinical, biological, and molecular data: MGSSM-SAKI, Aghaee et al., ExPath, MGDTA, MKHCNet"]
+  A0 --- A0s2["Histopathology: GAT–Mamba, GraphMamba (WSI), MGCM, TopoMamSurv, CGAM"]
+  A0 --- A0s3["Medical imaging: GM-UNet, GGVMamba, HGM, GMMN"]
+  R --> A1["Remote Sensing and Structured Visual Applications (7)"]
+  A1 --- A1s0["Remote sensing: GraphMamba (HSI), MGF-GCN, GraphMamba (tok.), TGMN, GM-HAD"]
+  A1 --- A1s1["Articulated and human motion: Hamba, Tang et al."]
+  R --> A2["Other Application Areas (4)"]
+  A2 --- A2s0["Financial forecasting: SAMBA"]
+  A2 --- A2s1["Industrial prognostics: Ren et al."]
+  A2 --- A2s2["Cybersecurity and intrusion detection: IDS–GraphMamba"]
+  A2 --- A2s3["Language and semantic modeling: MambaForGCN"]
   classDef set fill:#e8eef9,stroke:#1f3b73;
   classDef app fill:#fdf1e3,stroke:#b46b12;
   class S0,S1,S2 set;
