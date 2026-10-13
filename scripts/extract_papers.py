@@ -217,7 +217,7 @@ def extract(tex: str, bib: dict, taxonomy: dict) -> dict:
 
 def _stub_yaml(key: str, tax: dict | None, app: dict | None, fig: dict | None) -> str:
     def q(s):
-        return '"' + str(s).replace('"', '\\"') + '"'
+        return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
     model = (tax or app or {}).get("model", key)
     roles = (["taxonomy"] if tax else []) + (["application"] if app else [])
