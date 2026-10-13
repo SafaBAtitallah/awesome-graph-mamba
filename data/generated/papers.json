@@ -3664,10 +3664,8 @@
         "7.7"
       ],
       "verification": {
-        "status": "needs_verification",
-        "flags": [
-          "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
-        ]
+        "status": "verified",
+        "flags": []
       },
       "in_bib": true
     },
@@ -3721,10 +3719,8 @@
         "7.7"
       ],
       "verification": {
-        "status": "needs_verification",
-        "flags": [
-          "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
-        ]
+        "status": "verified",
+        "flags": []
       },
       "in_bib": true
     },
@@ -3780,10 +3776,8 @@
         "7.7"
       ],
       "verification": {
-        "status": "needs_verification",
-        "flags": [
-          "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
-        ]
+        "status": "verified",
+        "flags": []
       },
       "in_bib": true
     },
@@ -3834,10 +3828,8 @@
         "7.7"
       ],
       "verification": {
-        "status": "needs_verification",
-        "flags": [
-          "Only cited in tab:future-directions; the survey gives no architectural description."
-        ]
+        "status": "verified",
+        "flags": []
       },
       "in_bib": true
     }

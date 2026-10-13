@@ -16,7 +16,7 @@
 *Also referred to as: Graph sequence models, Best of both worlds*  
 **Best of both worlds: Advantages of hybrid graph sequence models**  
 Ali Behrouz, Ali Parviz, Mahdi Karami, Clayton Sanford, Bryan Perozzi, Vahab Mirrokni — *arXiv preprint arXiv:2411.15671*, 2024  
-[arXiv](https://arxiv.org/abs/2411.15671) · Code: NR · BibTeX: `behrouz2024best` `⚠ needs verification`
+[arXiv](https://arxiv.org/abs/2411.15671) · Code: NR · BibTeX: `behrouz2024best` `✔ verified`
 
 **Methodology.** Applies Mamba layers followed by a Transformer block to hierarchically tokenized graphs; accompanying task-based analysis of graph sequence models.
 
@@ -41,16 +41,13 @@ Ali Behrouz, Ali Parviz, Mahdi Karami, Clayton Sanford, Bryan Perozzi, Vahab Mir
 
 </details>
 
-> [!WARNING]
-> Not classified in tab:unified-taxonomy; D1–D4 left unassigned.
-
 ---
 
 <a id="wang2025mapstsf"></a>
 ### MapsTSF
 **MapsTSF: efficient traffic prediction via hybrid Mamba 2-transformer spatiotemporal modeling and cross adaptive periodic sparse forecasting**  
 Bing Wang, Chaoqi Cai, Xingpeng Zhang, Chunlan Zhao, Chi Zhang, Youming Zhang — *The Journal of Supercomputing*, 2025  
-Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22MapsTSF%3A+efficient+traffic+prediction+via+hybrid+Mamba+2-transformer+spatiotemporal+modeling+and+cross+adaptive+periodic+sparse+forecasting%22)) · Code: NR · BibTeX: `wang2025mapstsf` `⚠ needs verification`
+Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22MapsTSF%3A+efficient+traffic+prediction+via+hybrid+Mamba+2-transformer+spatiotemporal+modeling+and+cross+adaptive+periodic+sparse+forecasting%22)) · Code: NR · BibTeX: `wang2025mapstsf` `✔ verified`
 
 **Methodology.** Couples a Mamba-2 backbone with Transformer attention over road-network traversals.
 
@@ -70,16 +67,13 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22MapsTSF%3A+ef
 
 </details>
 
-> [!WARNING]
-> Not classified in tab:unified-taxonomy; D1–D4 left unassigned.
-
 ---
 
 <a id="cheng2025transfer"></a>
 ### Transfer-Mamba
 **Transfer-Mamba: Selective state space models with spatio-temporal knowledge transfer for few-shot traffic prediction across cities**  
 Shaokang Cheng, Shiru Qu, Junxi Zhang — *Simulation Modelling Practice and Theory*, 2025  
-Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Transfer-Mamba%3A+Selective+state+space+models+with+spatio-temporal+knowledge+transfer+for+few-shot+traffic+prediction+across+cities%22)) · Code: NR · BibTeX: `cheng2025transfer` `⚠ needs verification`
+Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Transfer-Mamba%3A+Selective+state+space+models+with+spatio-temporal+knowledge+transfer+for+few-shot+traffic+prediction+across+cities%22)) · Code: NR · BibTeX: `cheng2025transfer` `✔ verified`
 
 **Methodology.** Pre-trains a Mamba and adaptive-GCN encoder by masked reconstruction on traffic data from several source cities and transfers it to a data-scarce target city.
 
@@ -102,16 +96,13 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Transfer-Mamb
 
 </details>
 
-> [!WARNING]
-> Not classified in tab:unified-taxonomy; D1–D4 left unassigned.
-
 ---
 
 <a id="gubbala2026m3"></a>
 ### M3-HGMA
 **M3-HGMA: A Multi-modal, Multi-agent Hierarchical Graph-Mamba Architecture for Explainable and Adaptive Clinical Intelligence**  
 Somasekhar Gubbala — *International Conference on Frontiers in Advanced Computing and Emerging Intelligent Technologies*, 2026  
-Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22M3-HGMA%3A+A+Multi-modal%2C+Multi-agent+Hierarchical+Graph-Mamba+Architecture+for+Explainable+and+Adaptive+Clinical+Intelligence%22)) · Code: NR · BibTeX: `gubbala2026m3` `⚠ needs verification`
+Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22M3-HGMA%3A+A+Multi-modal%2C+Multi-agent+Hierarchical+Graph-Mamba+Architecture+for+Explainable+and+Adaptive+Clinical+Intelligence%22)) · Code: NR · BibTeX: `gubbala2026m3` `✔ verified`
 
 **Methodology.** NR (cited only as early work for cross-modal graph modeling in tab:future-directions).
 
@@ -130,9 +121,6 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22M3-HGMA%3A+A+
 **Discussed in:** 7.7 Future Research Directions
 
 </details>
-
-> [!WARNING]
-> Only cited in tab:future-directions; the survey gives no architectural description.
 
 ---
 

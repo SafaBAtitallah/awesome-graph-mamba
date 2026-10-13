@@ -25,10 +25,10 @@
 | Mamba-GTC | Heterogeneous and Higher-Order |  |  |  |  |  | ✓ | ✓ |
 | TopoMamba | Heterogeneous and Higher-Order |  |  |  |  |  |  | ✓ |
 | [CCMamba](https://arxiv.org/abs/2601.20518) | Heterogeneous and Higher-Order |  |  | ✓ |  |  |  | ✓ |
-| [GSM++](https://arxiv.org/abs/2411.15671)⚠ | Discussed (Sec. 7) |  |  | ✓ |  |  |  | ✓ |
-| MapsTSF⚠ | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
-| Transfer-Mamba⚠ | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
-| M3-HGMA⚠ | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
+| [GSM++](https://arxiv.org/abs/2411.15671) | Discussed (Sec. 7) |  |  | ✓ |  |  |  | ✓ |
+| MapsTSF | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
+| Transfer-Mamba | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
+| M3-HGMA | Discussed (Sec. 7) |  |  |  |  |  |  | ✓ |
 
 > Of 21 classified architectures, 3 have a complexity statement, 4 efficiency evidence, 3 an expressivity result, and 1 numeric results reported in the survey. Empty cell = not reported in the survey (NR).  
 

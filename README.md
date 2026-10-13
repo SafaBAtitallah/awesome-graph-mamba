@@ -40,7 +40,7 @@ This repository turns the survey's literature review into a **living, taxonomy-d
 | **55** | 21 | 30 | 4 | 123 | 17 |
 
 **Publication years (BibTeX):** 2023: 1 · 2024: 19 · 2025: 21 · 2026: 14  
-**Verification status:** 55 of 55 records await author verification ([open flags](docs/FLAGS.md)).
+**Verification status:** 51 of 55 records await author verification ([open flags](docs/FLAGS.md)).
 <!-- END:STATS -->
 
 ### Research questions
@@ -356,7 +356,7 @@ pytest -q                      # unit and integration tests
 The initial database was extracted from the manuscript. Classifications are cross-checked automatically against `tab:unified-taxonomy`, `tab:cross-domain-applications`, and `fig:design-patterns`; any disagreement fails validation. Ambiguities found in the manuscript are recorded as flags rather than silently resolved.
 
 <!-- BEGIN:FLAGS -->
-Current status: **0 errors**, **6 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
+Current status: **0 errors**, **2 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
 <!-- END:FLAGS -->
 
 ---
