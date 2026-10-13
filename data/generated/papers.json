@@ -990,7 +990,7 @@
       "url": "NR",
       "primary_link": "https://arxiv.org/abs/2403.12418",
       "search_link": "https://scholar.google.com/scholar?q=%22Stg-mamba%3A+Spatial-temporal+graph+learning+via+selective+state+space+model%22",
-      "code": "NR",
+      "code": "https://github.com/LincanLi98/STG-Mamba",
       "roles": [
         "taxonomy"
       ],
