@@ -195,6 +195,7 @@ papers:
     - "Integrates evolving topology directly into state evolution rather than reducing the graph to an arbitrary node sequence."
   verification: {status: extracted, flags: []}
 
+
 - key: zhou2024graph
   model: GSSM
   roles: [taxonomy]
@@ -209,9 +210,9 @@ papers:
   methodology: "Graph convolution over fixed and adaptive base-station graphs estimates the parameters of an SSM for wireless traffic prediction."
   contributions:
     - "Shows how spatial graph information can parameterize temporal state-space modeling."
-  notes:
-    - "Predates Mamba's input-dependent selection; described as a graph--SSM precursor."
-  verification: {status: extracted, flags: []}
+  verification:
+    status: verified
+    flags: []
   
 - key: yuan2025dg
   model: DG-Mamba
