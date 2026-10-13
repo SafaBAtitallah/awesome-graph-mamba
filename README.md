@@ -40,7 +40,7 @@ This repository turns the survey's literature review into a **living, taxonomy-d
 | **55** | 21 | 30 | 4 | 123 | 17 |
 
 **Publication years (BibTeX):** 2023: 1 · 2024: 19 · 2025: 21 · 2026: 14  
-**Verification status:** 55 of 55 records await author verification ([open flags](docs/FLAGS.md)).
+**Verification status:** 54 of 55 records await author verification ([open flags](docs/FLAGS.md)).
 <!-- END:STATS -->
 
 ### Research questions
@@ -157,7 +157,7 @@ Click a model to open its full card (methodology, D1–D4 or pattern assignment,
 | [DG-Mamba](papers/dynamic-spatiotemporal.md#yuan2025dg) | Dg-mamba: Robust and efficient dynamic graph structure learning with selective state space models | Proceedings of the AAAI Conference on Artificial Intelligence | 2025 | Successive dynamic graph states · Selective scan across graph snapshots | Dynamics-level | Parallel | [🔎](https://scholar.google.com/scholar?q=%22Dg-mamba%3A+Robust+and+efficient+dynamic+graph+structure+learning+with+selective+state+space+models%22) |
 | [DyGMamba](papers/dynamic-spatiotemporal.md#ding2024dygmamba) | DyGMamba: Efficiently Modeling Long-Term Temporal Dependency on Continuous-Time Dynamic Graphs with State Space Models | arXiv preprint arXiv:2408.04713 | 2024 | Historical node interactions and temporal patterns · Chronological interaction order | Input-level | Standalone | [arXiv](https://arxiv.org/abs/2408.04713) |
 | [DyG-Mamba](papers/dynamic-spatiotemporal.md#li2024dyg) | Dyg-mamba: Continuous state space modeling on dynamic graphs | Advances in Neural Information Processing Systems | 2026 | Timestamped interaction sequences · Irregular chronological event order | Dynamics-level | Standalone | [🔎](https://scholar.google.com/scholar?q=%22Dyg-mamba%3A+Continuous+state+space+modeling+on+dynamic+graphs%22) |
-| [STG-Mamba](papers/dynamic-spatiotemporal.md#li2024stg) | Stg-mamba: Spatial-temporal graph learning via selective state space model | arXiv preprint arXiv:2403.12418 | 2024 | Graph-aware node time-series representations · Temporal processing across multiple granularities | Dynamics-level | Parallel | [arXiv](https://arxiv.org/abs/2403.12418) |
+| [STG-Mamba](papers/dynamic-spatiotemporal.md#li2024stg) | Stg-mamba: Spatial-temporal graph learning via selective state space model | arXiv preprint arXiv:2403.12418 | 2024 | Graph-aware node time-series representations · Temporal processing across multiple granularities | Dynamics-level | Embedded | [arXiv](https://arxiv.org/abs/2403.12418) |
 | [SpoT-Mamba](papers/dynamic-spatiotemporal.md#choi2024spot) | SpoT-Mamba: Learning Long-Range Dependency on Spatio-Temporal Graphs with Selective State Spaces | arXiv preprint arXiv:2406.11244 | 2024 | Graph-derived neighborhood sequences · BFS, DFS, random-walk, and temporal scanning | Input-level | Standalone | [arXiv](https://arxiv.org/abs/2406.11244) |
 | [PS-Mamba](papers/dynamic-spatiotemporal.md#dong2025ps) | PS-Mamba: Spatial-Temporal Graph Mamba for Pose Sequence Refinement | 2025 IEEE/CVF International Conference on Computer Vision (ICCV) | 2025 | Human joints across pose sequences · Four graph-guided bidirectional spatial–temporal scans | Input-level | Parallel | [🔎](https://scholar.google.com/scholar?q=%22PS-Mamba%3A+Spatial-Temporal+Graph+Mamba+for+Pose+Sequence+Refinement%22) |
 | [FuzzMamba](papers/dynamic-spatiotemporal.md#chen2026modeling) | Modeling Spatiotemporal Dynamic Shifts for Traffic Cognition: A Fuzzy-based Graph-Mamba Approach | 2026 IEEE International Conference on Fuzzy Systems (FUZZ-IEEE) | 2026 | Node-centric spatial neighborhoods with contextual features · Adaptive spatial ordering varying over time | Dynamics-level | Standalone | [🔎](https://scholar.google.com/scholar?q=%22Modeling+Spatiotemporal+Dynamic+Shifts+for+Traffic+Cognition%3A+A+Fuzzy-based+Graph-Mamba+Approach%22) |
@@ -356,7 +356,7 @@ pytest -q                      # unit and integration tests
 The initial database was extracted from the manuscript. Classifications are cross-checked automatically against `tab:unified-taxonomy`, `tab:cross-domain-applications`, and `fig:design-patterns`; any disagreement fails validation. Ambiguities found in the manuscript are recorded as flags rather than silently resolved.
 
 <!-- BEGIN:FLAGS -->
-Current status: **0 errors**, **7 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
+Current status: **0 errors**, **8 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
 <!-- END:FLAGS -->
 
 ---

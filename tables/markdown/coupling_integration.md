@@ -5,12 +5,12 @@
 | Graph setting | Models | Input | Dynamics | Operator | Standalone | Sequential | Parallel | Embedded |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | Static and General-Purpose Graph Models | 7 | 2 | 3 | 2 | 2 | 0 | 4 | 2 |
-| Dynamic and Spatio-Temporal Graph Models | 10 | 4 | 5 | 1 | 5 | 2 | 3 | 0 |
+| Dynamic and Spatio-Temporal Graph Models | 10 | 4 | 5 | 1 | 5 | 2 | 2 | 1 |
 | Heterogeneous and Higher-Order Graph Models | 4 | 4 | 0 | 0 | 3 | 0 | 1 | 0 |
-| **All settings** | 21 | 10 | 8 | 3 | 10 | 2 | 8 | 2 |
+| **All settings** | 21 | 10 | 8 | 3 | 10 | 2 | 7 | 3 |
 | **Cross-tabulation D3 level × D4 type (all settings)** | | | | | | | | |
 | Input-level | 10 | – | – | – | 5 | 1 | 4 | 0 |
-| Dynamics-level | 8 | – | – | – | 2 | 1 | 4 | 2 |
+| Dynamics-level | 8 | – | – | – | 2 | 1 | 3 | 3 |
 | Operator-level | 3 | – | – | – | 3 | 0 | 0 | 0 |
 
 > Derived statistic (not a manuscript table). It reproduces the manuscript's observation that most models couple graph structure at the input or dynamics level, operator-level coupling is uncommon, and standalone/parallel integration dominates.  

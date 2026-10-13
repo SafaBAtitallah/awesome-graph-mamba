@@ -18,7 +18,7 @@
 | DG-Mamba | 2025 | Successive dynamic graph states | Selective scan across graph snapshots |  | ✓ |  |  |  | ✓ |  |
 | [DyGMamba](https://arxiv.org/abs/2408.04713) | 2024 | Historical node interactions and temporal patterns | Chronological interaction order | ✓ |  |  | ✓ |  |  |  |
 | DyG-Mamba | 2026 | Timestamped interaction sequences | Irregular chronological event order |  | ✓ |  | ✓ |  |  |  |
-| [STG-Mamba](https://arxiv.org/abs/2403.12418)⚠ | 2024 | Graph-aware node time-series representations | Temporal processing across multiple granularities |  | ✓ |  |  |  | ✓ |  |
+| [STG-Mamba](https://arxiv.org/abs/2403.12418) | 2024 | Graph-aware node time-series representations | Temporal processing across multiple granularities |  | ✓ |  |  |  |  | ✓ |
 | [SpoT-Mamba](https://arxiv.org/abs/2406.11244) | 2024 | Graph-derived neighborhood sequences | BFS, DFS, random-walk, and temporal scanning | ✓ |  |  | ✓ |  |  |  |
 | PS-Mamba | 2025 | Human joints across pose sequences | Four graph-guided bidirectional spatial–temporal scans | ✓ |  |  |  |  | ✓ |  |
 | FuzzMamba | 2026 | Node-centric spatial neighborhoods with contextual features | Adaptive spatial ordering varying over time |  | ✓ |  | ✓ |  |  |  |

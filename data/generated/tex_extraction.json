@@ -1048,13 +1048,13 @@
       "key": "li2024stg",
       "model": "STG-Mamba",
       "setting": "dynamic_spatiotemporal",
-      "d1": "Graph-aware node time-series representations",
-      "d2": "Temporal processing across multiple granularities",
+      "d1": "Spatio-temporal graph embeddings",
+      "d2": "Temporal order",
       "d3": [
         "dynamics"
       ],
       "d4": [
-        "parallel"
+        "embedded"
       ]
     },
     {

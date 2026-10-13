@@ -16,7 +16,7 @@
 | DG-Mamba | Dynamic and Spatio-Temporal |  |  |  |  |  | ✓ | ✓ |
 | [DyGMamba](https://arxiv.org/abs/2408.04713) | Dynamic and Spatio-Temporal |  | ✓ |  |  |  | ✓ | ✓ |
 | DyG-Mamba | Dynamic and Spatio-Temporal |  |  |  |  |  | ✓ | ✓ |
-| [STG-Mamba](https://arxiv.org/abs/2403.12418)⚠ | Dynamic and Spatio-Temporal |  |  |  | ✓ | ✓ | ✓ |  |
+| [STG-Mamba](https://arxiv.org/abs/2403.12418) | Dynamic and Spatio-Temporal |  |  |  | ✓ | ✓ | ✓ |  |
 | [SpoT-Mamba](https://arxiv.org/abs/2406.11244) | Dynamic and Spatio-Temporal |  |  |  |  |  |  |  |
 | PS-Mamba | Dynamic and Spatio-Temporal |  |  |  |  |  |  |  |
 | FuzzMamba | Dynamic and Spatio-Temporal |  |  |  |  |  |  | ✓ |

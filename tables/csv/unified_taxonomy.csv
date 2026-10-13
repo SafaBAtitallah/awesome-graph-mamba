@@ -11,7 +11,7 @@ Dynamic and Spatio-Temporal Graph Models,GSSM,2024,Base-station node time series
 Dynamic and Spatio-Temporal Graph Models,DG-Mamba,2025,Successive dynamic graph states,Selective scan across graph snapshots,0,1,0,0,0,1,0
 Dynamic and Spatio-Temporal Graph Models,DyGMamba,2024,Historical node interactions and temporal patterns,Chronological interaction order,1,0,0,1,0,0,0
 Dynamic and Spatio-Temporal Graph Models,DyG-Mamba,2026,Timestamped interaction sequences,Irregular chronological event order,0,1,0,1,0,0,0
-Dynamic and Spatio-Temporal Graph Models,STG-Mamba,2024,Graph-aware node time-series representations,Temporal processing across multiple granularities,0,1,0,0,0,1,0
+Dynamic and Spatio-Temporal Graph Models,STG-Mamba,2024,Graph-aware node time-series representations,Temporal processing across multiple granularities,0,1,0,0,0,0,1
 Dynamic and Spatio-Temporal Graph Models,SpoT-Mamba,2024,Graph-derived neighborhood sequences,"BFS, DFS, random-walk, and temporal scanning",1,0,0,1,0,0,0
 Dynamic and Spatio-Temporal Graph Models,PS-Mamba,2025,Human joints across pose sequences,Four graph-guided bidirectional spatial–temporal scans,1,0,0,0,0,1,0
 Dynamic and Spatio-Temporal Graph Models,FuzzMamba,2026,Node-centric spatial neighborhoods with contextual features,Adaptive spatial ordering varying over time,0,1,0,1,0,0,0
