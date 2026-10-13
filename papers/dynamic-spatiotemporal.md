@@ -54,7 +54,7 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22State+space+m
 ### GSSM
 **Graph Convolution Network Based State Space Model for Wireless Traffic Prediction**  
 Hao Zhou, Dunyuan Yao, Binbin Chen, Ke Yu, Xiaofei Wu — *2024 IEEE Wireless Communications and Networking Conference (WCNC)*, 2024  
-Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Graph+Convolution+Network+Based+State+Space+Model+for+Wireless+Traffic+Prediction%22)) · Code: NR · BibTeX: `zhou2024graph` `† precursor`
+Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Graph+Convolution+Network+Based+State+Space+Model+for+Wireless+Traffic+Prediction%22)) · Code: NR · BibTeX: `zhou2024graph` `† precursor` `✔ verified`
 
 | Setting | D1 Tokenization | D2 Ordering | D3 Coupling | D4 Integration |
 | :--- | :--- | :--- | :--- | :--- |
@@ -74,9 +74,6 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Graph+Convolu
 
 **Limitations (stated in the survey)**
 - NR
-
-**Notes**
-- Predates Mamba's input-dependent selection; described as a graph–SSM precursor.
 
 **Discussed in:** 3.3 Dynamic and Spatio-Temporal Graph Models
 

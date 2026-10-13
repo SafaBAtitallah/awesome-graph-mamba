@@ -718,9 +718,7 @@
       "challenges": [],
       "advantages": [],
       "limitations": [],
-      "notes": [
-        "Predates Mamba's input-dependent selection; described as a graph--SSM precursor."
-      ],
+      "notes": [],
       "manuscript_labels": [
         "subsec:dynamic-models"
       ],
@@ -731,7 +729,7 @@
         "3.3"
       ],
       "verification": {
-        "status": "extracted",
+        "status": "verified",
         "flags": []
       },
       "in_bib": true

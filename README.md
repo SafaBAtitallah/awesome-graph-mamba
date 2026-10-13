@@ -40,7 +40,7 @@ This repository turns the survey's literature review into a **living, taxonomy-d
 | **55** | 21 | 30 | 4 | 123 | 17 |
 
 **Publication years (BibTeX):** 2023: 1 · 2024: 19 · 2025: 21 · 2026: 14  
-**Verification status:** 51 of 55 records await author verification ([open flags](docs/FLAGS.md)).
+**Verification status:** 50 of 55 records await author verification ([open flags](docs/FLAGS.md)).
 <!-- END:STATS -->
 
 ### Research questions
