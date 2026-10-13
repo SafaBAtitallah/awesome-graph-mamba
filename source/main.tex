@@ -1219,13 +1219,7 @@ the state transition.
 %In terms of the four design questions, DyG-Mamba reads timestamped interactions in irregular chronological order, couples the graph at the dynamics level because elapsed time sets the step size $\Delta_t$, and runs standalone.
 
 \paragraph{\textbf{Spatio-temporal modeling and graph-guided scanning.}}
-STG-Mamba~\cite{li2024stg} combines a Spatial--Temporal Selective State Space
-Module with Kalman Filtering Graph Neural Networks (KFGN). The graph component
-models spatial relationships and updates graph-aware representations, while
-the selective state-space module captures temporal dependencies at different
-granularities. The architecture therefore combines graph-based spatial
-processing with selective temporal state evolution, corresponding primarily to
-structural conditioning (D3) and graph--SSM integration (D4).
+STG-Mamba~\cite{li2024stg} integrates a Spatial--Temporal Selective State Space Module (ST-S3M) with Kalman Filtering Graph Neural Networks (KFGN) within repeated Graph Selective State Space Blocks. KFGN dynamically updates graph representations across different temporal granularities, while graph information is fed into the selective scan to condition state-space discretization and updates. Thus, STG-Mamba primarily employs spatio-temporal graph embeddings (D1), temporal ordering (D2), dynamics-level structural coupling (D3), and embedded graph--SSM integration (D4).
 % [REV-R13] Added (red): closing sentence answering the four design questions in order. [REV-NOTE] verify the coupling level / integration type against the original paper.
 %In terms of the four design questions, STG-Mamba reads graph-aware node time series in temporal order at multiple granularities, couples the graph at the dynamics level, and runs in parallel with a Kalman-filtering graph network.
 SpoT-Mamba~\cite{choi2024spot} introduces a different strategy by constructing
@@ -1402,10 +1396,10 @@ Irregular chronological event order &
 \cmark & & & \\
 
 STG-Mamba~\cite{li2024stg} &
-Graph-aware node time-series representations &
-Temporal processing across multiple granularities &
+Spatio-temporal graph embeddings &
+Temporal order &
 & \cmark & &
-& & \cmark & \\
+& &  &\cmark \\
 
 SpoT-Mamba~\cite{choi2024spot} &
 Graph-derived neighborhood sequences &
