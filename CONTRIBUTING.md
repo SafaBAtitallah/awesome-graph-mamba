@@ -78,9 +78,8 @@ Use only identifiers defined in `data/taxonomy.yaml`. Write `NR` (or omit an opt
 ### Verification status
 
 * `extracted` — transcribed from a source, not yet checked by a survey author.
-* `needs_verification` — ambiguous or conflicting; explain in `flags`.
-* `verified` — checked by a survey author (add `verified_by` and `date`). The scripts never overwrite records; `extract_papers.py --merge` only appends stubs for missing works. If a verified record intentionally deviates from a manuscript table, add `override_reason` — validation then reports a warning instead of an error.
-
+* `verified` — checked by a survey author (add `verified_by` and `date`).
+  
 ## Adding a published-results table
 
 Append a block to `data/results.yaml` with `columns`, `better` (`higher`/`lower` per column), and `rows`. Only add numbers that come from **one source paper under one protocol**; results from different papers must go in separate tables. Use `null` for missing values (rendered `NR`).
