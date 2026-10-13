@@ -194,7 +194,7 @@ Link: NR ([Scholar search](https://scholar.google.com/scholar?q=%22Dyg-mamba%3A+
 ### STG-Mamba
 **Stg-mamba: Spatial-temporal graph learning via selective state space model**  
 Lincan Li, Hanchen Wang, Wenjie Zhang, Adelle Coster — *arXiv preprint arXiv:2403.12418*, 2024  
-[arXiv](https://arxiv.org/abs/2403.12418) · [Code](https://github.com/LincanLi98/STG-Mamba) · BibTeX: `li2024stg` `✔ verified`
+[arXiv](https://arxiv.org/abs/2403.12418) · [Code](https://github.com/LincanLi98/STG-Mamba) · BibTeX: `li2024stg` 
 
 | Setting | D1 Tokenization | D2 Ordering | D3 Coupling | D4 Integration |
 | :--- | :--- | :--- | :--- | :--- |

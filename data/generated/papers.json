@@ -1061,7 +1061,7 @@
         "A"
       ],
       "verification": {
-        "status": "verified",
+        "status": "extracted",
         "flags": []
       },
       "in_bib": true
