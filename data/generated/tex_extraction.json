@@ -994,7 +994,7 @@
     },
     {
       "key": "zhou2024graph",
-      "model": "GSSM",
+      "model": "GSSM$^\\dagger$",
       "setting": "dynamic_spatiotemporal",
       "d1": "Base-station node time series",
       "d2": "Temporal order",

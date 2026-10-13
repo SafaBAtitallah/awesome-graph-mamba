@@ -12,7 +12,7 @@
 | DMbaGCN | Static and General-Purpose |  |  |  |  |  |  |  |
 | GLADMamba | Static and General-Purpose |  |  |  |  |  | ✓ | ✓ |
 | GraphSSM | Dynamic and Spatio-Temporal |  |  |  |  |  |  | ✓ |
-| GSSM†⚠ | Dynamic and Spatio-Temporal |  |  |  |  |  |  |  |
+| GSSM† | Dynamic and Spatio-Temporal |  |  |  |  |  |  |  |
 | DG-Mamba | Dynamic and Spatio-Temporal |  |  |  |  |  | ✓ | ✓ |
 | [DyGMamba](https://arxiv.org/abs/2408.04713) | Dynamic and Spatio-Temporal |  | ✓ |  |  |  | ✓ | ✓ |
 | DyG-Mamba | Dynamic and Spatio-Temporal |  |  |  |  |  | ✓ | ✓ |

@@ -14,7 +14,7 @@
 | GLADMamba | 2025 | Multi-view graph representations | No central graph serialization |  | ✓ |  |  |  | ✓ |  |
 | **Dynamic and Spatio-Temporal Graph Models** | | | | | | | | | | |
 | GraphSSM | 2024 | Sequence of graph snapshots | Temporal snapshot order |  |  | ✓ | ✓ |  |  |  |
-| GSSM†⚠ | 2024 | Base-station node time series | Temporal order |  | ✓ |  |  | ✓ |  |  |
+| GSSM† | 2024 | Base-station node time series | Temporal order |  | ✓ |  |  | ✓ |  |  |
 | DG-Mamba | 2025 | Successive dynamic graph states | Selective scan across graph snapshots |  | ✓ |  |  |  | ✓ |  |
 | [DyGMamba](https://arxiv.org/abs/2408.04713) | 2024 | Historical node interactions and temporal patterns | Chronological interaction order | ✓ |  |  | ✓ |  |  |  |
 | DyG-Mamba | 2026 | Timestamped interaction sequences | Irregular chronological event order |  | ✓ |  | ✓ |  |  |  |

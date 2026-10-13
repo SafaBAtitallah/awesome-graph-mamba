@@ -731,10 +731,8 @@
         "3.3"
       ],
       "verification": {
-        "status": "needs_verification",
-        "flags": [
-          "Precursor status stated in the text of subsec:dynamic-models but not marked with a dagger in tab:unified-taxonomy (the dagger convention is only used in tab:cross-domain-applications)."
-        ]
+        "status": "extracted",
+        "flags": []
       },
       "in_bib": true
     },
