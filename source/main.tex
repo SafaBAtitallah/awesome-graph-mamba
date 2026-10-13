@@ -1371,7 +1371,7 @@ Temporal snapshot order &
 & & \cmark &
 \cmark & & & \\
 
-GSSM~\cite{zhou2024graph} &
+GSSM$^\dagger$~\cite{zhou2024graph} &
 Base-station node time series &
 Temporal order &
 & \cmark & &
@@ -1460,6 +1460,7 @@ Rank- and incidence-aware linearization &
 \end{tabular}%
 }
 
+
 \vspace{1mm}
 \begin{minipage}{0.98\textwidth}
 \footnotesize
@@ -1468,7 +1469,10 @@ computation: input-, dynamics-, or operator-level coupling.
 D4 indicates how the state-space component is combined with graph-learning
 mechanisms. Multiple check marks are used when an architecture combines
 integration strategies.
+$^\dagger$ GSSM is an earlier graph--SSM precursor that does not employ
+Mamba-style input-dependent selection.
 \end{minipage}
+
 
 \end{table*}
 
