@@ -294,6 +294,7 @@ papers:
     - "Lowest RMSE and MAE among compared methods on PeMS04, HZMetro, and KnowAir (RMSE reductions of ~2.2%, 2.4%, 7.4% vs. STAEformer)."
   limitations:
     - "Slightly higher MAPE than STAEformer on PeMS04; evaluation is limited to three forecasting datasets, without explicit uncertainty estimates."
+  verification: {status: extracted, flags: []}
 
 - key: choi2024spot
   model: SpoT-Mamba
