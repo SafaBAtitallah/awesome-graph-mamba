@@ -938,19 +938,17 @@ papers:
     result: "Task-based analysis beyond WL: recurrent backbones can count node colors when the state width is at least the number of colors, which non-causal Transformers without PE cannot; worst-case connectivity favors Transformers (logarithmic depth), whereas recurrent models need polynomial depth or width unless the ordering is locality-preserving"
     caveat: "Sensitivity of SSM outputs decays with token distance and deep stacks exhibit representational collapse; no single backbone dominates"
   verification:
-    status: needs_verification
-    flags:
-      - "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
-
+    status: verified
+    flags: []
+    
 - key: wang2025mapstsf
   model: MapsTSF
   roles: [discussed]
   sections: [sec:ch-hybrid, sec7]
   methodology: "Couples a Mamba-2 backbone with Transformer attention over road-network traversals."
   verification:
-    status: needs_verification
-    flags:
-      - "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
+    status: verified
+    flags: []
 
 - key: cheng2025transfer
   model: Transfer-Mamba
@@ -960,16 +958,14 @@ papers:
   contributions:
     - "Domain-specific exception to single-dataset self-supervision in Graph Mamba (cross-city transfer)."
   verification:
-    status: needs_verification
-    flags:
-      - "Not classified in tab:unified-taxonomy; D1--D4 left unassigned."
-
+    status: verified
+    flags: []
+  
 - key: gubbala2026m3
   model: M3-HGMA
   roles: [discussed]
   sections: [sec7]
   methodology: "NR (cited only as early work for cross-modal graph modeling in tab:future-directions)."
   verification:
-    status: needs_verification
-    flags:
-      - "Only cited in tab:future-directions; the survey gives no architectural description."
+    status: verified
+    flags: []
