@@ -356,7 +356,7 @@ pytest -q                      # unit and integration tests
 The initial database was extracted from the manuscript. Classifications are cross-checked automatically against `tab:unified-taxonomy`, `tab:cross-domain-applications`, and `fig:design-patterns`; any disagreement fails validation. Ambiguities found in the manuscript are recorded as flags rather than silently resolved.
 
 <!-- BEGIN:FLAGS -->
-Current status: **0 errors**, **8 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
+Current status: **0 errors**, **6 warnings**, 53 informational notes — see [docs/FLAGS.md](docs/FLAGS.md).
 <!-- END:FLAGS -->
 
 ---
