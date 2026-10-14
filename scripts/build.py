@@ -8,6 +8,7 @@ Pipeline
   4. generate comparison tables (Markdown, LaTeX, CSV)  (generate_tables)
   5. generate catalogue pages, docs/FLAGS.md, README     (generate_catalogue)
   6. generate the GitHub Pages explorer docs/index.html  (generate_site)
+     (+ docs/comparison.html, a redirect to its tables section)
 
 Usage
   python scripts/build.py            # rebuild everything
@@ -43,7 +44,7 @@ def collect_outputs(merge: bool = False):
     tab_out, tables = table_outputs(data, resolved)
     outputs.update(tab_out)
     outputs.update(catalogue_outputs(data, resolved, extraction, tables, findings))
-    outputs.update(site_outputs(data, resolved))
+    outputs.update(site_outputs(data, resolved, tables))
     ctx = {"data": data, "bib": bib, "extraction": extraction, "resolved": resolved, "findings": findings, "tables": tables}
     return outputs, ctx
 
@@ -55,7 +56,7 @@ def stale_outputs(outputs) -> list[Path]:
 def build(merge: bool = False, check: bool = False, only: list[str] | None = None, quiet: bool = False) -> int:
     outputs, ctx = collect_outputs(merge=merge)
     if only:
-        keep = {"tables": "tables", "catalogue": ("papers", "docs/FLAGS.md", "README.md"), "site": "docs/index.html"}
+        keep = {"tables": "tables", "catalogue": ("papers", "docs/FLAGS.md", "README.md"), "site": ("docs/index.html", "docs/comparison.html")}
         prefixes = []
         for o in only:
             v = keep[o]

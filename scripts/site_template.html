@@ -7,171 +7,556 @@
 <meta name="description" content="Interactive companion to the survey 'Exploring Graph Mamba: A Comprehensive Survey on State-Space Models for Graph Learning'.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem("gm-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <style>
+/* ======================================================================
+   Tokens. Navy + teal research-portal palette; dark mode is its own set
+   of steps (not an automatic inversion).
+   ====================================================================== */
 :root{
-  --ink:#14213d; --ink-2:#3d4a63; --muted:#5b6577; --paper:#f6f7f9; --card:#ffffff; --line:#d7dce5; --line-2:#e8ebf0;
-  --accent:#0f6f73; --accent-soft:#e3f1f1;
-  --DV:#b04a7b; --RT:#2c3e6b; --GS:#a8740c; --LG:#4f7554;
+  color-scheme:light;
+  --bg:#f6f7f9; --surface:#ffffff; --surface-2:#f0f3f6; --ink:#0f1d33; --ink-2:#36435a; --muted:#5a6577;
+  --line:#d6dce5; --line-2:#e7ebf0;
+  --navy:#0f2341; --navy-2:#1a3257; --on-navy:#ffffff; --on-navy-2:#b9c6da;
+  --accent:#0d6e72; --accent-strong:#0a5659; --accent-soft:#e2f0f0; --on-accent:#ffffff;
+  --focus:#0d6e72; --ring:#0f2341;
+  --notice-bg:#f7f1e3; --notice-ink:#5a4310; --notice-line:#e6d6ae;
+  /* sequential magnitude ramp (one hue, light -> dark) */
+  --h0:#f0f3f6; --h1:#e1f0ef; --h2:#c1e1df; --h3:#8fc8c5; --h4:#237d79; --h5:#135e5c;
+  --h-ink-lo:#0f1d33; --h-ink-hi:#ffffff;
+  /* categorical slots 1-3 (validated reference palette) */
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
   --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --radius:10px; --header-h:60px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --ink:#e8ecf3; --ink-2:#c3cad6; --muted:#98a2b3; --paper:#0f1420; --card:#161d2b; --line:#2b3446; --line-2:#212a3a;
-  --accent:#4fb3b6; --accent-soft:#16333a; --DV:#d97aa6; --RT:#8ea6e0; --GS:#e0b04f; --LG:#8fbf94;}}
+  color-scheme:dark;
+  --bg:#0c1320; --surface:#131c2b; --surface-2:#1a2435; --ink:#e6ebf2; --ink-2:#c3ccd8; --muted:#97a3b4;
+  --line:#2b3649; --line-2:#202a3b;
+  --navy:#09121f; --navy-2:#16233a; --on-navy:#f2f5f9; --on-navy-2:#9fb0c8;
+  --accent:#5cbfbd; --accent-strong:#86d3d0; --accent-soft:#14302f; --on-accent:#0c1320;
+  --focus:#7fd1ce; --ring:#e6ebf2;
+  --notice-bg:#2c2412; --notice-ink:#ecd6a2; --notice-line:#4a3c1c;
+  --h0:#1a2435; --h1:#173634; --h2:#1d4b48; --h3:#23625f; --h4:#2a716e; --h5:#5fb8b3;
+  --h-ink-lo:#e6ebf2; --h-ink-hi:#e6ebf2;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;}}
 :root[data-theme="dark"]{
-  --ink:#e8ecf3; --ink-2:#c3cad6; --muted:#98a2b3; --paper:#0f1420; --card:#161d2b; --line:#2b3446; --line-2:#212a3a;
-  --accent:#4fb3b6; --accent-soft:#16333a; --DV:#d97aa6; --RT:#8ea6e0; --GS:#e0b04f; --LG:#8fbf94;}
-*{box-sizing:border-box}
-:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-header.top{padding:40px 0 28px;border-bottom:1px solid var(--line)}
-.top h1{font:600 clamp(28px,4vw,44px)/1.08 var(--serif);letter-spacing:-.01em;margin:0 0 10px;max-width:22ch}
-.top p.sub{margin:0;color:var(--ink-2);max-width:68ch}
-.top .meta{margin-top:14px;color:var(--muted);font-size:13.5px}
-.top .meta a{margin-right:14px}
-.searchbar{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;align-items:center}
-.searchbar input{flex:1 1 320px;font:inherit;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
-.btn{font:500 13.5px var(--sans);padding:9px 13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer}
-.btn:hover{border-color:var(--ink-2)}
-h2{font:600 22px/1.2 var(--serif);margin:0 0 4px}
-.lede{color:var(--muted);margin:0 0 16px;max-width:72ch;font-size:14px}
-section.block{padding:32px 0 8px}
+  color-scheme:dark;
+  --bg:#0c1320; --surface:#131c2b; --surface-2:#1a2435; --ink:#e6ebf2; --ink-2:#c3ccd8; --muted:#97a3b4;
+  --line:#2b3649; --line-2:#202a3b;
+  --navy:#09121f; --navy-2:#16233a; --on-navy:#f2f5f9; --on-navy-2:#9fb0c8;
+  --accent:#5cbfbd; --accent-strong:#86d3d0; --accent-soft:#14302f; --on-accent:#0c1320;
+  --focus:#7fd1ce; --ring:#e6ebf2;
+  --notice-bg:#2c2412; --notice-ink:#ecd6a2; --notice-line:#4a3c1c;
+  --h0:#1a2435; --h1:#173634; --h2:#1d4b48; --h3:#23625f; --h4:#2a716e; --h5:#5fb8b3;
+  --h-ink-lo:#e6ebf2; --h-ink-hi:#e6ebf2;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;}
 
-/* --- design-space matrix (signature element) --- */
-.matrices{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px}
-@media (max-width:980px){.matrices{grid-template-columns:1fr}}
-.mx{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed}
-.mx-scroll{overflow-x:auto}
-.mx th{font:500 12.5px var(--sans);color:var(--muted);text-align:left;padding:6px 8px;vertical-align:bottom}
+/* ======================================================================
+   Base
+   ====================================================================== */
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--header-h) + 12px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+body:has(dialog[open]){overflow:hidden}
+a{color:var(--accent);text-underline-offset:2px}
+a:hover{color:var(--accent-strong)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+button{font:inherit;color:inherit}
+code{font-size:.92em}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:720px){.wrap{padding:0 32px}}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:8px;font-weight:600}
+.skip:focus{top:10px}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;gap:7px;font:500 14px/1.2 var(--sans);padding:9px 14px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);border-radius:8px;cursor:pointer;text-decoration:none;min-height:40px}
+.btn:hover{border-color:var(--ink-2);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent-strong);border-color:var(--accent-strong);color:var(--on-accent)}
+.btn.ghost{background:transparent}
+.btn svg{width:16px;height:16px;flex:none}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-size:inherit}
+
+/* ======================================================================
+   Header + navigation
+   ====================================================================== */
+.site-header{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--on-navy);padding-top:env(safe-area-inset-top,0px);
+  box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.site-header .wrap{display:flex;align-items:center;gap:20px;min-height:var(--header-h)}
+.brand{font:600 18px/1.1 var(--serif);color:var(--on-navy);text-decoration:none;white-space:nowrap}
+.brand:hover{color:var(--on-navy)}
+.mainnav{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.mainnav::-webkit-scrollbar{display:none}
+.mainnav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.mainnav a{display:block;padding:8px 12px;border-radius:6px;color:var(--on-navy-2);text-decoration:none;font-size:14.5px;font-weight:500;white-space:nowrap}
+.mainnav a:hover{color:var(--on-navy);background:var(--navy-2)}
+.mainnav a[aria-current="true"]{color:var(--on-navy);box-shadow:inset 0 -2px 0 #5cbfbd}
+.mainnav a:focus-visible,.hdr-tools button:focus-visible{outline-color:#7fd1ce}
+.hdr-tools{display:flex;gap:6px}
+.hdr-tools button{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,.22);color:var(--on-navy);
+  border-radius:8px;padding:7px 10px;cursor:pointer;font-size:14px;min-height:38px}
+.hdr-tools button:hover{background:var(--navy-2)}
+.hdr-tools svg{width:17px;height:17px}
+@media (max-width:860px){
+  .site-header .wrap{flex-wrap:wrap;gap:0 12px;padding-top:8px}
+  .brand{flex:1}
+  .mainnav{order:3;flex-basis:100%;margin:4px -8px 0}
+  .mainnav a{padding:9px 10px 11px}
+  :root{--header-h:104px}
+  .hdr-tools .lbl{display:none}
+}
+
+/* ======================================================================
+   Sections
+   ====================================================================== */
+section.sec{padding:56px 0;border-top:1px solid var(--line)}
+section.sec:first-of-type{border-top:0}
+.sec-head{max-width:78ch;margin-bottom:28px}
+.eyebrow{font:600 12.5px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h2{font:600 clamp(26px,3.2vw,34px)/1.15 var(--serif);letter-spacing:-.01em;margin:0 0 10px}
+h3{font:600 20px/1.25 var(--serif);margin:0 0 8px}
+.lede{color:var(--ink-2);margin:0;font-size:16.5px}
+.lede + .lede{margin-top:8px}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+
+/* ---- overview / hero ---- */
+.hero{background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);border-bottom:1px solid var(--line)}
+.hero .wrap{padding-top:56px;padding-bottom:48px}
+.hero h1{font:600 clamp(34px,5.4vw,58px)/1.04 var(--serif);letter-spacing:-.015em;margin:0;color:var(--ink)}
+.hero .subtitle{font:500 clamp(19px,2.3vw,25px)/1.3 var(--serif);color:var(--ink-2);margin:10px 0 0;max-width:36ch}
+.hero .authors{margin:20px 0 0;color:var(--ink-2);font-size:15.5px}
+.hero .venue{margin:4px 0 0;color:var(--muted);font-size:14.5px;font-style:italic}
+.hero .intro{max-width:70ch;margin:22px 0 0;font-size:17px;color:var(--ink-2)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:40px 0 0;padding:0;list-style:none;
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.stats li{padding:18px 20px;border-left:1px solid var(--line-2)}
+.stats li:first-child{border-left:0}
+.stats .v{display:block;font:600 34px/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
+.stats .k{display:block;margin-top:6px;font-size:14px;color:var(--muted);line-height:1.35}
+.stats a{color:inherit;text-decoration:none}
+.stats a:hover .k{color:var(--accent)}
+@media (max-width:860px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats li{border-left:0;border-top:1px solid var(--line-2)} .stats li:nth-child(-n+2){border-top:0}
+  .stats li:nth-child(even){border-left:1px solid var(--line-2)} .stats li:last-child{grid-column:1/-1}}
+
+.dims{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+@media (max-width:1060px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.dims{grid-template-columns:1fr}}
+.dim{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;display:flex;flex-direction:column}
+.dim .id{font:600 13px/1 var(--sans);color:var(--accent);letter-spacing:.06em}
+.dim h3{margin:8px 0 6px}
+.dim .q{margin:0;font-family:var(--serif);font-size:17px;line-height:1.4;color:var(--ink)}
+.dim .aspect{margin:10px 0 0;font-size:14px;color:var(--muted)}
+.dim dl{margin:12px 0 0;font-size:14px;border-top:1px solid var(--line-2);padding-top:10px}
+.dim dt{font-weight:600;color:var(--ink-2)}
+.dim dd{margin:0 0 6px;color:var(--ink-2)}
+.subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:44px 0 14px}
+.subhead h3{margin:0}
+.rqs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;list-style:none;margin:0;padding:0}
+@media (max-width:760px){.rqs{grid-template-columns:1fr}}
+.rqs li{display:grid;grid-template-columns:48px 1fr;gap:4px 10px;padding:12px 0;border-top:1px solid var(--line-2)}
+.rqs b{font:600 14px var(--sans);color:var(--accent);padding-top:2px}
+.rqs span{color:var(--ink-2)}
+.rqs small{grid-column:2;color:var(--muted);font-size:13.5px}
+
+/* ======================================================================
+   Matrices
+   ====================================================================== */
+.mx-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:1060px){.mx-layout{grid-template-columns:1fr}}
+.mx-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+@media (max-width:520px){.mx-card{padding:10px 8px;margin:0 -4px}}
+.mx{border-collapse:separate;border-spacing:4px;width:100%;table-layout:fixed}
+.mx caption{text-align:left;font-size:14px;color:var(--muted);padding:0 4px 8px}
+.mx th{font:500 13.5px/1.3 var(--sans);text-align:left;vertical-align:bottom;padding:4px 6px;color:var(--ink)}
+.mx th .def{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.35}
 .mx thead th{border-bottom:1px solid var(--line)}
-.mx tbody th{width:118px;border-right:1px solid var(--line);color:var(--ink-2)}
-.mx tbody th small{display:block;color:var(--muted);font-weight:400;font-size:11.5px;line-height:1.3}
-.mx td{padding:6px;vertical-align:top;border-bottom:1px solid var(--line-2);border-right:1px solid var(--line-2);min-height:64px}
-.mx td.cellbtn{cursor:pointer}
-.mx td.cellbtn:hover{background:var(--accent-soft)}
-.mx td.sel{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
-.mx td .n{display:inline-block;font-size:11.5px;color:var(--accent);margin-bottom:4px;text-decoration:underline;text-underline-offset:2px}
-.mx td.sel .n{font-weight:600;text-decoration:none}
-.chip{display:inline-block;font:500 12px/1.2 var(--sans);padding:3px 7px;margin:0 3px 4px 0;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:opacity .15s}
-.chip.dim{opacity:.22}
-.chip.setting-static_general{border-left:3px solid var(--accent)}
-.chip.setting-dynamic_spatiotemporal{border-left:3px solid #7a5aa6}
-.chip.setting-heterogeneous_higher_order{border-left:3px solid #b8612e}
-.chip.p-DV{border-left:3px solid var(--DV)} .chip.p-RT{border-left:3px solid var(--RT)}
-.chip.p-GS{border-left:3px solid var(--GS)} .chip.p-LG{border-left:3px solid var(--LG)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.mx thead th.corner{width:26%;font-weight:400;color:var(--muted);font-size:12.5px}
+.mx tbody th{vertical-align:middle;border-right:1px solid var(--line);overflow-wrap:normal}
+.mx .tot{width:11%;text-align:center;color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.mx thead th.tot{text-align:center}
+.mx tfoot th,.mx tfoot td{border-top:1px solid var(--line);padding-top:8px;color:var(--muted);font-weight:500;font-size:13.5px;text-align:center;font-variant-numeric:tabular-nums}
+.mx tfoot th{text-align:left}
+.mx tr.grp th{padding:14px 6px 4px;font:600 12px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border-right:0;vertical-align:bottom}
+.mx td{padding:0}
+.cell{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:66px;border:0;border-radius:8px;
+  cursor:pointer;background:var(--h0);color:var(--h-ink-lo);padding:6px 2px;transition:box-shadow .12s, transform .12s}
+.cell .num{font:600 26px/1 var(--serif);font-variant-numeric:tabular-nums}
+.cell .unit{font-size:11.5px;margin-top:4px;opacity:.85}
+.cell.h0 .num{color:var(--muted);font-weight:500}
+.cell.h1{background:var(--h1)} .cell.h2{background:var(--h2)} .cell.h3{background:var(--h3)}
+.cell.h4{background:var(--h4);color:var(--h-ink-hi)} .cell.h5{background:var(--h5);color:var(--h-ink-hi)}
+:root[data-theme="dark"] .cell.h5{color:#0c1320}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cell.h5{color:#0c1320}}
+.cell:hover{box-shadow:0 0 0 2px var(--accent)}
+.cell[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ring), inset 0 0 0 2px var(--surface)}
+.mx-app .cell{min-height:52px}
+.mx-app .cell .num{font-size:22px}
+@media (max-width:700px){.mx th .def{display:none}.cell .unit{display:none}.cell{min-height:52px}.cell .num{font-size:22px}}
+@media (max-width:560px){.mx{border-spacing:3px}.mx thead th.corner{width:35%}.mx tbody th{font-size:12.5px;padding:4px}
+  .mx-arch thead th:not(.corner){writing-mode:vertical-rl;transform:rotate(180deg);text-align:left;vertical-align:bottom;height:96px;padding:6px 0;line-height:1;white-space:nowrap}
+  .mx-arch thead th:not(.corner) .def{display:none}}
+.mx-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:13px;color:var(--muted);margin:12px 4px 0}
+.ramp{display:inline-flex;gap:2px;vertical-align:middle;margin:0 6px}
+.ramp i{width:18px;height:12px;border-radius:2px;display:block}
+
+/* ---- cell panel ---- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:sticky;top:calc(var(--header-h) + 16px)}
+@media (max-width:1060px){.panel{position:static}}
+.panel .ph{color:var(--muted);margin:0}
+.panel h3{font-size:21px;margin:0}
+.panel h3 .x{color:var(--muted);font-weight:500;padding:0 4px}
+.panel .defs{margin:10px 0 0;font-size:14px;color:var(--ink-2);display:grid;gap:4px}
+.panel .defs b{font-weight:600;color:var(--ink)}
+.panel .cnt{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.panel h4{font:600 12px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:18px 0 6px}
+.mlist{list-style:none;margin:0;padding:0}
+.mlist li + li{border-top:1px solid var(--line-2)}
+.mitem{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 8px;margin:0 -8px;width:calc(100% + 16px);border-radius:6px;cursor:pointer}
+.mitem:hover{background:var(--surface-2)}
+.mitem .nm{font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.mitem .yr{color:var(--muted);font-size:13.5px;margin-left:6px;font-variant-numeric:tabular-nums}
+.mitem .sub{display:block;font-size:13.5px;color:var(--ink-2);margin-top:2px;line-height:1.45}
+.mitem .also{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.mitem.out{opacity:.55}
+.mitem .outnote{font-size:12.5px;color:var(--muted);font-style:italic;margin-left:6px}
+.panel .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.mk{color:var(--accent);font-weight:600;margin-left:1px}
+.mx-note{font-size:14px;color:var(--muted);margin:14px 4px 0;max-width:80ch}
+
+/* ======================================================================
+   Literature explorer
+   ====================================================================== */
+.ex-layout{display:grid;grid-template-columns:280px minmax(0,1fr);grid-template-areas:"side tool" "side res";gap:0 32px;align-items:start}
+.ex-layout > .toolbar{grid-area:tool}.ex-layout > .sidebar{grid-area:side;grid-row:1 / span 2}.ex-layout > .results{grid-area:res;min-width:0}
+@media (max-width:980px){.ex-layout{grid-template-columns:1fr;grid-template-areas:none}.ex-layout > *{grid-area:auto!important;grid-row:auto!important}.ex-layout > .sidebar.open{margin-top:12px}}
+.sidebar{position:sticky;top:calc(var(--header-h) + 16px);display:flex;flex-direction:column;gap:20px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+@media (max-width:980px){.sidebar{position:static;display:none}.sidebar.open{display:flex}}
+.ftoggle{display:none}
+@media (max-width:980px){.ftoggle{display:inline-flex}}
+.fgroup{display:flex;flex-direction:column;gap:7px;border:0;margin:0;padding:0;min-width:0}
+.fgroup > .lbl,.fgroup legend{font:600 12.5px/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:7px}
+.fgroup legend{float:left;width:100%}
+.fgroup legend + *{clear:both}
+.roles{display:flex;flex-direction:column;gap:6px}
+.tg{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;font:500 14px/1.3 var(--sans);padding:8px 11px;
+  border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer;min-height:40px}
+.tg .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.tg:hover{border-color:var(--ink-2)}
+.tg[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.tg[aria-pressed="true"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;order:-1}
+.tg[aria-pressed="true"] .t{flex:1}
+select,input[type="search"]{font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);min-height:42px;width:100%}
+select:hover,input[type="search"]:hover{border-color:var(--ink-2)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search{position:relative;flex:1 1 320px}
+.search svg{position:absolute;left:12px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search input{padding-left:38px;font-size:16px;min-height:46px}
+.sortbox{display:flex;align-items:center;gap:8px;flex:0 1 auto}
+.sortbox label{font-size:14px;color:var(--muted);white-space:nowrap}
+.sortbox select{width:auto}
+.toolbar .short{display:none}
+@media (max-width:600px){.search{flex-basis:100%}.sortbox label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sortbox{flex:1 1 auto}.sortbox select{width:100%}.toolbar .long{display:none}.toolbar .short{display:inline}}
+.statusbar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:16px 0 18px;min-height:34px}
+.count{font-size:15px;color:var(--ink-2);margin-right:4px}
+.count b{color:var(--ink)}
+.fchip{display:inline-flex;align-items:center;gap:6px;font:500 13px/1.2 var(--sans);padding:6px 8px 6px 11px;border-radius:999px;
+  border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink);cursor:pointer;max-width:100%}
+.fchip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fchip svg{width:14px;height:14px;flex:none}
+.fchip:hover{background:var(--surface)}
+.notice{font-size:14px;color:var(--notice-ink);background:var(--notice-bg);border:1px solid var(--notice-line);border-radius:8px;padding:10px 12px;margin:0 0 18px}
+.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px 14px;
+  display:flex;flex-direction:column;min-width:0;transition:border-color .12s, box-shadow .12s}
+.card:hover{border-color:var(--accent);box-shadow:0 2px 10px rgba(15,35,65,.07)}
+.card.active{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.card .kicker{margin:0 0 6px;font-size:12.5px;color:var(--muted);letter-spacing:.02em;line-height:1.35}
+.card h3{font:600 19px/1.25 var(--serif);margin:0;overflow-wrap:anywhere}
+.card h3 button{all:unset;cursor:pointer}
+.card h3 button::after{content:"";position:absolute;inset:0;border-radius:var(--radius)}
+.card h3 button:focus-visible::after{outline:3px solid var(--focus);outline-offset:2px}
+.card .ct{margin:6px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.card .cmeta{margin:8px 0 0;font-size:13.5px;color:var(--muted);overflow-wrap:anywhere}
+.card .cclass{margin:auto 0 0;padding-top:12px;font-size:13px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 14px}
+.card .cclass span b{font-weight:600;color:var(--muted);margin-right:4px}
+.card .cnote{margin:8px 0 0;font-size:13px;color:var(--muted);font-style:italic}
+.empty{padding:36px 20px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* ---- year chart ---- */
+.years{display:flex;align-items:flex-end;gap:8px;height:150px;padding-top:4px}
+.ybar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:100%;background:none;border:0;padding:0 0 2px;
+  cursor:pointer;border-radius:6px;font-size:12.5px;color:var(--muted)}
+.ybar .tot{font-variant-numeric:tabular-nums;color:var(--ink-2);font-weight:500}
+.ybar .stack{width:100%;max-width:44px;display:flex;flex-direction:column-reverse;gap:2px;border-radius:4px 4px 0 0;overflow:hidden}
+.ybar .stack span{display:block;min-height:2px}
+.ybar .yl{border-top:1px solid var(--line);width:100%;padding-top:4px;font-variant-numeric:tabular-nums}
+.ybar:hover .yl{color:var(--ink)}
+.ybar[aria-pressed="true"] .yl{color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--accent)}
+.ybar.faded .stack{opacity:.35}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--muted);margin-top:8px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
 
-/* --- filters + results --- */
-.filters{display:flex;flex-wrap:wrap;gap:18px 26px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
-.fgroup{display:flex;flex-direction:column;gap:6px}
-.fgroup > span{font-size:12.5px;color:var(--muted)}
-.toggles{display:flex;flex-wrap:wrap;gap:6px}
-.tg{font:500 12.5px var(--sans);padding:5px 10px;border-radius:20px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
-.tg[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-select{font:inherit;font-size:13.5px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
-.results{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:28px;align-items:start}
-@media (max-width:980px){.results{grid-template-columns:1fr}}
-.count{font-size:13.5px;color:var(--muted);margin-bottom:8px}
-.list{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:150px 1fr 54px;gap:14px;padding:12px 6px;border-bottom:1px solid var(--line-2);cursor:pointer;align-items:baseline}
-.row:hover{background:var(--card)}
-.row.active{background:var(--card);box-shadow:inset 3px 0 0 var(--accent)}
-.row .m{font-weight:600}
-.row .t{color:var(--ink-2);font-size:14px}
-.row .t small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
-.row .y{color:var(--muted);font-size:13px;text-align:right}
-@media (max-width:620px){.row{grid-template-columns:1fr 46px}.row .t{grid-column:1/-1;order:3}}
-.tag{display:inline-block;font-size:11.5px;padding:1px 6px;border-radius:3px;margin-right:4px;background:var(--line-2);color:var(--ink-2)}
-.tag.warn{background:#fbecd0;color:#7a4b00}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.warn{background:#3b2c10;color:#f0c97a}}
-:root[data-theme="dark"] .tag.warn{background:#3b2c10;color:#f0c97a}
-.empty{padding:28px 6px;color:var(--muted)}
+/* ======================================================================
+   Detail drawer + glossary dialogs
+   ====================================================================== */
+dialog{border:0;padding:0;color:var(--ink);background:var(--surface);max-height:100dvh;max-width:100vw}
+dialog::backdrop{background:rgba(9,18,31,.5)}
+dialog.drawer{margin:0 0 0 auto;height:100dvh;width:min(620px,100vw);box-shadow:-8px 0 30px rgba(9,18,31,.22)}
+dialog.modal{width:min(860px,calc(100vw - 24px));max-height:calc(100dvh - 24px);border-radius:12px;box-shadow:0 12px 40px rgba(9,18,31,.3)}
+.dlg{display:flex;flex-direction:column;height:100%;max-height:inherit}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px 12px 24px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dlg-head .crumbs{font-size:13.5px;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dlg-head .nav{display:flex;gap:6px;flex:none}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:pointer;color:var(--ink)}
+.iconbtn:hover{border-color:var(--ink-2)}
+.iconbtn:disabled{opacity:.4;cursor:default}
+.iconbtn svg{width:18px;height:18px}
+.dlg-body{overflow:auto;padding:24px 24px 32px;flex:1;overscroll-behavior:contain}
+@media (max-width:520px){.dlg-body{padding:20px 16px 28px}.dlg-head{padding-left:16px}}
+.detail .kicker{margin:0 0 6px;font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.03em}
+.detail h2{font-size:clamp(26px,4vw,32px);margin:0;overflow-wrap:anywhere}
+.detail .ptitle{font:500 17px/1.45 var(--serif);margin:8px 0 0;color:var(--ink);overflow-wrap:anywhere}
+.detail .who{color:var(--ink-2);font-size:14.5px;margin:10px 0 0;overflow-wrap:anywhere}
+.detail .who span{color:var(--muted);display:block}
+.detail .links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.detail .links .btn{min-height:36px;padding:7px 12px;font-size:13.5px}
+.detail .notes{margin:16px 0 0;padding:10px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:14px;color:var(--ink-2)}
+.detail .notes p{margin:0}.detail .notes p + p{margin-top:4px}
+.detail section{margin-top:26px}
+.detail h3{font:600 12.5px/1.3 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.detail h3 .linkbtn{font:500 13px var(--sans);letter-spacing:0;text-transform:none}
+.detail dl{display:grid;grid-template-columns:minmax(120px,34%) 1fr;gap:0;margin:0;font-size:14.5px;border-top:1px solid var(--line-2)}
+.detail dt,.detail dd{padding:8px 0;border-bottom:1px solid var(--line-2)}
+.detail dt{color:var(--muted);padding-right:12px}
+.detail dt small{display:block;font-size:12.5px;line-height:1.35;margin-top:2px}
+.detail dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:460px){.detail dl{grid-template-columns:1fr}.detail dt{border-bottom:0;padding-bottom:0}}
+.detail p.body{font-size:15px;margin:0;color:var(--ink-2)}
+.detail ul{margin:0;padding-left:20px;font-size:15px;color:var(--ink-2)}
+.detail li + li{margin-top:4px}
+.detail .flag{margin-top:10px}
+.gloss h2{font-size:28px;margin:0}
+.gloss h3{font:600 18px/1.3 var(--serif);margin:26px 0 10px}
+.gloss table{width:100%;border-collapse:collapse;font-size:14.5px}
+.gloss th,.gloss td{text-align:left;vertical-align:top;padding:8px 10px 8px 0;border-bottom:1px solid var(--line-2)}
+.gloss th{font-weight:600;white-space:nowrap;color:var(--ink)}
+.gloss td{color:var(--ink-2)}
+@media (max-width:560px){.gloss th{white-space:normal}}
 
-.detail{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;max-height:calc(100vh - 32px);overflow:auto}
-.detail h3{font:600 24px/1.15 var(--serif);margin:0 0 6px}
-.detail .ptitle{font-weight:500;margin:0 0 6px}
-.detail .who{color:var(--muted);font-size:13.5px;margin:0 0 12px}
-.detail dl{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;margin:14px 0;font-size:14px}
-.detail dt{color:var(--muted)}
-.detail dd{margin:0}
-.detail h4{font:600 13.5px var(--sans);margin:16px 0 6px}
-.detail ul{margin:0;padding-left:18px;font-size:14px}
-.detail .links a{margin-right:12px;font-size:14px}
-.flag{background:#fbecd0;color:#5c3a00;border-radius:6px;padding:8px 10px;font-size:13px;margin-top:12px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .flag{background:#3b2c10;color:#f0d9a6}}
-:root[data-theme="dark"] .flag{background:#3b2c10;color:#f0d9a6}
-.detail .placeholder{color:var(--muted);margin:0}
-@media (max-width:980px){.detail{position:static;max-height:none}}
+/* ======================================================================
+   Comparison tables
+   ====================================================================== */
+.tb-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:980px){.tb-layout{grid-template-columns:1fr}}
+.tb-nav{position:sticky;top:calc(var(--header-h) + 16px);max-height:calc(100dvh - var(--header-h) - 32px);overflow:auto;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:8px}
+.tb-nav ol{list-style:none;margin:0;padding:0}
+.tb-nav button{display:block;width:100%;text-align:left;background:none;border:0;border-radius:6px;padding:8px 10px;cursor:pointer;font-size:14px;line-height:1.35;color:var(--ink-2)}
+.tb-nav button:hover{background:var(--surface-2);color:var(--ink)}
+.tb-nav button[aria-current="true"]{background:var(--accent-soft);color:var(--ink);font-weight:600;box-shadow:inset 3px 0 0 var(--accent)}
+.tb-pick{display:none}
+@media (max-width:980px){.tb-nav{display:none}.tb-pick{display:flex;flex-direction:column;gap:6px}}
+.tb-pick label{font:600 12.5px/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.tb-view{min-width:0}
+.tb-view h3{font-size:23px}
+.tb-view .cap{margin:0;color:var(--ink-2);font-size:15px;max-width:90ch}
+.tb-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tb-scroll{overflow:auto;max-height:72vh;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.ctab{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;line-height:1.45}
+.ctab th,.ctab td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-2)}
+.ctab thead th{position:sticky;top:0;z-index:1;background:var(--surface-2);font-weight:600;color:var(--ink);border-bottom:1px solid var(--line);white-space:nowrap}
+.ctab td{color:var(--ink-2);min-width:64px;max-width:420px}
+.ctab td:first-child{font-weight:500;color:var(--ink)}
+.ctab td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctab td.chk{text-align:center;color:var(--accent);font-weight:600}
+.ctab .nr{color:var(--muted);font-size:13px}
+.ctab tr.grp th{background:var(--surface);font:600 12.5px/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--accent);padding-top:16px;white-space:normal}
+.ctab tbody tr:not(.grp):hover td{background:var(--surface-2)}
+.tb-notes{margin:14px 0 0;font-size:13.5px;color:var(--muted);max-width:100ch}
+.tb-notes p{margin:0 0 4px}
 
-/* --- year strip --- */
-.years{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:8px}
-.ybar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
-.ybar .stack{width:100%;max-width:70px;display:flex;flex-direction:column-reverse;border-radius:4px 4px 0 0;overflow:hidden}
-.ybar .stack span{display:block}
-footer{padding:36px 0 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+footer{padding:40px 0 56px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);background:var(--surface)}
+footer p{margin:0 0 6px;max-width:90ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (forced-colors:active){.cell[aria-pressed="true"],.tg[aria-pressed="true"],.tb-nav button[aria-current="true"]{outline:3px solid CanvasText}}
+@media print{.site-header,.hdr-tools,.sidebar,.toolbar,.tb-nav,.tb-pick,.tb-actions,dialog,.hero .cta{display:none!important}
+  section.sec{break-inside:avoid-page;padding:24px 0}.tb-scroll{max-height:none;overflow:visible}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <h1>Exploring Graph Mamba</h1>
-  <p class="sub">An interactive map of the literature reviewed in <em>A Comprehensive Survey on State-Space Models for Graph Learning</em>. Every architecture is placed by how deeply graph structure enters the state dynamics and how the SSM is combined with graph propagation.</p>
-  <div class="meta" id="meta"></div>
-  <div class="searchbar">
-    <input id="q" type="search" placeholder="Search models, titles, authors, tasks, datasets" aria-label="Search the literature">
-    <button class="btn" id="reset" type="button">Clear filters</button>
-    <button class="btn" id="dl" type="button">Download filtered CSV</button>
-    <button class="btn" id="theme" type="button" aria-label="Toggle colour theme">Theme</button>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#overview">Exploring Graph Mamba</a>
+    <nav class="mainnav" aria-label="Sections">
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#taxonomy">Architecture Taxonomy</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#explorer">Literature Explorer</a></li>
+        <li><a href="#tables">Comparison Tables</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-tools">
+      <button type="button" id="glossBtn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M20 17v4H6.5A2.5 2.5 0 0 1 4 18.5"/></svg><span class="lbl">D1–D4 definitions</span><span class="sr">Open D1–D4 definitions</span></button>
+      <button type="button" id="theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="sr" id="themeLbl">Switch to dark theme</span></button>
+    </div>
   </div>
-</div></header>
+</header>
 
-<main class="wrap">
-  <section class="block">
-    <div class="matrices">
-      <div>
-        <h2>Architectures by coupling and integration</h2>
-        <p class="lede">Rows are D3 coupling levels, columns are D4 integration types (tab:unified-taxonomy). Select a cell’s count to filter, or a model to open it. A model with several labels appears in several cells.</p>
-        <div class="mx-scroll"><table class="mx" id="mxArch"></table></div>
-        <div class="legend"><span><i style="background:var(--accent)"></i>Static and general-purpose</span><span><i style="background:#7a5aa6"></i>Dynamic and spatio-temporal</span><span><i style="background:#b8612e"></i>Heterogeneous and higher-order</span></div>
+<main id="main" tabindex="-1">
+  <!-- ============================ Overview ============================ -->
+  <section id="overview" class="hero" aria-labelledby="ovTitle">
+    <div class="wrap">
+      <p class="eyebrow">Interactive survey companion</p>
+      <h1 id="ovTitle">Exploring Graph Mamba</h1>
+      <p class="subtitle" id="ovSub"></p>
+      <p class="authors" id="ovAuthors"></p>
+      <p class="venue" id="ovVenue"></p>
+      <p class="intro">An interactive map of the literature reviewed in <em>A Comprehensive Survey on State-Space Models for Graph Learning</em>. Every architecture is placed by how deeply graph structure enters the state dynamics and how the SSM is combined with graph propagation.</p>
+      <div class="cta">
+        <a class="btn primary" href="#explorer">Explore the literature</a>
+        <a class="btn" href="#taxonomy">Architecture taxonomy</a>
+        <a class="btn ghost" id="repoLink" href="#">Repository</a>
+        <a class="btn ghost" id="flagsLink" href="#">Open flags</a>
       </div>
-      <div>
-        <h2>Applications by data setting and pattern</h2>
-        <p class="lede">Dominant graph–SSM design pattern per application (fig:design-patterns). Select a cell’s count to filter, or a work to open it.</p>
-        <div class="mx-scroll"><table class="mx" id="mxApp"></table></div>
-        <div class="legend" id="patLegend"></div>
+      <ul class="stats" id="stats"></ul>
+
+      <div class="subhead"><h3 id="dimsTitle">Four design questions</h3><button type="button" class="linkbtn" data-gloss>All definitions</button></div>
+      <ul class="dims" id="dims" aria-labelledby="dimsTitle"></ul>
+
+      <div class="subhead"><h3>Research questions</h3></div>
+      <ul class="rqs" id="rqs"></ul>
+    </div>
+  </section>
+
+  <!-- ====================== Architecture taxonomy ===================== -->
+  <section id="taxonomy" class="sec" aria-labelledby="taxTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">D3 × D4 · tab:unified-taxonomy</p>
+        <h2 id="taxTitle">Architecture taxonomy</h2>
+        <p class="lede">Architectures placed by <b>D3 coupling</b> (how deeply graph structure shapes the state dynamics) and <b>D4 integration</b> (how the SSM works alongside graph propagation). Select a cell to list its models.</p>
+      </div>
+      <div class="mx-layout">
+        <div>
+          <div class="mx-card"><table class="mx mx-arch" id="mxArch" aria-describedby="archNote"></table></div>
+          <p class="mx-note" id="archNote"></p>
+        </div>
+        <aside class="panel" id="archPanel" aria-live="polite" aria-label="Selected architecture cell"></aside>
       </div>
     </div>
   </section>
 
-  <section class="block">
-    <div class="filters" id="filters"></div>
-    <div class="results">
-      <div>
-        <div class="count" id="count" aria-live="polite"></div>
-        <div class="list" id="list" role="list"></div>
+  <!-- =========================== Applications ========================= -->
+  <section id="applications" class="sec" aria-labelledby="appTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Data setting × design pattern · fig:design-patterns</p>
+        <h2 id="appTitle">Applications</h2>
+        <p class="lede">Domain applications grouped by data setting and placed by their dominant graph–SSM design pattern. Select a cell to list its works; secondary patterns are shown with each work.</p>
       </div>
-      <aside class="detail" id="detail" aria-live="polite"><p class="placeholder">Select a work to see its classification, methodology, reported evidence, and the survey sections that discuss it.</p></aside>
+      <div class="mx-layout">
+        <div>
+          <div class="mx-card"><table class="mx mx-app" id="mxApp" aria-describedby="appNote"></table></div>
+          <p class="mx-note" id="appNote"></p>
+        </div>
+        <aside class="panel" id="appPanel" aria-live="polite" aria-label="Selected application cell"></aside>
+      </div>
     </div>
   </section>
 
-  <section class="block">
-    <h2>Publications per year</h2>
-    <p class="lede">Year field of references.bib, stacked by role in the survey. Responds to the active filters.</p>
-    <div class="years" id="years"></div>
-    <div class="legend"><span><i style="background:var(--accent)"></i>Architecture (D1–D4)</span><span><i style="background:var(--GS)"></i>Application</span><span><i style="background:var(--muted)"></i>Discussed in Sec. 7</span></div>
+  <!-- ======================== Literature explorer ===================== -->
+  <section id="explorer" class="sec" aria-labelledby="exTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Search · filter · export</p>
+        <h2 id="exTitle" tabindex="-1">Literature explorer</h2>
+        <p class="lede">Search every reviewed work by model, title, author, task, or dataset. Open a work to see its classification, methodology, reported evidence, and the survey sections that discuss it.</p>
+      </div>
+      <div class="ex-layout">
+          <div class="toolbar">
+            <div class="search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <label class="sr" for="q">Search the literature</label>
+              <input id="q" type="search" placeholder="Search models, titles, authors, tasks, datasets" autocomplete="off">
+            </div>
+            <div class="sortbox"><label for="sort">Sort</label>
+              <select id="sort"><option value="survey">Survey order</option><option value="new">Newest first</option><option value="old">Oldest first</option><option value="az">Model A–Z</option></select>
+            </div>
+            <button class="btn ftoggle" id="ftoggle" type="button" aria-expanded="false" aria-controls="filters">Filters</button>
+            <button class="btn" id="dl" type="button" aria-label="Download filtered CSV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg><span class="long">Download filtered CSV</span><span class="short" aria-hidden="true">CSV</span></button>
+          </div>
+        <aside class="sidebar" id="filters" aria-label="Filters"></aside>
+        <div class="results">
+          <div class="statusbar">
+            <div class="count" id="count" role="status" aria-live="polite"></div>
+            <div id="chips" style="display:contents"></div>
+            <button class="linkbtn small" id="reset" type="button">Clear filters</button>
+          </div>
+          <p class="notice" id="verifyNote" hidden></p>
+          <ul class="cards" id="list" aria-labelledby="exTitle"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Comparison tables ====================== -->
+  <section id="tables" class="sec" aria-labelledby="tbTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Generated from data/ · Markdown, LaTeX, CSV</p>
+        <h2 id="tbTitle">Comparison tables</h2>
+        <p class="lede">Every comparison table of the repository, rendered from the same objects as the Markdown, LaTeX, and CSV files. NR = not reported in the survey; all results are as reported by the original authors.</p>
+      </div>
+      <div class="tb-layout">
+        <nav class="tb-nav" aria-label="Comparison tables"><ol id="tbNav"></ol></nav>
+        <div class="tb-view">
+          <div class="tb-pick"><label for="tbSel">Table</label><select id="tbSel"></select></div>
+          <div id="tbView"></div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 
 <footer><div class="wrap">
-  Generated by <code>scripts/generate_site.py</code> from <code>data/papers.yaml</code> and <code>source/references.bib</code> on every build. NR = not reported in the survey; all results are as reported by the original authors.
-  <span id="foot"></span>
+  <p>Generated by <code>scripts/generate_site.py</code> from <code>data/papers.yaml</code>, <code>data/taxonomy.yaml</code> and <code>source/references.bib</code> on every build. NR = not reported in the survey; all results are as reported by the original authors.</p>
+  <p id="foot"></p>
 </div></footer>
+
+<dialog class="drawer" id="paper" aria-labelledby="dTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <div class="crumbs" id="dCrumbs"></div>
+      <div class="nav">
+        <button type="button" class="iconbtn" id="dPrev" aria-label="Previous work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button type="button" class="iconbtn" id="dNext" aria-label="Next work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        <button type="button" class="iconbtn" id="dClose" aria-label="Close details"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+    </div>
+    <div class="dlg-body"><article class="detail" id="detail"></article></div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="glossary" aria-labelledby="gTitle">
+  <div class="dlg">
+    <div class="dlg-head"><div class="crumbs">Definitions from the survey</div>
+      <div class="nav"><button type="button" class="iconbtn" id="gClose" aria-label="Close definitions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div></div>
+    <div class="dlg-body gloss" id="glossBody"></div>
+  </div>
+</dialog>
 
 <script id="data" type="application/json">__DATA__</script>
 <script>
@@ -180,17 +565,26 @@ footer{padding:36px 0 48px;color:var(--muted);font-size:13px;border-top:1px soli
 const D = JSON.parse(document.getElementById("data").textContent);
 const P = D.papers, L = D.labels;
 const LEVELS = ["input","dynamics","operator"], TYPES = ["standalone","sequential","parallel","embedded"], PATS = ["DV","RT","GS","LG"];
-const st = {q:"", roles:new Set(), setting:"", domain:"", pattern:"", year:"", d3:"", d4:"", sub:"", key:null};
+const DIM = Object.fromEntries(D.dimensions.map(d => [d.id, d]));
+const LV_DEF = Object.fromEntries(DIM.D3.levels.map(x => [x.id, x.definition]));
+const TY_DEF = Object.fromEntries(DIM.D4.types.map(x => [x.id, x.definition]));
+const PAT_DEF = Object.fromEntries(D.patterns.map(x => [x.id, x.definition]));
+const ROLE_COLOR = {taxonomy:"var(--s1)", application:"var(--s2)", discussed:"var(--s3)"};
+const st = {q:"", roles:new Set(), setting:"", domain:"", pattern:"", year:"", d3:"", d4:"", sub:"", cellPat:"", key:null, sort:"survey", table:D.tables[0].id};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const txt = s => esc(String(s ?? "").replace(/---/g,"—").replace(/--/g,"–").replace(/\$([^$]+)\$/g,(m,x)=>x.replace(/\\lvert\s?|\\rvert\s?/g,"|").replace(/\\cdot/g,"·")));
+const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + "s")}`;
+const ICON_X = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>`;
+const ICON_DL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>`;
+const reduceMotion = () => matchMedia("(prefers-reduced-motion:reduce)").matches;
 
 function hay(p){
   return [p.model, (p.aliases||[]).join(" "), p.title, p.authors, p.venue, p.year, p.key, p.methodology,
     (p.application||{}).task, (p.application||{}).graph_construction, (p.taxonomy||{}).d1, (p.taxonomy||{}).d2,
     (p.datasets||[]).join(" ")].join(" ").toLowerCase();
 }
-P.forEach(p => p._h = hay(p));
+P.forEach((p, i) => { p._h = hay(p); p._i = i; });
 
 function match(p, ignore){
   ignore = ignore || {};
@@ -199,195 +593,518 @@ function match(p, ignore){
   if (st.setting && (!p.taxonomy || p.taxonomy.setting !== st.setting)) return false;
   if (st.domain && (!p.application || p.application.domain !== st.domain)) return false;
   if (st.pattern && (!p.application || !p.application.patterns.includes(st.pattern))) return false;
-  if (st.year && String(p.year) !== st.year) return false;
+  if (!ignore.year && st.year && String(p.year) !== st.year) return false;
   if (!ignore.arch && st.d3 && (!p.taxonomy || !p.taxonomy.d3.includes(st.d3))) return false;
   if (!ignore.arch && st.d4 && (!p.taxonomy || !p.taxonomy.d4.includes(st.d4))) return false;
   if (!ignore.app && st.sub && (!p.application || p.application.subdomain !== st.sub)) return false;
   if (!ignore.app && st.cellPat && (!p.application || p.application.dominant_pattern !== st.cellPat)) return false;
   return true;
 }
+const explorerFiltersActive = () => !!(st.q || st.roles.size || st.setting || st.domain || st.pattern || st.year);
 
-/* ---------- matrices ---------- */
+/* survey markers: rendered as a quiet glyph with an accessible name */
+const MARK = {"†": D.abbreviations["†"], "◆": D.abbreviations["◆"]};
+function marks(p){
+  return (p.precursor ? `<span class="mk" title="${esc(MARK["†"])}"><span aria-hidden="true">†</span><span class="sr"> (${esc(MARK["†"])})</span></span>` : "") +
+         (p.multimodal ? `<span class="mk" title="${esc(MARK["◆"])}"><span aria-hidden="true">◆</span><span class="sr"> (${esc(MARK["◆"])})</span></span>` : "");
+}
+function category(p){
+  if (p.taxonomy) return L.setting[p.taxonomy.setting];
+  if (p.application) return L.subdomain[p.application.subdomain];
+  return "Discussed in Sec. 7 · not classified";
+}
+function patText(a){ return a.dominant_pattern + (a.secondary_pattern ? ` (secondary ${a.secondary_pattern})` : ""); }
+
+/* Keep keyboard focus on the "same" control across re-renders. */
+function withFocus(fn){
+  const a = document.activeElement, fid = a && a.dataset ? a.dataset.fid : null;
+  fn();
+  if (fid){ const n = document.querySelector(`[data-fid="${CSS.escape(fid)}"]`); if (n && n !== document.activeElement) n.focus({preventScroll:true}); }
+}
+
+/* ============================ overview ============================ */
+function drawOverview(){
+  const t = D.survey.title.split(":");
+  $("ovSub").textContent = t.slice(1).join(":").trim();
+  $("ovAuthors").textContent = D.survey.authors.map(a => a.name).join(" · ");
+  $("ovVenue").textContent = D.survey.venue;
+  $("repoLink").href = D.repoBase.replace(/\/blob\/main\/$/, "");
+  $("flagsLink").href = D.repoBase + "docs/FLAGS.md";
+  const stats = [[P.length, "works reviewed", "#explorer"], [D.counts.taxonomy, "architectures classified on D1–D4", "#taxonomy"],
+    [D.counts.application, "domain applications", "#applications"], [D.counts.discussed, "discussed only in Sec. 7", "#explorer", "discussed"],
+    [D.tables.length, "comparison tables", "#tables"]];
+  $("stats").innerHTML = stats.map(([v,k,h,role]) => `<li><a href="${h}"${role?` data-role-link="${role}"`:""}><span class="v">${v}</span><span class="k">${esc(k)}</span></a></li>`).join("");
+  $("stats").addEventListener("click", e => { const a = e.target.closest("[data-role-link]"); if (a){ st.roles = new Set([a.dataset.roleLink]); render(); }});
+  $("dims").innerHTML = D.dimensions.map(d => {
+    let extra = "";
+    if (d.levels) extra = `<dl>${d.levels.map(x => `<dt>${esc(x.label)}</dt><dd>${txt(x.definition)}</dd>`).join("")}</dl>`;
+    else if (d.types) extra = `<dl>${d.types.map(x => `<dt>${esc(x.label)}</dt><dd>${txt(x.definition)}</dd>`).join("")}</dl>`;
+    else extra = `<dl><dt>Typical choices</dt><dd>${txt(d.choices)}</dd></dl>`;
+    return `<li class="dim"><span class="id">${d.id}</span><h3>${esc(d.name)}</h3><p class="q">${txt(d.question)}</p><p class="aspect">${txt(d.aspect)}</p>${extra}</li>`;
+  }).join("");
+  $("rqs").innerHTML = D.researchQuestions.map(r => `<li><b>${esc(r.id)}</b><span>${txt(r.question)}</span></li>`).join("");
+}
+
+/* ============================ glossary ============================ */
+function drawGlossary(){
+  const row = (a, b) => `<tr><th scope="row">${a}</th><td>${b}</td></tr>`;
+  $("glossBody").innerHTML = `<h2 id="gTitle">Design questions and categories</h2>` +
+    `<h3>Four design questions (D1–D4)</h3><table><tbody>${D.dimensions.map(d => row(`${d.id} · ${esc(d.name)}`, `${txt(d.question)}<br><span class="muted">${txt(d.aspect)}. Choices: ${txt(d.choices)}.</span>`)).join("")}</tbody></table>` +
+    `<h3>D3 coupling levels</h3><table><tbody>${DIM.D3.levels.map(x => row(esc(x.label), txt(x.definition))).join("")}</tbody></table>` +
+    `<h3>D4 integration types</h3><table><tbody>${DIM.D4.types.map(x => row(esc(x.label), txt(x.definition))).join("")}</tbody></table>` +
+    `<h3>Graph settings</h3><table><tbody>${D.settings.map(x => row(esc(x.label), txt(x.emphasis))).join("")}</tbody></table>` +
+    `<h3>Application design patterns</h3><table><tbody>${D.patterns.map(x => row(`${x.id} · ${txt(x.label)}`, txt(x.definition))).join("")}</tbody></table>` +
+    `<h3>Markers and abbreviations</h3><table><tbody>${Object.entries(D.abbreviations).map(([k,v]) => row(esc(k), txt(v))).join("")}` +
+    row("Discussed only", esc(D.roleShort.discussed) + ": Graph Mamba models discussed in the challenges section but not classified in the survey taxonomy.") + `</tbody></table>`;
+}
+let glossOpener = null;
+function openGlossary(){ glossOpener = document.activeElement; const g = $("glossary"); if (!g.open){ g.showModal ? g.showModal() : g.setAttribute("open",""); } $("gClose").focus(); }
+$("glossary").addEventListener("close", () => { if (glossOpener && glossOpener.isConnected) glossOpener.focus(); });
+$("gClose").addEventListener("click", () => $("glossary").close());
+document.addEventListener("click", e => { if (e.target.closest("[data-gloss], #glossBtn")) openGlossary(); });
+
+/* ============================ matrices ============================ */
+const heat = (n, max) => n ? Math.max(1, Math.min(5, Math.ceil(n / max * 5))) : 0;
+const lastFocus = {mxArch:null, mxApp:null};
+function cellBtn(attrs, n, label, sel, unit, fid){
+  return `<button type="button" class="cell h${attrs.h}" ${attrs.data} data-fid="${fid}" aria-pressed="${sel}" aria-label="${esc(label)}: ${plural(n, unit)}${sel ? ", selected" : ""}">` +
+         `<span class="num" aria-hidden="true">${n}</span><span class="unit" aria-hidden="true">${n === 1 ? unit : unit + "s"}</span></button>`;
+}
 function drawArch(){
-  const t = $("mxArch");
-  let h = "<thead><tr><th></th>" + TYPES.map(ty => `<th scope="col">${esc(L.type[ty])}</th>`).join("") + "</tr></thead><tbody>";
-  const desc = {input:"graph shapes tokens and order", dynamics:"graph conditions B, C, Δ or transition", operator:"operator defined on the graph"};
+  const arch = P.filter(p => p.taxonomy);
+  const inCell = (lv, ty) => arch.filter(p => p.taxonomy.d3.includes(lv) && p.taxonomy.d4.includes(ty));
+  const max = Math.max(1, ...LEVELS.flatMap(lv => TYPES.map(ty => inCell(lv, ty).length)));
+  let h = `<caption class="sr">D3 coupling level by D4 integration type; each cell gives the number of architectures</caption>` +
+    `<thead><tr><th scope="col" class="corner">D3 coupling ↓<br>D4 integration →</th>` +
+    TYPES.map(ty => `<th scope="col">${esc(L.type[ty])}<span class="def">${txt(TY_DEF[ty])}</span></th>`).join("") + `<th scope="col" class="tot">Models</th></tr></thead><tbody>`;
   LEVELS.forEach(lv => {
-    h += `<tr><th scope="row">${esc(L.level[lv])}<small>${desc[lv]}</small></th>`;
+    h += `<tr><th scope="row">${esc(L.level[lv])}<span class="def">${txt(LV_DEF[lv])}</span></th>`;
     TYPES.forEach(ty => {
-      const ps = P.filter(p => p.taxonomy && p.taxonomy.d3.includes(lv) && p.taxonomy.d4.includes(ty));
-      const sel = st.d3 === lv && st.d4 === ty;
-      h += `<td class="cellbtn${sel?" sel":""}" data-lv="${lv}" data-ty="${ty}" tabindex="0" role="button" aria-pressed="${sel}" aria-label="${esc(L.level[lv])}, ${esc(L.type[ty])}: ${ps.length} models">${ps.length ? `<span class="n">${sel?"Showing":"Filter"} ${ps.length}</span>` : ""}` +
-        ps.map(p => `<span class="chip setting-${p.taxonomy.setting}${match(p,{arch:true})?"":" dim"}" data-key="${esc(p.key)}">${txt(p.model)}${p.precursor?"†":""}</span>`).join("") + "</td>";
+      const n = inCell(lv, ty).length, sel = st.d3 === lv && st.d4 === ty;
+      h += `<td>${cellBtn({h:heat(n,max), data:`data-lv="${lv}" data-ty="${ty}"`}, n, `${L.level[lv]} × ${L.type[ty]}`, sel, "model", `arch-${lv}-${ty}`)}</td>`;
     });
-    h += "</tr>";
+    h += `<td class="tot">${arch.filter(p => p.taxonomy.d3.includes(lv)).length}</td></tr>`;
   });
-  t.innerHTML = h + "</tbody>";
+  h += `</tbody><tfoot><tr><th scope="row">Models</th>${TYPES.map(ty => `<td>${arch.filter(p => p.taxonomy.d4.includes(ty)).length}</td>`).join("")}<td>${arch.length}</td></tr></tfoot>`;
+  $("mxArch").innerHTML = h;
+  setRoving("mxArch");
+  const multi = arch.filter(p => p.taxonomy.d3.length * p.taxonomy.d4.length > 1);
+  const cellSum = arch.reduce((s, p) => s + p.taxonomy.d3.length * p.taxonomy.d4.length, 0);
+  $("archNote").innerHTML = `${rampLegend()} Totals count distinct models. ` +
+    (multi.length ? `Multi-label assignments are preserved: ${plural(multi.length, "model")} (${multi.map(p => txt(p.model)).join(", ")}) appear in more than one cell, so the cells sum to ${cellSum} placements of ${arch.length} models. ` : "") +
+    `Use the arrow keys to move between cells.`;
 }
 function drawApp(){
-  const t = $("mxApp");
-  let h = "<thead><tr><th></th>" + PATS.map(pt => `<th scope="col" title="${esc(L.pattern[pt])}">${pt}</th>`).join("") + "</tr></thead><tbody>";
-  D.subdomains.forEach(sd => {
-    const rows = P.filter(p => p.application && p.application.subdomain === sd.id);
-    if (!rows.length) return;
-    h += `<tr><th scope="row">${esc(sd.label)}</th>`;
-    PATS.forEach(pt => {
-      const ps = rows.filter(p => p.application.dominant_pattern === pt);
-      const sel = st.sub === sd.id && st.cellPat === pt;
-      h += `<td class="cellbtn${sel?" sel":""}" data-sub="${sd.id}" data-pt="${pt}" tabindex="0" role="button" aria-pressed="${sel}" aria-label="${esc(sd.label)}, ${pt}: ${ps.length} works">${ps.length ? `<span class="n">${sel?"Showing":"Filter"} ${ps.length}</span>` : ""}` +
-        ps.map(p => `<span class="chip p-${pt}${match(p,{app:true})?"":" dim"}" data-key="${esc(p.key)}">${txt(p.model)}${p.precursor?"†":""}${p.multimodal?"◆":""}</span>`).join("") + "</td>";
+  const app = P.filter(p => p.application);
+  const inCell = (sd, pt) => app.filter(p => p.application.subdomain === sd && p.application.dominant_pattern === pt);
+  const max = Math.max(1, ...D.subdomains.flatMap(sd => PATS.map(pt => inCell(sd.id, pt).length)));
+  let h = `<caption class="sr">Application data setting by dominant design pattern; each cell gives the number of works</caption>` +
+    `<thead><tr><th scope="col" class="corner">Data setting ↓<br>Pattern →</th>` +
+    PATS.map(pt => `<th scope="col"><abbr title="${esc(txt(L.pattern[pt]))}">${pt}</abbr><span class="def">${txt(L.pattern[pt])}</span></th>`).join("") + `<th scope="col" class="tot">Works</th></tr></thead><tbody>`;
+  D.domains.forEach(dm => {
+    const subs = dm.subdomains.filter(sd => app.some(p => p.application.subdomain === sd));
+    if (!subs.length) return;
+    h += `<tr class="grp"><th colspan="${PATS.length + 2}" scope="colgroup">${esc(dm.label)}</th></tr>`;
+    subs.forEach(sd => {
+      h += `<tr><th scope="row">${esc(L.subdomain[sd])}</th>`;
+      PATS.forEach(pt => {
+        const n = inCell(sd, pt).length, sel = st.sub === sd && st.cellPat === pt;
+        h += `<td>${cellBtn({h:heat(n,max), data:`data-sub="${sd}" data-pt="${pt}"`}, n, `${L.subdomain[sd]} × ${txt(L.pattern[pt])}`, sel, "work", `app-${sd}-${pt}`)}</td>`;
+      });
+      h += `<td class="tot">${app.filter(p => p.application.subdomain === sd).length}</td></tr>`;
     });
-    h += "</tr>";
   });
-  t.innerHTML = h + "</tbody>";
-  $("patLegend").innerHTML = PATS.map(pt => `<span><i style="background:var(--${pt})"></i>${pt} ${esc(L.pattern[pt])}</span>`).join("") + "<span>† precursor · ◆ multimodal</span>";
+  h += `</tbody><tfoot><tr><th scope="row">Works</th>${PATS.map(pt => `<td>${app.filter(p => p.application.dominant_pattern === pt).length}</td>`).join("")}<td>${app.length}</td></tr></tfoot>`;
+  $("mxApp").innerHTML = h;
+  setRoving("mxApp");
+  $("appNote").innerHTML = `${rampLegend()} Each work is placed once, by its dominant pattern. ` +
+    PATS.map(pt => `<b>${pt}</b> ${txt(L.pattern[pt])}`).join(" · ") + `. Use the arrow keys to move between cells.`;
 }
-function cellHandler(e){
-  const chip = e.target.closest(".chip");
-  if (chip){ openKey(chip.dataset.key); return; }
-  const td = e.target.closest("td.cellbtn"); if (!td) return;
-  if (td.dataset.lv){
-    const same = st.d3 === td.dataset.lv && st.d4 === td.dataset.ty;
-    st.d3 = same ? "" : td.dataset.lv; st.d4 = same ? "" : td.dataset.ty;
-  } else {
-    const same = st.sub === td.dataset.sub && st.cellPat === td.dataset.pt;
-    st.sub = same ? "" : td.dataset.sub; st.cellPat = same ? "" : td.dataset.pt;
-  }
-  render();
+function rampLegend(){ return `<span class="sr">Shading encodes the count.</span><span aria-hidden="true">Fewer<span class="ramp">${[1,2,3,4,5].map(i => `<i style="background:var(--h${i})"></i>`).join("")}</span>more.</span>`; }
+
+/* roving tab stop: one Tab stop per matrix, arrow keys move between cells */
+function cellGrid(t){ return [...t.querySelectorAll("tbody tr")].map(r => [...r.querySelectorAll("button.cell")]).filter(r => r.length); }
+function setRoving(id){
+  const t = $(id), cells = [...t.querySelectorAll("button.cell")];
+  const cur = cells.find(b => b.dataset.fid === lastFocus[id]) || cells.find(b => b.getAttribute("aria-pressed") === "true") || cells[0];
+  cells.forEach(b => b.tabIndex = b === cur ? 0 : -1);
 }
+function moveFocus(t, b){ t.querySelectorAll("button.cell").forEach(x => x.tabIndex = x === b ? 0 : -1); lastFocus[t.id] = b.dataset.fid; b.focus(); }
 ["mxArch","mxApp"].forEach(id => {
-  $(id).addEventListener("click", cellHandler);
-  $(id).addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); cellHandler(e); }});
+  const t = $(id);
+  t.addEventListener("keydown", e => {
+    const b = e.target.closest("button.cell"); if (!b) return;
+    const g = cellGrid(t); let r = g.findIndex(row => row.includes(b)), c = g[r].indexOf(b);
+    switch (e.key){
+      case "ArrowRight": c = Math.min(c + 1, g[r].length - 1); break;
+      case "ArrowLeft": c = Math.max(c - 1, 0); break;
+      case "ArrowDown": r = Math.min(r + 1, g.length - 1); break;
+      case "ArrowUp": r = Math.max(r - 1, 0); break;
+      case "Home": c = 0; if (e.ctrlKey) r = 0; break;
+      case "End": c = g[r].length - 1; if (e.ctrlKey) r = g.length - 1; break;
+      default: return;
+    }
+    e.preventDefault(); moveFocus(t, g[r][Math.min(c, g[r].length - 1)]);
+  });
+  t.addEventListener("focusin", e => { const b = e.target.closest("button.cell"); if (b) lastFocus[id] = b.dataset.fid; });
+  t.addEventListener("click", e => {
+    const b = e.target.closest("button.cell"); if (!b) return;
+    if (b.dataset.lv){
+      const same = st.d3 === b.dataset.lv && st.d4 === b.dataset.ty;
+      st.d3 = same ? "" : b.dataset.lv; st.d4 = same ? "" : b.dataset.ty;
+    } else {
+      const same = st.sub === b.dataset.sub && st.cellPat === b.dataset.pt;
+      st.sub = same ? "" : b.dataset.sub; st.cellPat = same ? "" : b.dataset.pt;
+    }
+    render();
+  });
 });
 
-/* ---------- filters ---------- */
-function opts(map, all){ return `<option value="">${all}</option>` + Object.entries(map).map(([k,v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join(""); }
+/* ---- cell panels ---- */
+function matchLine(ps, ig){
+  if (!explorerFiltersActive()) return "";
+  const n = ps.filter(p => match(p, ig)).length;
+  return ` · ${n} match the current explorer filters`;
+}
+function itemBtn(p, sub, also, ig){
+  const out = !match(p, ig);
+  return `<li><button type="button" class="mitem${out ? " out" : ""}" data-key="${esc(p.key)}" data-fid="mi-${esc(p.key)}">` +
+    `<span class="nm">${txt(p.model)}</span>${marks(p)}<span class="yr">${esc(p.year)}</span>${out ? `<span class="outnote">outside current filters</span>` : ""}` +
+    `<span class="sub">${sub}</span>${also ? `<span class="also">${also}</span>` : ""}</button></li>`;
+}
+function drawArchPanel(){
+  const el = $("archPanel");
+  if (!st.d3){
+    el.innerHTML = `<h3>Select a cell</h3><p class="ph" style="margin-top:8px">Choose a coupling × integration cell to list its architectures, grouped by graph setting. Selecting a cell also filters the Literature Explorer.</p>` +
+      `<div class="defs" style="margin-top:14px">${D.settings.map(s => `<span><b>${esc(s.label)}.</b> ${txt(s.emphasis)}</span>`).join("")}</div>`;
+    return;
+  }
+  const ig = {arch:true};
+  const ps = P.filter(p => p.taxonomy && p.taxonomy.d3.includes(st.d3) && p.taxonomy.d4.includes(st.d4));
+  let h = `<h3>${esc(L.level[st.d3])}<span class="x" aria-label="by">×</span>${esc(L.type[st.d4])}</h3>` +
+    `<div class="defs"><span><b>D3 · ${esc(L.level[st.d3])}:</b> ${txt(LV_DEF[st.d3])}</span><span><b>D4 · ${esc(L.type[st.d4])}:</b> ${txt(TY_DEF[st.d4])}</span></div>` +
+    `<p class="cnt">${plural(ps.length, "architecture")}${matchLine(ps, ig)}</p>`;
+  if (!ps.length) h += `<p class="ph" style="margin-top:10px">No architecture in the survey is classified in this cell.</p>`;
+  D.settings.forEach(s => {
+    const g = ps.filter(p => p.taxonomy.setting === s.id); if (!g.length) return;
+    h += `<h4>${esc(s.label)}</h4><ul class="mlist">` + g.map(p => {
+      const t = p.taxonomy;
+      const others = t.d3.flatMap(lv => t.d4.map(ty => [lv, ty])).filter(([lv, ty]) => !(lv === st.d3 && ty === st.d4));
+      const also = others.length ? "Also in: " + others.map(([lv, ty]) => `${esc(L.level[lv])} × ${esc(L.type[ty])}`).join("; ") : "";
+      return itemBtn(p, `D1 ${txt(t.d1)} · D2 ${txt(t.d2)}`, also, ig);
+    }).join("") + `</ul>`;
+  });
+  h += `<div class="actions">${ps.length ? `<button type="button" class="btn primary" data-act="show" data-fid="arch-show">Show in Literature Explorer</button>` : ""}<button type="button" class="btn" data-act="clear-arch" data-fid="arch-clear">Clear selection</button></div>`;
+  el.innerHTML = h;
+}
+function drawAppPanel(){
+  const el = $("appPanel");
+  if (!st.sub){
+    el.innerHTML = `<h3>Select a cell</h3><p class="ph" style="margin-top:8px">Choose a data setting × pattern cell to list its works with their task, graph construction, and patterns. Selecting a cell also filters the Literature Explorer.</p>` +
+      `<div class="defs" style="margin-top:14px">${D.patterns.map(x => `<span><b>${x.id} · ${txt(x.label)}.</b> ${txt(x.definition)}</span>`).join("")}</div>`;
+    return;
+  }
+  const ig = {app:true};
+  const ps = P.filter(p => p.application && p.application.subdomain === st.sub && p.application.dominant_pattern === st.cellPat);
+  let h = `<h3>${esc(L.subdomain[st.sub])}<span class="x" aria-label="by">×</span>${st.cellPat}</h3>` +
+    `<div class="defs"><span><b>${st.cellPat} · ${txt(L.pattern[st.cellPat])}:</b> ${txt(PAT_DEF[st.cellPat])}</span></div>` +
+    `<p class="cnt">${plural(ps.length, "work")} with this dominant pattern${matchLine(ps, ig)}</p>`;
+  if (!ps.length) h += `<p class="ph" style="margin-top:10px">No work in this data setting has this dominant pattern.</p>`;
+  else h += `<ul class="mlist" style="margin-top:10px">` + ps.map(p => {
+    const a = p.application;
+    return itemBtn(p, `${txt(a.task)} · ${txt(a.graph_construction)}`, a.secondary_pattern ? `Secondary pattern: ${a.secondary_pattern} · ${txt(L.pattern[a.secondary_pattern])}` : "", ig);
+  }).join("") + `</ul>`;
+  h += `<div class="actions">${ps.length ? `<button type="button" class="btn primary" data-act="show" data-fid="app-show">Show in Literature Explorer</button>` : ""}<button type="button" class="btn" data-act="clear-app" data-fid="app-clear">Clear selection</button></div>`;
+  el.innerHTML = h;
+}
+["archPanel","appPanel"].forEach(id => $(id).addEventListener("click", e => {
+  const it = e.target.closest(".mitem"); if (it){ openKey(it.dataset.key, it); return; }
+  const a = e.target.closest("[data-act]"); if (!a) return;
+  if (a.dataset.act === "clear-arch"){ st.d3 = st.d4 = ""; render(); $("mxArch").querySelector('button.cell[tabindex="0"]').focus(); }
+  else if (a.dataset.act === "clear-app"){ st.sub = st.cellPat = ""; render(); $("mxApp").querySelector('button.cell[tabindex="0"]').focus(); }
+  else if (a.dataset.act === "show"){
+    $("explorer").scrollIntoView({behavior: reduceMotion() ? "auto" : "smooth"});
+    $("exTitle").focus({preventScroll:true});
+  }
+}));
+
+/* ============================ explorer ============================ */
+function opts(map, all){ return `<option value="">${all}</option>` + Object.entries(map).map(([k,v]) => `<option value="${esc(k)}">${txt(v)}</option>`).join(""); }
+const YEARS = [...new Set(P.map(p => String(p.year)))].sort();
 function drawFilters(){
-  const years = [...new Set(P.map(p => String(p.year)))].sort();
   $("filters").innerHTML =
-    `<div class="fgroup"><span>Role in the survey</span><div class="toggles">` +
-      Object.entries(D.roleShort).map(([k,v]) => `<button type="button" class="tg" data-role="${k}" aria-pressed="false">${esc(v)}</button>`).join("") + `</div></div>` +
-    `<div class="fgroup"><label for="fs">Graph setting</label><select id="fs">${opts(L.setting,"All settings")}</select></div>` +
-    `<div class="fgroup"><label for="fd">Application area</label><select id="fd">${opts(L.domain,"All areas")}</select></div>` +
-    `<div class="fgroup"><label for="fp">Design pattern</label><select id="fp">${opts(L.pattern,"All patterns")}</select></div>` +
-    `<div class="fgroup"><label for="fy">Year</label><select id="fy"><option value="">All years</option>${years.map(y=>`<option>${y}</option>`).join("")}</select></div>`;
-  document.querySelectorAll(".fgroup label").forEach(l => l.style.cssText = "font-size:12.5px;color:var(--muted)");
+    `<fieldset class="fgroup"><legend>Role in the survey</legend><div class="roles">` +
+      Object.entries(D.roleShort).map(([k,v]) => `<button type="button" class="tg" data-role="${k}" data-fid="role-${k}" aria-pressed="false"><span class="t">${esc(v)}</span><span class="n">${D.counts[k]}</span></button>`).join("") + `</div></fieldset>` +
+    `<div class="fgroup"><label class="lbl" for="fs">Graph setting</label><select id="fs">${opts(L.setting,"All settings")}</select></div>` +
+    `<div class="fgroup"><label class="lbl" for="fd">Application area</label><select id="fd">${opts(L.domain,"All areas")}</select></div>` +
+    `<div class="fgroup"><label class="lbl" for="fp">Design pattern</label><select id="fp">${opts(L.pattern,"All patterns")}</select></div>` +
+    `<div class="fgroup"><label class="lbl" for="fy">Year</label><select id="fy"><option value="">All years</option>${YEARS.map(y=>`<option>${y}</option>`).join("")}</select></div>` +
+    `<div class="fgroup"><span class="lbl" id="yrLbl">Publications per year</span><div class="years" id="years" role="group" aria-labelledby="yrLbl"></div>` +
+      `<div class="legend">${Object.keys(ROLE_COLOR).map(r => `<span><i style="background:${ROLE_COLOR[r]}"></i>${esc(D.roleShort[r])}</span>`).join("")}</div>` +
+      `<p class="small muted" style="margin:6px 0 0;font-size:12.5px">Year field of references.bib, stacked by role. Responds to the other filters; select a bar to filter by year.</p></div>`;
   $("filters").addEventListener("click", e => {
-    const b = e.target.closest(".tg"); if (!b) return;
-    const r = b.dataset.role; st.roles.has(r) ? st.roles.delete(r) : st.roles.add(r); render();
+    const b = e.target.closest(".tg");
+    if (b){ const r = b.dataset.role; st.roles.has(r) ? st.roles.delete(r) : st.roles.add(r); render(); return; }
+    const y = e.target.closest(".ybar");
+    if (y){ st.year = st.year === y.dataset.year ? "" : y.dataset.year; render(); }
   });
   [["fs","setting"],["fd","domain"],["fp","pattern"],["fy","year"]].forEach(([id,k]) => $(id).addEventListener("change", e => { st[k] = e.target.value; render(); }));
 }
 function syncFilters(){
   document.querySelectorAll(".tg").forEach(b => b.setAttribute("aria-pressed", st.roles.has(b.dataset.role)));
   $("fs").value = st.setting; $("fd").value = st.domain; $("fp").value = st.pattern; $("fy").value = st.year;
+  if ($("q").value.trim().toLowerCase() !== st.q) $("q").value = st.q;
+  $("sort").value = st.sort;
 }
-
-/* ---------- list + detail ---------- */
-function category(p){
-  if (p.taxonomy) return L.setting[p.taxonomy.setting];
-  if (p.application) return L.subdomain[p.application.subdomain];
-  return "Discussed in Sec. 7";
+function activeChips(){
+  const c = [];
+  if (st.q) c.push(["q", `Search: “${st.q}”`]);
+  st.roles.forEach(r => c.push(["role:" + r, `Role: ${D.roleShort[r]}`]));
+  if (st.setting) c.push(["setting", `Setting: ${L.setting[st.setting]}`]);
+  if (st.domain) c.push(["domain", `Area: ${L.domain[st.domain]}`]);
+  if (st.pattern) c.push(["pattern", `Pattern: ${st.pattern}`]);
+  if (st.year) c.push(["year", `Year: ${st.year}`]);
+  if (st.d3) c.push(["arch", `Taxonomy cell: ${L.level[st.d3]} × ${L.type[st.d4]}`]);
+  if (st.sub) c.push(["app", `Application cell: ${L.subdomain[st.sub]} × ${st.cellPat}`]);
+  return c;
+}
+function clearChip(k){
+  if (k.startsWith("role:")) st.roles.delete(k.slice(5));
+  else if (k === "arch"){ st.d3 = st.d4 = ""; }
+  else if (k === "app"){ st.sub = st.cellPat = ""; }
+  else st[k] = "";
+}
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest(".fchip"); if (!b) return;
+  const all = [...$("chips").querySelectorAll(".fchip")], i = all.indexOf(b);
+  clearChip(b.dataset.clear); render();
+  const left = [...$("chips").querySelectorAll(".fchip")];
+  (left[Math.min(i, left.length - 1)] || $("q")).focus();
+});
+function sorted(rows){
+  const r = rows.slice();
+  if (st.sort === "new") r.sort((a,b) => (+b.year - +a.year) || a._i - b._i);
+  else if (st.sort === "old") r.sort((a,b) => (+a.year - +b.year) || a._i - b._i);
+  else if (st.sort === "az") r.sort((a,b) => a.model.localeCompare(b.model, "en", {sensitivity:"base"}));
+  return r;
+}
+function cardClass(p){
+  if (p.taxonomy) return `<span><b>D3</b>${esc(p.taxonomy.d3.map(x=>L.level[x]).join(", "))}</span><span><b>D4</b>${esc(p.taxonomy.d4.map(x=>L.type[x]).join(", "))}</span>`;
+  if (p.application) return `<span><b>Pattern</b>${esc(p.application.dominant_pattern)}${p.application.secondary_pattern ? " + " + esc(p.application.secondary_pattern) : ""}</span><span><b>Task</b>${txt(p.application.task)}</span>`;
+  return `<span><b>Role</b>Discussed in Sec. 7 only</span>`;
+}
+function cardNote(p){
+  const n = [];
+  if (p.precursor) n.push("Structured-SSM precursor");
+  if (p.multimodal) n.push("Multimodal input");
+  return n.length ? `<p class="cnote">${n.join(" · ")}</p>` : "";
 }
 function drawList(rows){
-  const active = [];
-  if (st.d3) active.push(`${L.level[st.d3]} × ${L.type[st.d4]}`);
-  if (st.sub) active.push(`${L.subdomain[st.sub]} × ${st.cellPat}`);
-  $("count").textContent = `${rows.length} of ${P.length} works` + (active.length ? ` · cell: ${active.join(", ")}` : "");
-  if (!rows.length){ $("list").innerHTML = `<div class="empty">No works match these filters. Clear a filter or the selected matrix cell to widen the search.</div>`; return; }
-  $("list").innerHTML = rows.map(p => {
-    const tags = [];
-    if (p.taxonomy) tags.push(`<span class="tag">${esc(p.taxonomy.d3.map(x=>L.level[x]).join(", "))}</span><span class="tag">${esc(p.taxonomy.d4.map(x=>L.type[x]).join(", "))}</span>`);
-    if (p.application) tags.push(`<span class="tag">${p.application.dominant_pattern}${p.application.secondary_pattern?"+"+p.application.secondary_pattern:""}</span>`);
-    if (p.verification.status === "needs_verification") tags.push(`<span class="tag warn">needs verification</span>`);
-    return `<div class="row${st.key===p.key?" active":""}" role="listitem" tabindex="0" data-key="${esc(p.key)}"><div class="m">${txt(p.model)}</div>` +
-      `<div class="t">${txt(p.title)}<small>${esc(category(p))} ${tags.join("")}</small></div><div class="y">${esc(p.year)}</div></div>`;
+  const chips = activeChips();
+  $("count").innerHTML = `<b>${rows.length}</b> of ${P.length} works`;
+  $("chips").innerHTML = chips.map(([k, l]) => `<button type="button" class="fchip" data-clear="${esc(k)}" data-fid="chip-${esc(k)}" aria-label="Remove filter: ${esc(txt(l))}"><span>${txt(l)}</span>${ICON_X}</button>`).join("");
+  $("reset").hidden = !chips.length;
+  $("ftoggle").textContent = "Filters" + (chips.length ? ` (${chips.length})` : "");
+  if (!rows.length){ $("list").innerHTML = `<li class="empty">No works match these filters. Remove a filter or the selected matrix cell to widen the search.</li>`; return; }
+  $("list").innerHTML = rows.map(p => `<li class="card${st.key === p.key ? " active" : ""}">` +
+    `<p class="kicker">${esc(category(p))}</p>` +
+    `<h3><button type="button" data-key="${esc(p.key)}" data-fid="card-${esc(p.key)}" aria-haspopup="dialog">${txt(p.model)}</button>${marks(p)}</h3>` +
+    `<p class="ct">${txt(p.title)}</p><p class="cmeta">${txt(p.venue)} · ${esc(p.year)}</p>${cardNote(p)}<p class="cclass">${cardClass(p)}</p></li>`).join("");
+}
+$("list").addEventListener("click", e => { const b = e.target.closest("button[data-key]"); if (b) openKey(b.dataset.key, b); });
+
+function drawYears(){
+  const rows = P.filter(p => match(p, {year:true}));
+  const max = Math.max(1, ...YEARS.map(y => P.filter(p => String(p.year) === y).length));
+  $("years").innerHTML = YEARS.map(y => {
+    const r = rows.filter(p => String(p.year) === y), sel = st.year === y;
+    const parts = Object.keys(ROLE_COLOR).map(role => [role, r.filter(p => p.roles[0] === role).length]).filter(x => x[1]);
+    const desc = parts.map(([role, n]) => `${n} ${D.roleShort[role]}`).join(", ");
+    return `<button type="button" class="ybar${st.year && !sel ? " faded" : ""}" data-year="${y}" data-fid="yr-${y}" aria-pressed="${sel}" aria-label="${y}: ${plural(r.length, "work")}${desc ? " (" + esc(desc) + ")" : ""}. Filter by ${y}" title="${y}: ${esc(desc || "no works")}">` +
+      `<span class="tot" aria-hidden="true">${r.length}</span><span class="stack" aria-hidden="true">${parts.map(([role, n]) => `<span style="height:${n / max * 100}px;background:${ROLE_COLOR[role]}"></span>`).join("")}</span><span class="yl" aria-hidden="true">${y}</span></button>`;
   }).join("");
 }
-$("list").addEventListener("click", e => { const r = e.target.closest(".row"); if (r) openKey(r.dataset.key); });
-$("list").addEventListener("keydown", e => { if (e.key === "Enter"){ const r = e.target.closest(".row"); if (r) openKey(r.dataset.key); }});
 
-function li(arr){ return arr && arr.length ? "<ul>" + arr.map(x => `<li>${txt(x)}</li>`).join("") + "</ul>" : `<p class="placeholder">NR</p>`; }
-function drawDetail(){
-  const p = P.find(x => x.key === st.key);
-  if (!p){ $("detail").innerHTML = `<p class="placeholder">Select a work to see its classification, methodology, reported evidence, and the survey sections that discuss it.</p>`; return; }
-  const links = [];
-  if (p.doi !== "NR") links.push(`<a href="${esc(p.doi)}" target="_blank" rel="noopener">DOI</a>`);
-  if (p.arxiv !== "NR") links.push(`<a href="${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv</a>`);
-  if (p.url !== "NR") links.push(`<a href="${esc(p.url)}" target="_blank" rel="noopener">Publisher</a>`);
-  if (!links.length) links.push(`<a href="${esc(p.search_link)}" target="_blank" rel="noopener">Search Google Scholar</a>`);
-  if (p.code !== "NR") links.push(`<a href="${esc(p.code)}" target="_blank" rel="noopener">Code</a>`);
-  links.push(`<a href="${esc(D.repoPages[p.key])}">Full card</a>`);
-  let dl = `<dt>BibTeX key</dt><dd><code>${esc(p.key)}</code></dd>`;
-  if (p.taxonomy){ const t = p.taxonomy;
-    dl += `<dt>Setting</dt><dd>${esc(L.setting[t.setting])}</dd><dt>D1 Tokenization</dt><dd>${txt(t.d1)}</dd><dt>D2 Ordering</dt><dd>${txt(t.d2)}</dd>` +
-          `<dt>D3 Coupling</dt><dd>${esc(t.d3.map(x=>L.level[x]).join(", "))}</dd><dt>D4 Integration</dt><dd>${esc(t.d4.map(x=>L.type[x]).join(", "))}</dd>`; }
-  if (p.application){ const a = p.application;
-    dl += `<dt>Data setting</dt><dd>${esc(L.subdomain[a.subdomain])}</dd><dt>Task</dt><dd>${txt(a.task)}</dd><dt>Graph</dt><dd>${txt(a.graph_construction)}</dd>` +
-          `<dt>Pattern</dt><dd>${esc(L.pattern[a.dominant_pattern])} (${a.dominant_pattern})${a.secondary_pattern?`; secondary ${a.secondary_pattern}`:""}</dd><dt>Division of labor</dt><dd>${txt(a.division_of_labor)}</dd>`; }
-  if (p.datasets.length) dl += `<dt>Benchmarks</dt><dd>${esc(p.datasets.join(", "))}</dd>`;
-  if (p.complexity !== "NR") dl += `<dt>Complexity</dt><dd>${txt(p.complexity)}</dd>`;
-  let extra = "";
-  if (p.efficiency) extra += `<h4>Efficiency evidence</h4><p style="font-size:14px;margin:0">${txt(p.efficiency.evidence)}</p>`;
-  if (p.expressivity) extra += `<h4>Expressive power</h4><p style="font-size:14px;margin:0">${txt(p.expressivity.result)}</p>`;
-  if (p.result_tables.length) extra += `<h4>Published results</h4><p style="font-size:14px;margin:0">${p.result_tables.map(t=>`<a href="${D.repoBase}tables/markdown/${t}.md">${t}</a>`).join(", ")}</p>`;
-  const flags = (p.verification.flags||[]).map(f => `<div class="flag">${txt(f)}</div>`).join("");
-  $("detail").innerHTML = `<h3>${txt(p.model)}${p.precursor?" †":""}${p.multimodal?" ◆":""}</h3><p class="ptitle">${txt(p.title)}</p>` +
-    `<p class="who">${esc(p.authors)}<br>${txt(p.venue)}, ${esc(p.year)}</p><div class="links">${links.join("")}</div><dl>${dl}</dl>` +
-    `<h4>Methodology</h4><p style="font-size:14px;margin:0">${txt(p.methodology)}</p>` +
-    (p.contributions.length ? `<h4>Key contributions</h4>${li(p.contributions)}` : "") + extra +
-    `<h4>Advantages stated in the survey</h4>${li(p.advantages)}<h4>Limitations stated in the survey</h4>${li(p.limitations)}` +
-    `<h4>Discussed in</h4><p style="font-size:14px;margin:0">${esc(p.manuscript_sections.join("; ") || "NR")}</p>` + flags;
-}
-function openKey(k){ st.key = k; history.replaceState(null, "", "#" + encodeURIComponent(k)); render();
-  if (window.matchMedia("(max-width:980px)").matches) $("detail").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth"}); }
-
-/* ---------- years ---------- */
-function drawYears(rows){
-  const years = [...new Set(P.map(p => String(p.year)))].sort();
-  const max = Math.max(1, ...years.map(y => P.filter(p => String(p.year) === y).length));
-  $("years").innerHTML = years.map(y => {
-    const r = rows.filter(p => String(p.year) === y);
-    const parts = [["taxonomy","var(--accent)"],["application","var(--GS)"],["discussed","var(--muted)"]].map(([role,c]) => {
-      const n = r.filter(p => p.roles[0] === role).length; return n ? `<span style="height:${n/max*90}px;background:${c}" title="${n} ${role}"></span>` : "";
-    }).join("");
-    return `<div class="ybar"><span>${r.length}</span><div class="stack">${parts}</div><span>${y}</span></div>`;
-  }).join("");
-}
+$("q").addEventListener("input", e => { st.q = e.target.value.trim().toLowerCase(); render(); });
+$("sort").addEventListener("change", e => { st.sort = e.target.value; render(); });
+$("reset").addEventListener("click", () => { Object.assign(st,{q:"",setting:"",domain:"",pattern:"",year:"",d3:"",d4:"",sub:"",cellPat:""}); st.roles.clear(); $("q").value=""; render(); $("q").focus(); });
+$("ftoggle").addEventListener("click", e => {
+  const open = !$("filters").classList.contains("open");
+  $("filters").classList.toggle("open", open); e.currentTarget.setAttribute("aria-expanded", open);
+});
 
 /* ---------- csv ---------- */
-$("dl").addEventListener("click", () => {
-  const rows = P.filter(p => match(p));
+function download(name, text){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type:"text/csv;charset=utf-8"})); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function filteredCsv(){
+  const rows = sorted(P.filter(p => match(p)));
   const cols = ["key","model","title","authors","year","venue","roles","setting","d3","d4","subdomain","dominant_pattern","doi","arxiv"];
   const val = p => ({key:p.key,model:p.model,title:p.title,authors:p.authors,year:p.year,venue:p.venue,roles:p.roles.join(";"),
     setting:p.taxonomy?p.taxonomy.setting:"NR",d3:p.taxonomy?p.taxonomy.d3.join(";"):"NR",d4:p.taxonomy?p.taxonomy.d4.join(";"):"NR",
     subdomain:p.application?p.application.subdomain:"NR",dominant_pattern:p.application?p.application.dominant_pattern:"NR",doi:p.doi,arxiv:p.arxiv});
   const q = s => `"${String(s).replace(/"/g,'""')}"`;
-  const csv = [cols.join(",")].concat(rows.map(p => cols.map(c => q(val(p)[c])).join(","))).join("\n");
-  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download = "graph-mamba-filtered.csv"; a.click();
-});
+  return [cols.join(",")].concat(rows.map(p => cols.map(c => q(val(p)[c])).join(","))).join("\n");
+}
+$("dl").addEventListener("click", () => download("graph-mamba-filtered.csv", filteredCsv()));
 
-/* ---------- misc ---------- */
-$("q").addEventListener("input", e => { st.q = e.target.value.trim().toLowerCase(); render(); });
-$("reset").addEventListener("click", () => { Object.assign(st,{q:"",setting:"",domain:"",pattern:"",year:"",d3:"",d4:"",sub:"",cellPat:""}); st.roles.clear(); $("q").value=""; render(); });
+/* ============================ detail drawer ============================ */
+let opener = null, prevHash = "";
+function li(arr){ return arr && arr.length ? "<ul>" + arr.map(x => `<li>${txt(x)}</li>`).join("") + "</ul>" : `<p class="body muted">NR</p>`; }
+const dt = (k, sub) => `<dt>${k}${sub ? `<small>${txt(sub)}</small>` : ""}</dt>`;
+function drawDetail(){
+  const p = P.find(x => x.key === st.key);
+  if (!p){ $("detail").innerHTML = ""; return; }
+  const links = [];
+  const ext = `<span class="sr"> (opens in a new tab)</span>`;
+  if (p.doi !== "NR") links.push(`<a class="btn primary" href="${esc(p.doi)}" target="_blank" rel="noopener">DOI${ext}</a>`);
+  if (p.arxiv !== "NR") links.push(`<a class="btn${links.length ? "" : " primary"}" href="${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv${ext}</a>`);
+  if (p.url !== "NR") links.push(`<a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener">Publisher${ext}</a>`);
+  if (!links.length) links.push(`<a class="btn" href="${esc(p.search_link)}" target="_blank" rel="noopener">Search Google Scholar${ext}</a>`);
+  if (p.code !== "NR") links.push(`<a class="btn" href="${esc(p.code)}" target="_blank" rel="noopener">Code${ext}</a>`);
+  links.push(`<a class="btn ghost" href="${esc(D.repoPages[p.key])}">Full card</a>`);
+  const notes = [];
+  if (p.precursor) notes.push(`<p><b aria-hidden="true">† </b>${txt(MARK["†"])}.</p>`);
+  if (p.multimodal) notes.push(`<p><b aria-hidden="true">◆ </b>${txt(MARK["◆"])}.</p>`);
+  if (p.roles.includes("discussed")) notes.push(`<p>${txt(D.roleShort.discussed)}: discussed in the challenges section but not classified in the survey taxonomy.</p>`);
+  let cls = "";
+  if (p.taxonomy){ const t = p.taxonomy;
+    cls = `<section><h3>Architecture classification <button type="button" class="linkbtn" data-gloss>Definitions</button></h3><dl>` +
+      dt("Graph setting") + `<dd>${esc(L.setting[t.setting])}</dd>` +
+      dt("D1 · Tokenization", DIM.D1.question) + `<dd>${txt(t.d1)}</dd>` +
+      dt("D2 · Ordering", DIM.D2.question) + `<dd>${txt(t.d2)}</dd>` +
+      dt("D3 · Coupling", DIM.D3.question) + `<dd>${t.d3.map(x => `<b>${esc(L.level[x])}</b> — ${txt(LV_DEF[x])}`).join("<br>")}</dd>` +
+      dt("D4 · Integration", DIM.D4.question) + `<dd>${t.d4.map(x => `<b>${esc(L.type[x])}</b> — ${txt(TY_DEF[x])}`).join("<br>")}</dd></dl></section>`; }
+  if (p.application){ const a = p.application;
+    cls += `<section><h3>Application classification <button type="button" class="linkbtn" data-gloss>Definitions</button></h3><dl>` +
+      dt("Data setting") + `<dd>${esc(L.domain[a.domain])} — ${esc(L.subdomain[a.subdomain])}</dd>` +
+      dt("Task") + `<dd>${txt(a.task)}</dd>` + dt("Graph") + `<dd>${txt(a.graph_construction)}</dd>` +
+      dt("Design pattern") + `<dd><b>${txt(L.pattern[a.dominant_pattern])}</b> (${a.dominant_pattern})${a.secondary_pattern ? `; secondary ${txt(L.pattern[a.secondary_pattern])} (${a.secondary_pattern})` : ""}</dd>` +
+      dt("Division of labor") + `<dd>${txt(a.division_of_labor)}</dd></dl></section>`; }
+  let ev = `<dl>` + dt("BibTeX key") + `<dd><code>${esc(p.key)}</code></dd>`;
+  if (p.datasets.length) ev += dt("Benchmarks") + `<dd>${esc(p.datasets.join(", "))}</dd>`;
+  if (p.complexity !== "NR") ev += dt("Complexity") + `<dd>${txt(p.complexity)}</dd>`;
+  if (p.efficiency) ev += dt("Efficiency evidence") + `<dd>${txt(p.efficiency.evidence)}</dd>`;
+  if (p.expressivity) ev += dt("Expressive power") + `<dd>${txt(p.expressivity.result)}</dd>`;
+  if (p.result_tables.length) ev += dt("Published results") + `<dd>${p.result_tables.map(t => `<a href="${esc(D.repoBase)}tables/markdown/${esc(t)}.md">${esc(t)}</a>`).join(", ")}</dd>`;
+  ev += dt("Discussed in") + `<dd>${esc(p.manuscript_sections.join("; ") || "NR")}</dd></dl>`;
+  const flags = (p.verification.flags || []).map(f => `<p class="notice flag">${txt(f)}</p>`).join("");
+  $("detail").innerHTML = `<p class="kicker">${esc(category(p))}</p><h2 id="dTitle">${txt(p.model)}${marks(p)}</h2>` +
+    `<p class="ptitle">${txt(p.title)}</p><p class="who">${esc(p.authors)}<span>${txt(p.venue)}, ${esc(p.year)}</span></p>` +
+    `<div class="links">${links.join("")}</div>` + (notes.length ? `<div class="notes">${notes.join("")}</div>` : "") + cls +
+    `<section><h3>Methodology</h3><p class="body">${txt(p.methodology)}</p></section>` +
+    (p.contributions.length ? `<section><h3>Key contributions</h3>${li(p.contributions)}</section>` : "") +
+    `<section><h3>Evidence and sources</h3>${ev}</section>` +
+    `<section><h3>Advantages stated in the survey</h3>${li(p.advantages)}</section><section><h3>Limitations stated in the survey</h3>${li(p.limitations)}</section>` +
+    (p.verification.status !== "verified" || flags ? `<section><h3>Verification</h3>${p.verification.status !== "verified" ? `<p class="body muted">This record awaits author verification (status: ${esc(p.verification.status.replace(/_/g, " "))}).</p>` : ""}${flags}</section>` : "");
+  const seq = navSeq(), i = seq.findIndex(x => x.key === p.key);
+  $("dCrumbs").textContent = i >= 0 ? `${i + 1} of ${seq.length} in the explorer` : "Not in the current explorer results";
+  $("dPrev").disabled = i <= 0; $("dNext").disabled = i < 0 || i >= seq.length - 1;
+  $("paper").querySelector(".dlg-body").scrollTop = 0;
+}
+function navSeq(){ return sorted(P.filter(p => match(p))); }
+function openKey(k, from){
+  if (!P.some(p => p.key === k)) return;
+  const dlg = $("paper");
+  if (!dlg.open){ opener = from && from.dataset ? from.dataset.fid : null; prevHash = location.hash.slice(1) === k ? "" : location.hash; }
+  st.key = k;
+  history.replaceState(null, "", "#" + encodeURIComponent(k));
+  render();
+  if (!dlg.open){ dlg.showModal ? dlg.showModal() : dlg.setAttribute("open", ""); }
+  $("dClose").focus();
+}
+function step(d){ const seq = navSeq(), i = seq.findIndex(x => x.key === st.key); if (i >= 0 && seq[i + d]) openKey(seq[i + d].key); }
+$("dPrev").addEventListener("click", () => step(-1));
+$("dNext").addEventListener("click", () => step(1));
+$("dClose").addEventListener("click", () => $("paper").close());
+$("paper").addEventListener("click", e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+$("glossary").addEventListener("click", e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+$("paper").addEventListener("keydown", e => {
+  if (e.target.closest("input,select,textarea")) return;
+  if (e.key === "ArrowLeft" && !$("dPrev").disabled) step(-1);
+  else if (e.key === "ArrowRight" && !$("dNext").disabled) step(1);
+});
+$("paper").addEventListener("close", () => {
+  st.key = null;
+  history.replaceState(null, "", prevHash || location.pathname + location.search);
+  render();
+  const n = opener && document.querySelector(`[data-fid="${CSS.escape(opener)}"]`);
+  if (n) n.focus();
+});
+window.addEventListener("hashchange", () => { const h = decodeURIComponent(location.hash.slice(1)); if (P.some(p => p.key === h)) openKey(h); });
+
+/* ============================ comparison tables ============================ */
+const TB = Object.fromEntries(D.tables.map(t => [t.id, t]));
+const NUMERIC = /^[-+−]?[\d.,]+\s*%?$|^[-+−]?[\d.,]+\s*[±(]/;
+function drawTableNav(){
+  $("tbNav").innerHTML = D.tables.map(t => `<li><button type="button" data-tb="${t.id}" data-fid="tb-${t.id}">${txt(t.title)}</button></li>`).join("");
+  $("tbSel").innerHTML = D.tables.map(t => `<option value="${t.id}">${txt(t.title)}</option>`).join("");
+  $("tbNav").addEventListener("click", e => { const b = e.target.closest("[data-tb]"); if (b){ st.table = b.dataset.tb; drawTable(); }});
+  $("tbSel").addEventListener("change", e => { st.table = e.target.value; drawTable(); });
+}
+function tcell(c){
+  if (c.t === "") return `<td></td>`;
+  if (c.t === "✓") return `<td class="chk"><span aria-hidden="true">✓</span><span class="sr">yes</span></td>`;
+  if (c.t === "NR") return `<td><span class="nr" title="Not reported in the survey">NR</span></td>`;
+  const body = c.href ? `<a href="${esc(c.href)}" target="_blank" rel="noopener">${txt(c.t)}</a>` : txt(c.t);
+  return `<td${NUMERIC.test(c.t) ? ` class="num"` : ""}>${body}</td>`;
+}
+function drawTable(){
+  const t = TB[st.table];
+  withFocus(() => {
+    $("tbNav").querySelectorAll("button").forEach(b => b.setAttribute("aria-current", b.dataset.tb === t.id));
+  });
+  $("tbSel").value = t.id;
+  const n = t.headers.length;
+  const body = t.rows.map(r => r.group ? `<tr class="grp"><th colspan="${n}" scope="colgroup">${txt(r.group)}</th></tr>` : `<tr>${r.map(tcell).join("")}</tr>`).join("");
+  $("tbView").innerHTML = `<h3 id="tbH">${txt(t.title)}</h3><p class="cap">${txt(t.caption)}</p>` +
+    `<div class="tb-actions"><button type="button" class="btn primary" id="tbCsv">${ICON_DL}Download CSV</button>` +
+    `<a class="btn" href="${esc(D.repoBase)}tables/markdown/${t.id}.md">Markdown</a><a class="btn" href="${esc(D.repoBase)}tables/latex/${t.id}.tex">LaTeX</a>` +
+    `<a class="btn ghost" href="${esc(D.repoBase)}tables/README.md">All tables and formats</a></div>` +
+    `<div class="tb-scroll" tabindex="0" role="region" aria-labelledby="tbH"><table class="ctab"><thead><tr>${t.headers.map(h => `<th scope="col">${txt(h)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table></div>` +
+    `<div class="tb-notes">${t.notes.map(x => `<p>${txt(x)}</p>`).join("")}<p>${txt(D.legendMarks)}</p></div>`;
+  $("tbCsv").addEventListener("click", () => download(`${t.id}.csv`, t.csv));
+}
+
+/* ============================ misc ============================ */
+function themeIsDark(){ const t = document.documentElement.dataset.theme; return t ? t === "dark" : matchMedia("(prefers-color-scheme:dark)").matches; }
+function syncTheme(){ $("themeLbl").textContent = themeIsDark() ? "Switch to light theme" : "Switch to dark theme"; }
 $("theme").addEventListener("click", () => {
-  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark" : matchMedia("(prefers-color-scheme:dark)").matches;
-  document.documentElement.dataset.theme = dark ? "light" : "dark";
+  document.documentElement.dataset.theme = themeIsDark() ? "light" : "dark";
   try { localStorage.setItem("gm-theme", document.documentElement.dataset.theme); } catch(e){}
+  syncTheme();
 });
-try { const t = localStorage.getItem("gm-theme"); if (t) document.documentElement.dataset.theme = t; } catch(e){}
+syncTheme();
 
-$("meta").innerHTML = `${P.length} works · ${D.counts.taxonomy} architectures · ${D.counts.application} applications · ${D.counts.discussed} discussed only &nbsp; ` +
-  `<a href="${D.repoBase}">Repository</a><a href="./comparison.html">Comparison tables</a><a href="${D.repoBase}docs/FLAGS.md">Open flags</a>`;
-$("foot").textContent = ` Data snapshot: ${D.generated}.`;
+/* section highlighting in the header navigation */
+const navLinks = [...document.querySelectorAll(".mainnav a")];
+if ("IntersectionObserver" in window){
+  const seen = new Map();
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => seen.set(e.target.id, e.isIntersecting ? e.intersectionRatio : 0));
+    const ids = navLinks.map(a => a.hash.slice(1)), cur = ids.find(id => seen.get(id) > 0);
+    navLinks.forEach(a => a.hash.slice(1) === cur ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
+    const act = navLinks.find(a => a.hash.slice(1) === cur), nav = document.querySelector(".mainnav");
+    if (act && nav.scrollWidth > nav.clientWidth) nav.scrollTo({left: act.offsetLeft - 12, behavior: reduceMotion() ? "auto" : "smooth"});
+  }, {rootMargin: "-110px 0px -55% 0px", threshold: [0, .01]});
+  navLinks.forEach(a => { const s = document.getElementById(a.hash.slice(1)); if (s) io.observe(s); });
+}
+
+const nVerify = P.filter(p => p.verification.status !== "verified").length;  // same definition as the README
+if (nVerify){ $("verifyNote").hidden = false; $("verifyNote").innerHTML = `${nVerify} of ${P.length} records await author verification. Classifications follow the manuscript; see the <a href="${esc(D.repoBase)}docs/FLAGS.md">open flags</a>.`; }
+$("foot").textContent = `Data snapshot: ${D.generated}.`;
 
 function render(){
-  const rows = P.filter(p => match(p));
-  drawArch(); drawApp(); syncFilters(); drawList(rows); drawDetail(); drawYears(rows);
+  withFocus(() => {
+    const rows = sorted(P.filter(p => match(p)));
+    drawArch(); drawApp(); drawArchPanel(); drawAppPanel(); syncFilters(); drawList(rows); drawYears();
+    if (st.key) drawDetail();
+  });
 }
-drawFilters();
-const h = decodeURIComponent(location.hash.slice(1)); if (h && P.some(p => p.key === h)) st.key = h;
+drawOverview(); drawGlossary(); drawFilters(); drawTableNav(); drawTable();
 render();
+const h0 = decodeURIComponent(location.hash.slice(1)); if (h0 && P.some(p => p.key === h0)) openKey(h0);
 })();
 </script>
 </body>
